@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{3F9AB79B-4637-46E7-BF00-19A4C6ACA0A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine", "GameEngine\GameEngine.csproj", "{C60B3367-00B1-4DEA-AB1C-D77B0B904690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine_Tests", "GameEngine_Tests\GameEngine_Tests.csproj", "{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F9AB79B-4637-46E7-BF00-19A4C6ACA0A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9AB79B-4637-46E7-BF00-19A4C6ACA0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9AB79B-4637-46E7-BF00-19A4C6ACA0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9AB79B-4637-46E7-BF00-19A4C6ACA0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60B3367-00B1-4DEA-AB1C-D77B0B904690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60B3367-00B1-4DEA-AB1C-D77B0B904690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60B3367-00B1-4DEA-AB1C-D77B0B904690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60B3367-00B1-4DEA-AB1C-D77B0B904690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

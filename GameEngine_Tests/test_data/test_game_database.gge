@@ -1,0 +1,54 @@
+{
+  "Name": "Test Game Database",
+  "Description": "This game is used to test the features of the game engine.",
+  "StartingRoomId": 0,
+  "Items": [
+    {
+      "Id": 0,
+      "Description": "This items looks like its first.",
+      "IsTreasure": false,
+      "Name": "First Item"
+    },
+    {
+      "Id": 1,
+      "Description": "This items looks like its second.",
+      "IsTreasure": true,
+      "Name": "Second Item"
+    },
+    {
+      "Id": 2,
+      "Description": "This items looks like its third.",
+      "IsTreasure": false,
+      "Name": "Third Item"
+    }
+  ],
+  "Messages": [],
+  "Rooms": [
+    {
+      "Id": 0,
+      "ContainedItemIds": [
+        1
+      ],
+      "Description": "This is the first room. It's very interesting.",
+      "ExitIdEast": -1,
+      "ExitIdNorth": 1,
+      "ExitIdSouth": -1,
+      "ExitIdWest": -1,
+      "Name": "Starting Room"
+    },
+    {
+      "Id": 1,
+      "ContainedItemIds": [
+        3
+      ],
+      "Description": "The is the second room. It's so much more interesting.",
+      "ExitIdEast": -1,
+      "ExitIdNorth": -1,
+      "ExitIdSouth": 1,
+      "ExitIdWest": -1,
+      "Name": "Second Room"
+    }
+  ],
+  "Words": [],
+  "Actions": []
+}
