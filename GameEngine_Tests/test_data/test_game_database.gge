@@ -5,19 +5,19 @@
   "Items": [
     {
       "Id": 0,
-      "Description": "This items looks like its first.",
+      "Description": "This items looks like it's first.",
       "IsTreasure": false,
       "Name": "First Item"
     },
     {
       "Id": 1,
-      "Description": "This items looks like its second.",
+      "Description": "This items looks like it's second.",
       "IsTreasure": true,
       "Name": "Second Item"
     },
     {
       "Id": 2,
-      "Description": "This items looks like its third.",
+      "Description": "This items looks like it's third.",
       "IsTreasure": false,
       "Name": "Third Item"
     }
@@ -39,7 +39,7 @@
     {
       "Id": 1,
       "ContainedItemIds": [
-        3
+        2
       ],
       "Description": "The is the second room. It's so much more interesting.",
       "ExitIdEast": -1,

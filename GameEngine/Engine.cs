@@ -36,12 +36,11 @@ public class Engine
 
         if (!setupReturn.SetupSuccessful)
         {
-            Console.WriteLine(Formatter.ErrorMessage(setupReturn.ErrorMessages));
+            Console.WriteLine(MessageFormatter.Error(setupReturn.ErrorMessages));
             Environment.Exit(1);
         }
 
         // Command line was parsed so now we load!
-
         _outputDebugStatements = setupReturn.OutputDebugStatements;
 
         GameState gameState = new GameState();
@@ -57,38 +56,37 @@ public class Engine
         }
 
         // Show the game name & description
-        Console.Write(Formatter.GameLoadedMessage(gameState.GameData));
+        Console.Write(MessageFormatter.GameLoaded(gameState.GameData));
 
         // Force a Look
-        Console.WriteLine(Look(gameState.PlayerData.CurrentRoomId, gameState, true));
+        Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
         // Game Loop
         while (true)
         {
+            Console.Write(Constants.INPUT_PROMPT);
+            string? playerInput = Console.ReadLine();
 
+            if (!string.IsNullOrWhiteSpace(playerInput))
+            {
+                string cleanedInput = playerInput.ToLowerInvariant();
+                bool quitGame = false;
+                switch (cleanedInput)
+                {
+                    case "h":
+                    case "help":
+                        break;
+                    case "l":
+                    case "look":
+                        Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
+                        break;
+                    case "q":
+                    case "quit":
+                        quitGame = true;
+                        break;
+                }
+                if (quitGame)
+                    break;
+            }
         }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="currentRoomId">The <c>Room.Id</c> of the room where the player is currently at.</param>
-    /// <param name="gameState">The <c>GameState</c> object.</param>
-    /// <param name="overrideToFullDescription">Should the full description be returned regardless if the <c>Player</c> has arleady visited the <c>Room</c>.</param>
-    /// <returns></returns>
-    private string Look(int currentRoomId, GameState gameState, bool overrideToFullDescription = false)
-    {
-        Room currentRoom = ObjectFinder.GetRoom(gameState.GameData.Rooms, currentRoomId);
-        List<Item> itemsInRoom = ObjectFinder.GetItems(gameState.GameData.Items, currentRoom.ContainedItemIds);
-        List<string> exitsFromRoom = currentRoom.AvailableExits();
-        Player player = gameState.PlayerData;
-
-        string description = (!player.HasAlreadyVisitedRoom(currentRoomId) || overrideToFullDescription) ? currentRoom.Description : string.Empty;
-        string items = string.Join(", ", itemsInRoom);
-        string exits = Formatter.RoomAvailableExitsMessage(exitsFromRoom);
-        string availableExits = exits.Length > 0 ? $"Available exits: {exits}" : "Available exits: none apparent";
-
-        string lookResponse = $"{currentRoom.Name}\n{description}\n{availableExits}";
-
-        return lookResponse;
     }
 }

@@ -1,17 +1,15 @@
-
-using System.ComponentModel;
 using GameEngine.GameData;
 
 namespace GameEngine.Utilities;
 
-public static class Formatter
+public static class MessageFormatter
 {
     /// <summary>
     /// Creates a formatted error message used during game startup.
     /// </summary>
     /// <param name="errorMessages">A collection of error messages from the startup process.</param>
     /// <returns>A nicely formatted string.</returns>
-    public static string ErrorMessage(IEnumerable<string> errorMessages)
+    public static string Error(IEnumerable<string> errorMessages)
     {
         string errorMessage = string.Join("\n", errorMessages);
         string fullErrorMessage = string.Empty;
@@ -30,7 +28,7 @@ public static class Formatter
     /// </summary>
     /// <param name="gameDatabase"></param>
     /// <returns></returns>
-    public static string GameLoadedMessage(GameDatabase gameDatabase)
+    public static string GameLoaded(GameDatabase gameDatabase)
     {
         string message = string.Empty;
 
@@ -43,12 +41,37 @@ public static class Formatter
         return message;
     }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="currentRoomId">The <c>Room.Id</c> of the room where the player is currently at.</param>
+    /// <param name="gameState">The <c>GameState</c> object.</param>
+    /// <param name="overrideToFullDescription">Should the full description be returned regardless if the <c>Player</c> has arleady visited the <c>Room</c>.</param>
+    /// <returns></returns>
+    public static string Look(int currentRoomId, GameDatabase gameDb, Player player, bool overrideToFullDescription = false)
+    {
+        Room currentRoom = ObjectFinder.GetRoom(gameDb.Rooms, currentRoomId);
+        List<string> itemsInRoom = ObjectFinder.GetItems(gameDb.Items, currentRoom.ContainedItemIds).Select(i=> i.Name).ToList<string>();
+        List<string> exitsFromRoom = currentRoom.AvailableExits();
+
+        string description = (!player.HasAlreadyVisitedRoom(currentRoomId) || overrideToFullDescription) ? currentRoom.Description : string.Empty;
+        string items = string.Join(", ", itemsInRoom);
+        string exits = RoomAvailableExits(exitsFromRoom);
+        string availableExits = exits.Length > 0 ? $"Available exits: {exits}" : "Available exits: none apparent";
+        string visibleItems = items.Length > 0 ? $"Also visible: {items}" : string.Empty;
+
+        string lookResponse = $"{currentRoom.Name}\n{description}\n{visibleItems}\n\n{availableExits}";
+
+        return lookResponse;
+    }
+
     /// <summary>
     /// Creates a formatted message with a Room's available exits.
     /// </summary>
     /// <param name="exits"></param>
     /// <returns></returns>
-    public static string RoomAvailableExitsMessage(List<string> exits)
+    public static string RoomAvailableExits(List<string> exits)
     {
         string formattedExits = string.Empty;
         List<string> exitList = new List<string>();

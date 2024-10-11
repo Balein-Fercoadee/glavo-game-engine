@@ -38,10 +38,23 @@ public class UtilitiesTests
         Room roomN = ObjectFinder.GetRoom(gameDb.Rooms, 0);
         Room roomS = ObjectFinder.GetRoom(gameDb.Rooms, 1);
 
-        string exitN = Formatter.RoomAvailableExitsMessage(roomN.AvailableExits());
-        string exitS = Formatter.RoomAvailableExitsMessage(roomS.AvailableExits());
+        string exitN = MessageFormatter.RoomAvailableExits(roomN.AvailableExits());
+        string exitS = MessageFormatter.RoomAvailableExits(roomS.AvailableExits());
 
         Assert.AreEqual("(N)orth", exitN);
         Assert.AreEqual("(S)outh", exitS);
+    }
+
+    [TestMethod]
+    public void MessageFormatterLook()
+    {
+        GameDatabase gameDb = new GameDatabase();
+        gameDb.Load(@"test_data\", "test_game_database.gge", true);      
+        Player player = new Player();
+
+        string look = MessageFormatter.Look(1, gameDb, player, false);
+        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: Third Item\n\nAvailable exits: (S)outh";
+
+        Assert.AreEqual(expectedOutput, look);
     }
 }

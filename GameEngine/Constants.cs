@@ -4,6 +4,8 @@ namespace GameEngine;
 
 public static class Constants
 {
+    public const string INPUT_PROMPT = "What should I do?> ";
+
     public const string LOADING_HELP_TEXT = "usage: glavo-game-engine <game_db_name> [save_game] [-d]\n" +
     "Arguments:\n" +
     "  <gamename>  Required. The full path and file name of the game to load.\n" +
