@@ -23,6 +23,11 @@ public class GameDatabase
     public int StartingRoomId { get; set; }
 
     /// <summary>
+    /// Gets or sets the <c>Room.Id</c> where <c>Items</c> need to be placed to be scored.
+    /// </summary>
+    public int TreasureRoomId { get; set; }
+
+    /// <summary>
     /// Gets a collection of <c>Actions</c> available in the game.
     /// </summary>
     [JsonInclude]
@@ -75,6 +80,7 @@ public class GameDatabase
         Description = string.Empty;
         Name = string.Empty;
         StartingRoomId = Constants.ROOM_ID_UNSET;
+        TreasureRoomId = Constants.ROOM_ID_UNSET;
 
         Actions = new List<Action>();
         Items = new List<Item>();
@@ -121,7 +127,7 @@ public class GameDatabase
             Console.WriteLine($"        # of Words: {loadedDatabase.Words.Count}");
         }
 
-        if(loadedDatabase!=null)
+        if (loadedDatabase != null)
         {
             Description = loadedDatabase.Description;
             Name = loadedDatabase.Name;

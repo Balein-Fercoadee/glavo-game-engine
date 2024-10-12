@@ -23,7 +23,7 @@ public class Engine
     }
 
     /// <summary>
-    /// The main game loop. I.e The method that actually drives the game.
+    /// The main game loop. I.e The code that actually drives the game.
     /// </summary>
     /// <param name="args"></param>
     public void GameLoop(string[] args)
@@ -73,75 +73,10 @@ public class Engine
             string cleanedInput = InputFormatter.CleanPlayerInput(playerInput);
             (Word? verb, Word? noun) = Parser.GetWordsFromInput(cleanedInput, gameState.GameData.Words);
 
-            if (verb != null)
-            {
-                bool quitGame = false;
-                switch (verb.Name)
-                {
-                    case "go":
-                        if (noun != null)
-                        {
-                            Room currentRoom = ObjectFinder.GetRoom(gameState.GameData.Rooms, gameState.PlayerData.CurrentRoomId);
-                            int roomId = -1;
-                            switch (noun.Name)
-                            {
-                                case "north":
-                                    roomId = currentRoom.ExitIdNorth;
-                                    break;
-                                case "south":
-                                    roomId = currentRoom.ExitIdSouth;
-                                    break;
-                                case "east":
-                                    roomId = currentRoom.ExitIdEast;
-                                    break;
-                                case "west":
-                                    roomId = currentRoom.ExitIdWest;
-                                    break;
-                            }
+            bool quitGame = Processor.ProcessWords(verb, noun, gameState);
 
-                            if (roomId != Constants.ROOM_ID_UNSET)
-                            {
-                                Console.WriteLine(MessageFormatter.Look(roomId, gameState.GameData, gameState.PlayerData));
-                                gameState.PlayerData.CurrentRoomId = roomId;
-                            }
-                            else
-                            {
-                                Console.WriteLine("You can't go in that direction!!");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Go where??");
-                        }
-                        break;
-                    case "help":
-                        Console.WriteLine("Can't help you, yet!");
-                        break;
-                    case "look":
-                        if (noun == null)
-                            Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
-                        else
-                        {
-                            if (noun.Name == "inventory")
-                            {
-                                Console.WriteLine("You don't have an inventory yet!");
-                            }
-                        }
-                        break;
-                    case "quit":
-                        quitGame = true;
-                        break;
-                }
-                if (quitGame)
-                {
-                    Console.WriteLine("Such a quiter. BOOOOOOOO!");
-                    break;
-                }
-            }
-            else
-            {
-                Console.WriteLine("You don't know how to do that!");
-            }
+            if (quitGame)
+                break;
         }
     }
 }

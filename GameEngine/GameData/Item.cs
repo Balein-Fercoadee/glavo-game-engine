@@ -24,10 +24,18 @@ public class Item : IIdentifiable
     /// </summary>
     public string Name { get; set; }
 
+    /// <summary>
+    /// Gets or sets the short name of the <c>Item</c>.
+    /// <para>The short name is what the Parser and Processor understand.
+    /// </para>
+    /// </summary>
+    public string ShortName { get; set; }
+
     public Item()
     {
         Description = string.Empty;
         IsTreasure = false;
         Name = string.Empty;
+        ShortName = string.Empty;
     }
 }

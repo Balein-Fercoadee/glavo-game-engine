@@ -2,24 +2,28 @@
   "Name": "Test Game Database",
   "Description": "This game is used to test the features of the game engine.",
   "StartingRoomId": 0,
+  "TreasureRoomId": -1,
   "Items": [
     {
       "Id": 0,
-      "Description": "This items looks like it's first.",
+      "Description": "A very smooth rock.",
       "IsTreasure": false,
-      "Name": "First Item"
+      "Name": "smooth rock",
+      "ShortName": "rock"
     },
     {
       "Id": 1,
-      "Description": "This items looks like it's second.",
+      "Description": "A large stick. It could almost be called a branch.",
       "IsTreasure": true,
-      "Name": "Second Item"
+      "Name": "heavy stick",
+      "ShortName": "stick"
     },
     {
       "Id": 2,
-      "Description": "This items looks like it's third.",
-      "IsTreasure": false,
-      "Name": "Third Item"
+      "Description": "A brilliant, red precious stone.",
+      "IsTreasure": true,
+      "Name": "small ruby",
+      "ShortName": "ruby"
     }
   ],
   "Messages": [],
@@ -27,7 +31,7 @@
     {
       "Id": 0,
       "ContainedItemIds": [
-        1
+        0
       ],
       "Description": "This is the first room. It's very interesting.",
       "ExitIdEast": -1,
@@ -61,7 +65,8 @@
     },
     {
       "Aliases": [
-        "l"
+        "l",
+        "examine"
       ],
       "Id": 1,
       "Name": "look",
@@ -138,6 +143,12 @@
       ],
       "Id": 10,
       "Name": "quit",
+      "WordType": 2
+    },
+    {
+      "Aliases": [],
+      "Id": 11,
+      "Name": "take",
       "WordType": 2
     }
   ],

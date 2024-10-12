@@ -41,6 +41,19 @@ public static class MessageFormatter
         return message;
     }
 
+    public static string Help()
+    {
+        string helpMessage = string.Empty;
+
+        helpMessage += "Try these words:\n";
+        helpMessage += Constants.HELP_STANDARD_VERBS + "\n";
+        helpMessage += Constants.HELP_STANDARD_DIRECTIONS + "\n";
+        helpMessage += Constants.HELP_STANDARD_MISC + "\n";
+        helpMessage += "All items have some usefulness. You need to find out how to use them.\n";
+        helpMessage += "Items enclosed in '*' are treasures (ex. *large diamond*). Collect them!\n";
+
+        return helpMessage;
+    }
 
     /// <summary>
     /// 
@@ -52,7 +65,7 @@ public static class MessageFormatter
     public static string Look(int currentRoomId, GameDatabase gameDb, Player player, bool overrideToFullDescription = false)
     {
         Room currentRoom = ObjectFinder.GetRoom(gameDb.Rooms, currentRoomId);
-        List<string> itemsInRoom = ObjectFinder.GetItems(gameDb.Items, currentRoom.ContainedItemIds).Select(i=> i.Name).ToList<string>();
+        List<string> itemsInRoom = ObjectFinder.GetItems(gameDb.Items, currentRoom.ContainedItemIds).Select(i=> i.IsTreasure ? $"*{i.Name}*" : i.Name).ToList<string>();
         List<string> exitsFromRoom = currentRoom.AvailableExits();
 
         string description = (!player.HasAlreadyVisitedRoom(currentRoomId) || overrideToFullDescription) ? currentRoom.Description : string.Empty;
