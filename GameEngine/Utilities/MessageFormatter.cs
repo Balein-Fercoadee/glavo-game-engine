@@ -55,6 +55,11 @@ public static class MessageFormatter
         return helpMessage;
     }
 
+    public static string Inventory()
+    {
+        
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -104,5 +109,10 @@ public static class MessageFormatter
         }
 
         return string.Join(", ", exitList);
+    }
+
+    private static string VisibleItems(IEnumerable<Item> items)
+    {
+        return  string.Empty;
     }
 }

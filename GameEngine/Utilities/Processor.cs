@@ -23,9 +23,15 @@ public static class Processor
                         Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
                     else
                     {
-                        if (noun.Name == "inventory")
+                        switch (noun.Name)
                         {
-                            Console.WriteLine("You don't have an inventory yet!");
+                            case "inventory":
+                                Console.WriteLine("You don't have an inventory yet!");
+                            break;
+                            default:
+                                // assume that we're looking at an item either in inventory or in the room
+                                
+                            break;
                         }
                     }
                     break;

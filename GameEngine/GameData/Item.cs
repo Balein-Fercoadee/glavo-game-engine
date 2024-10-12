@@ -2,6 +2,13 @@ namespace GameEngine.GameData;
 
 public class Item : IIdentifiable
 {
+    /// <summary>
+    /// Gets or sets whether the item can be taken by the Player.
+    /// <para>Typically, items that can't be taken are features of the <c>Room</c>.
+    /// </para>
+    /// </summary>
+    public bool CanTake { get; set; }
+
     public int Id { get; set; }
 
     /// <summary>

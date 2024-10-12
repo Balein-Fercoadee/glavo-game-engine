@@ -6,6 +6,7 @@
   "Items": [
     {
       "Id": 0,
+      "CanTake": true,
       "Description": "A very smooth rock.",
       "IsTreasure": false,
       "Name": "smooth rock",
@@ -13,6 +14,7 @@
     },
     {
       "Id": 1,
+      "CanTake": true,
       "Description": "A large stick. It could almost be called a branch.",
       "IsTreasure": true,
       "Name": "heavy stick",
@@ -20,10 +22,19 @@
     },
     {
       "Id": 2,
+      "CanTake": true,
       "Description": "A brilliant, red precious stone.",
       "IsTreasure": true,
       "Name": "small ruby",
       "ShortName": "ruby"
+    },
+    {
+      "Id": 3,
+      "CanTake": false,
+      "Description": "a wooden sign planted in the ground",
+      "IsTreasure": false,
+      "Name": "sign",
+      "ShortName": "sign"
     }
   ],
   "Messages": [],
@@ -65,7 +76,9 @@
     },
     {
       "Id": 3,
-      "ContainedItemIds": [],
+      "ContainedItemIds": [
+        3
+      ],
       "Description": "The is the fourth room. It's also the treasure room.\nIt has a one-way door west.",
       "ExitIdEast": -1,
       "ExitIdNorth": 2,
