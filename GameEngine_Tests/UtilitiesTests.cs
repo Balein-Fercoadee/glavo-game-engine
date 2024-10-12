@@ -31,6 +31,18 @@ public class UtilitiesTests
     }
 
     [TestMethod]
+    public void ObjectFinderWordFound()
+    {
+        GameDatabase gameDb = new GameDatabase();
+        gameDb.Load(@"test_data\", "test_game_database.gge", true);
+
+        var returnedWord = ObjectFinder.GetWord(gameDb.Words, "n");
+
+        Assert.IsNotNull(returnedWord);
+        Assert.AreEqual(returnedWord.Name, "north");
+    }
+
+    [TestMethod]
     public void MessageFormatterExits()
     {
         GameDatabase gameDb = new GameDatabase();
@@ -53,7 +65,7 @@ public class UtilitiesTests
         Player player = new Player();
 
         string look = MessageFormatter.Look(1, gameDb, player, false);
-        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: Third Item\n\nAvailable exits: (S)outh";
+        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: First Item, Third Item\n\nAvailable exits: (S)outh";
 
         Assert.AreEqual(expectedOutput, look);
     }

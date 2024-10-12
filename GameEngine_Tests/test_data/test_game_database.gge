@@ -39,16 +39,107 @@
     {
       "Id": 1,
       "ContainedItemIds": [
+        0,
         2
       ],
       "Description": "The is the second room. It's so much more interesting.",
       "ExitIdEast": -1,
       "ExitIdNorth": -1,
-      "ExitIdSouth": 1,
+      "ExitIdSouth": 0,
       "ExitIdWest": -1,
       "Name": "Second Room"
     }
   ],
-  "Words": [],
+  "Words": [
+    {
+      "Aliases": [
+        "enter"
+      ],
+      "Id": 0,
+      "Name": "go",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "l"
+      ],
+      "Id": 1,
+      "Name": "look",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "n"
+      ],
+      "Id": 2,
+      "Name": "north",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "s"
+      ],
+      "Id": 3,
+      "Name": "south",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "e"
+      ],
+      "Id": 4,
+      "Name": "east",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "w"
+      ],
+      "Id": 5,
+      "Name": "west",
+      "WordType": 1
+    },
+      {
+      "Aliases": [
+        "u"
+      ],
+      "Id": 6,
+      "Name": "up",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "d"
+      ],
+      "Id": 7,
+      "Name": "down",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "i",
+        "inv"
+      ],
+      "Id": 8,
+      "Name": "inventory",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "h"
+      ],
+      "Id": 9,
+      "Name": "help",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "q"
+      ],
+      "Id": 10,
+      "Name": "quit",
+      "WordType": 2
+    }
+  ],
   "Actions": []
 }

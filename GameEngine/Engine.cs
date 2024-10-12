@@ -63,29 +63,84 @@ public class Engine
         // Game Loop
         while (true)
         {
-            Console.Write(Constants.INPUT_PROMPT);
-            string? playerInput = Console.ReadLine();
-
-            if (!string.IsNullOrWhiteSpace(playerInput))
+            string? playerInput = string.Empty;
+            do
             {
-                string cleanedInput = playerInput.ToLowerInvariant();
+                Console.Write("\n" + Constants.INPUT_PROMPT);
+                playerInput = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(playerInput));
+
+            string cleanedInput = InputFormatter.CleanPlayerInput(playerInput);
+            (Word? verb, Word? noun) = Parser.GetWordsFromInput(cleanedInput, gameState.GameData.Words);
+
+            if (verb != null)
+            {
                 bool quitGame = false;
-                switch (cleanedInput)
+                switch (verb.Name)
                 {
-                    case "h":
+                    case "go":
+                        if (noun != null)
+                        {
+                            Room currentRoom = ObjectFinder.GetRoom(gameState.GameData.Rooms, gameState.PlayerData.CurrentRoomId);
+                            int roomId = -1;
+                            switch (noun.Name)
+                            {
+                                case "north":
+                                    roomId = currentRoom.ExitIdNorth;
+                                    break;
+                                case "south":
+                                    roomId = currentRoom.ExitIdSouth;
+                                    break;
+                                case "east":
+                                    roomId = currentRoom.ExitIdEast;
+                                    break;
+                                case "west":
+                                    roomId = currentRoom.ExitIdWest;
+                                    break;
+                            }
+
+                            if (roomId != Constants.ROOM_ID_UNSET)
+                            {
+                                Console.WriteLine(MessageFormatter.Look(roomId, gameState.GameData, gameState.PlayerData));
+                                gameState.PlayerData.CurrentRoomId = roomId;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You can't go in that direction!!");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Go where??");
+                        }
+                        break;
                     case "help":
+                        Console.WriteLine("Can't help you, yet!");
                         break;
-                    case "l":
                     case "look":
-                        Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
+                        if (noun == null)
+                            Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
+                        else
+                        {
+                            if (noun.Name == "inventory")
+                            {
+                                Console.WriteLine("You don't have an inventory yet!");
+                            }
+                        }
                         break;
-                    case "q":
                     case "quit":
                         quitGame = true;
                         break;
                 }
                 if (quitGame)
+                {
+                    Console.WriteLine("Such a quiter. BOOOOOOOO!");
                     break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("You don't know how to do that!");
             }
         }
     }

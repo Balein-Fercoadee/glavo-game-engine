@@ -4,6 +4,7 @@ namespace GameEngine;
 
 public static class Constants
 {
+    public static readonly List<string> STANDARD_DIRECTIONS = ["north", "south", "east", "west", "up", "down"];
     public const string INPUT_PROMPT = "What should I do?> ";
 
     public const string LOADING_HELP_TEXT = "usage: glavo-game-engine <game_db_name> [save_game] [-d]\n" +

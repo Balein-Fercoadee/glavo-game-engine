@@ -21,4 +21,21 @@ public static class ObjectFinder
     {
         return items.Where(i => itemIds.Contains(i.Id)).ToList<Item>();
     }
+
+    /// <summary>
+    /// Gets the <c>Word object from a string.
+    /// </summary>
+    /// <param name="words">A collection of Words</param>
+    /// <param name="command">The string command the translates to a Word.</param>
+    /// <returns>The translated Word. If a Word wasn't found, null is returned.</returns>
+    public static Word? GetWord(IEnumerable<Word> words, string command)
+    {
+        Word? word = null;
+
+        word = words.Where(w => w.Name == command).FirstOrDefault();
+        if (word == null)
+            word = words.Where(w => w.Aliases.Contains(command)).FirstOrDefault();
+
+        return word;
+    }
 }
