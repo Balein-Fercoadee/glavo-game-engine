@@ -65,7 +65,7 @@ public class UtilitiesTests
         Player player = new Player();
 
         string look = MessageFormatter.Look(1, gameDb, player, false);
-        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: smooth rock, small ruby\n\nAvailable exits: (S)outh";
+        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: smooth rock, *small ruby*\nAvailable exits: (S)outh";
 
         Assert.AreEqual(expectedOutput, look);
     }

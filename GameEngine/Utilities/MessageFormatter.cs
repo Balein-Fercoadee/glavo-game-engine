@@ -74,7 +74,7 @@ public static class MessageFormatter
         string availableExits = exits.Length > 0 ? $"Available exits: {exits}" : "Available exits: none apparent";
         string visibleItems = items.Length > 0 ? $"Also visible: {items}" : string.Empty;
 
-        string lookResponse = $"{currentRoom.Name}\n{description}\n{visibleItems}\n\n{availableExits}";
+        string lookResponse = $"{currentRoom.Name}\n{description}\n{visibleItems}\n{availableExits}";
 
         return lookResponse;
     }
