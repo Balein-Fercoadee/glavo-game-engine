@@ -47,11 +47,31 @@
         2
       ],
       "Description": "The is the second room. It's so much more interesting.",
-      "ExitIdEast": -1,
+      "ExitIdEast": 2,
       "ExitIdNorth": -1,
       "ExitIdSouth": 0,
       "ExitIdWest": -1,
       "Name": "Second Room"
+    },
+    {
+      "Id": 2,
+      "ContainedItemIds": [],
+      "Description": "The is the third room. It's meh.",
+      "ExitIdEast": -1,
+      "ExitIdNorth": -1,
+      "ExitIdSouth": 3,
+      "ExitIdWest": 1,
+      "Name": "Third Room"
+    },
+    {
+      "Id": 3,
+      "ContainedItemIds": [],
+      "Description": "The is the fourth room. It's also the treasure room.\nIt has a one-way door west.",
+      "ExitIdEast": -1,
+      "ExitIdNorth": 2,
+      "ExitIdSouth": -1,
+      "ExitIdWest": 0,
+      "Name": "Fourth Room"
     }
   ],
   "Words": [
