@@ -13,27 +13,13 @@ public static class Processor
             switch (verb.Name)
             {
                 case "go":
-                    ProcessGo(verb, noun, gameState.GameData, gameState.PlayerData);
+                    ProcessGo(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "help":
                     Console.WriteLine(MessageFormatter.Help());
                     break;
                 case "look":
-                    if (noun == null) // look with no noun means to look at the room.
-                        Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
-                    else
-                    {
-                        switch (noun.Name)
-                        {
-                            case "inventory":
-                                Console.WriteLine("You don't have an inventory yet!");
-                            break;
-                            default:
-                                // assume that we're looking at an item either in inventory or in the room
-                                
-                            break;
-                        }
-                    }
+                    ProcessLook(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "take":
                     break;
@@ -52,7 +38,7 @@ public static class Processor
         return quitGame;
     }
 
-    private static void ProcessGo(Word verb, Word? noun, GameDatabase gameData, Player player)
+    private static void ProcessGo(Word? noun, GameDatabase gameData, Player player)
     {
         if (noun != null)
         {
@@ -88,5 +74,24 @@ public static class Processor
         {
             Console.WriteLine("Go where??");
         }        
+    }
+
+    private static void ProcessLook(Word? noun, GameDatabase gameData, Player player)
+    {
+        if (noun == null) // look with no noun means to look at the room.
+            Console.WriteLine(MessageFormatter.Look(player.CurrentRoomId, gameData, player, true));
+        else
+        {
+            switch (noun.Name)
+            {
+                case "inventory":
+                    Console.WriteLine(MessageFormatter.Inventory(player, gameData));
+                break;
+                default:
+                    Room currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
+                    // assume that we're looking at an item either in inventory or in the room
+                break;
+            }
+        }
     }
 }

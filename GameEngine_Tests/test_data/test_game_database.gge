@@ -23,7 +23,7 @@
     {
       "Id": 2,
       "CanTake": true,
-      "Description": "A brilliant, red precious stone.",
+      "Description": "A brilliant, red, precious stone.",
       "IsTreasure": true,
       "Name": "small ruby",
       "ShortName": "ruby"
@@ -31,7 +31,7 @@
     {
       "Id": 3,
       "CanTake": false,
-      "Description": "a wooden sign planted in the ground",
+      "Description": "A wooden sign planted in the ground. It says: 'Leave treasures here in order to win!'",
       "IsTreasure": false,
       "Name": "sign",
       "ShortName": "sign"
@@ -182,6 +182,12 @@
       "Aliases": [],
       "Id": 11,
       "Name": "take",
+      "WordType": 2
+    },
+    {
+      "Aliases": [],
+      "Id": 12,
+      "Name": "drop",
       "WordType": 2
     }
   ],

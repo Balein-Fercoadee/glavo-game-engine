@@ -55,9 +55,22 @@ public static class MessageFormatter
         return helpMessage;
     }
 
-    public static string Inventory()
+    public static string Inventory(Player player, GameDatabase gameDb)
     {
-        
+        string inv = string.Empty;
+
+        var items = ObjectFinder.GetItems(gameDb.Items, player.ItemInventory).Select(i=>i.Name).ToList();
+
+        if (items.Count != 0)
+        {
+            inv = string.Join(", ", items);
+        }
+        else
+        {
+            inv = "You're not carrying anything!";
+        }
+
+        return inv;
     }
 
     /// <summary>

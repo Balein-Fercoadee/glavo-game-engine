@@ -7,7 +7,7 @@ public static class Constants
  
     public const string INPUT_PROMPT = "What should I do?> ";
 
-    public const string HELP_STANDARD_VERBS = "drop, go, look (l), take, quit (q)";
+    public const string HELP_STANDARD_VERBS = "drop, go, help (h), look (l), take, quit (q)";
     public const string HELP_STANDARD_DIRECTIONS = "north (n), south (s), east (e), west (w), up (u), down (d)";
     public const string HELP_STANDARD_MISC = "inventory (i, inv)";
 
