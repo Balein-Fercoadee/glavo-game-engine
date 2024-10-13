@@ -12,6 +12,9 @@ public static class Processor
         {
             switch (verb.Name)
             {
+                case "drop":
+                    ProcessDrop(noun, gameState.GameData, gameState.PlayerData);
+                    break;
                 case "go":
                     ProcessGo(noun, gameState.GameData, gameState.PlayerData);
                     break;
@@ -22,6 +25,7 @@ public static class Processor
                     ProcessLook(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "take":
+                    ProcessTake(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "quit":
                     Console.WriteLine("Such a quiter. BOOOOOOOO!");
@@ -36,6 +40,11 @@ public static class Processor
         }
 
         return quitGame;
+    }
+
+    private static void ProcessDrop(Word? noun, GameDatabase gameData, Player player)
+    {
+
     }
 
     private static void ProcessGo(Word? noun, GameDatabase gameData, Player player)
@@ -73,7 +82,7 @@ public static class Processor
         else
         {
             Console.WriteLine("Go where??");
-        }        
+        }
     }
 
     private static void ProcessLook(Word? noun, GameDatabase gameData, Player player)
@@ -86,11 +95,77 @@ public static class Processor
             {
                 case "inventory":
                     Console.WriteLine(MessageFormatter.Inventory(player, gameData));
-                break;
+                    break;
                 default:
-                    Room currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
                     // assume that we're looking at an item either in inventory or in the room
-                break;
+                    Room currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
+                    var playerItems = ObjectFinder.GetItems(gameData.Items, player.ItemInventory);
+                    var roomItems = ObjectFinder.GetItems(gameData.Items, currentRoom.ContainedItemIds);
+
+                    Item? lookedItem = ObjectFinder.GetItem(playerItems, noun.Name);
+                    if (lookedItem == null)
+                    {
+                        lookedItem = ObjectFinder.GetItem(roomItems, noun.Name);
+                    }
+
+                    if (lookedItem != null)
+                    {
+                        Console.WriteLine($"{lookedItem.Name}: {lookedItem.Description}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("You don't see that here!");
+                    }
+
+                    break;
+            }
+        }
+    }
+
+    private static void ProcessTake(Word? noun, GameDatabase gameData, Player player)
+    {
+        if (noun == null)
+        {
+            // Need a noun to pick up
+            Console.WriteLine("Take what??");
+
+        }
+        else
+        {
+            Room currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
+            var itemsInRoom = ObjectFinder.GetItems(gameData.Items, currentRoom.ContainedItemIds);
+            switch (noun.Name)
+            {
+                case "all":
+                    // pick everything up from the room that can be taken
+                    // and remove everything picked up from the room.
+                    foreach (Item item in itemsInRoom.Where(i => i.CanTake))
+                    {
+                        player.ItemInventory.Add(item.Id);
+                        currentRoom.ContainedItemIds.Remove(item.Id);
+                    }
+                    Console.WriteLine("You picked all the items from the room!");
+                    break;
+                default:
+                    var takenItem = ObjectFinder.GetItem(itemsInRoom, noun.Name);
+                    if (takenItem != null)
+                    {
+                        if(takenItem.CanTake)
+                        {
+                            player.ItemInventory.Add(takenItem.Id);
+                            currentRoom.ContainedItemIds.Remove(takenItem.Id);
+                            Console.WriteLine($"You picked up: {takenItem.Name}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You can't take that!");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You don't see that here!");
+                    }
+                    break;
             }
         }
     }

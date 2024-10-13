@@ -22,6 +22,17 @@ public static class ObjectFinder
         return items.Where(i => itemIds.Contains(i.Id)).ToList<Item>();
     }
 
+    public static Item? GetItem(IEnumerable<Item> items, int itemId)
+    {
+        return items.Where(i => i.Id == itemId).FirstOrDefault();
+    }
+
+    public static Item? GetItem(IEnumerable<Item> items, string itemShortName)
+    {
+        return items.Where(i => i.ShortName == itemShortName).FirstOrDefault();
+    }
+
+
     /// <summary>
     /// Gets the <c>Word object from a string.
     /// </summary>

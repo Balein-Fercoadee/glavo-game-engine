@@ -2,7 +2,7 @@
   "Name": "Test Game Database",
   "Description": "This game is used to test the features of the game engine.",
   "StartingRoomId": 0,
-  "TreasureRoomId": -1,
+  "TreasureRoomId": 3,
   "Items": [
     {
       "Id": 0,
@@ -16,7 +16,7 @@
       "Id": 1,
       "CanTake": true,
       "Description": "A large stick. It could almost be called a branch.",
-      "IsTreasure": true,
+      "IsTreasure": false,
       "Name": "heavy stick",
       "ShortName": "stick"
     },
@@ -35,6 +35,14 @@
       "IsTreasure": false,
       "Name": "sign",
       "ShortName": "sign"
+    },
+    {
+      "Id": 4,
+      "CanTake": false,
+      "Description": "A set of wooden stairs leading up.",
+      "IsTreasure": false,
+      "Name": "wooden stairs",
+      "ShortName": "stairs"
     }
   ],
   "Messages": [],
@@ -49,12 +57,14 @@
       "ExitIdNorth": 1,
       "ExitIdSouth": -1,
       "ExitIdWest": -1,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
       "Name": "Starting Room"
     },
     {
       "Id": 1,
       "ContainedItemIds": [
-        0,
+        1,
         2
       ],
       "Description": "The is the second room. It's so much more interesting.",
@@ -62,6 +72,8 @@
       "ExitIdNorth": -1,
       "ExitIdSouth": 0,
       "ExitIdWest": -1,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
       "Name": "Second Room"
     },
     {
@@ -72,6 +84,8 @@
       "ExitIdNorth": -1,
       "ExitIdSouth": 3,
       "ExitIdWest": 1,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
       "Name": "Third Room"
     },
     {
@@ -84,6 +98,8 @@
       "ExitIdNorth": 2,
       "ExitIdSouth": -1,
       "ExitIdWest": 0,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
       "Name": "Fourth Room"
     }
   ],
@@ -179,16 +195,58 @@
       "WordType": 2
     },
     {
-      "Aliases": [],
+      "Aliases": [
+        "get"
+      ],
       "Id": 11,
       "Name": "take",
       "WordType": 2
     },
     {
-      "Aliases": [],
+      "Aliases": [
+        "leave"
+      ],
       "Id": 12,
       "Name": "drop",
       "WordType": 2
+    },
+    {
+      "Aliases": [
+        "everything"
+      ],
+      "Id": 13,
+      "Name": "all",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 14,
+      "Name": "rock",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 15,
+      "Name": "stick",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 16,
+      "Name": "ruby",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 17,
+      "Name": "sign",
+      "WordType": 1
+    }
+    {
+      "Aliases": [],
+      "Id": 18,
+      "Name": "stairs",
+      "WordType": 1
     }
   ],
   "Actions": []

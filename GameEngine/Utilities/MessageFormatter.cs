@@ -59,7 +59,7 @@ public static class MessageFormatter
     {
         string inv = string.Empty;
 
-        var items = ObjectFinder.GetItems(gameDb.Items, player.ItemInventory).Select(i=>i.Name).ToList();
+        var items = ObjectFinder.GetItems(gameDb.Items, player.ItemInventory).Select(i => i.IsTreasure ? $"*{i.Name}*" : i.Name).ToList();
 
         if (items.Count != 0)
         {
@@ -83,7 +83,7 @@ public static class MessageFormatter
     public static string Look(int currentRoomId, GameDatabase gameDb, Player player, bool overrideToFullDescription = false)
     {
         Room currentRoom = ObjectFinder.GetRoom(gameDb.Rooms, currentRoomId);
-        List<string> itemsInRoom = ObjectFinder.GetItems(gameDb.Items, currentRoom.ContainedItemIds).Select(i=> i.IsTreasure ? $"*{i.Name}*" : i.Name).ToList<string>();
+        List<string> itemsInRoom = ObjectFinder.GetItems(gameDb.Items, currentRoom.ContainedItemIds).Select(i => i.IsTreasure ? $"*{i.Name}*" : i.Name).ToList();
         List<string> exitsFromRoom = currentRoom.AvailableExits();
 
         string description = (!player.HasAlreadyVisitedRoom(currentRoomId) || overrideToFullDescription) ? currentRoom.Description : string.Empty;
@@ -126,6 +126,6 @@ public static class MessageFormatter
 
     private static string VisibleItems(IEnumerable<Item> items)
     {
-        return  string.Empty;
+        return string.Empty;
     }
 }

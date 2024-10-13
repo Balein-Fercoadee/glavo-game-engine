@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Reflection.Metadata;
 
 namespace GameEngine.GameData;
 
@@ -17,22 +18,32 @@ public class Room : IIdentifiable
     public string Description { get; set; }
 
     /// <summary>
-    /// Gets or set the <c>Room.Id</c> that east exist leads to.
+    /// Gets or sets the <c>Room.Id</c> that the down exit leads to.
+    /// </summary>
+    public int ExitIdDown { get; set; }
+
+    /// <summary>
+    /// Gets or sets the <c>Room.Id</c> that east exit leads to.
     /// </summary>
     public int ExitIdEast { get; set; }
 
     /// <summary>
-    /// Gets or set the <c>Room.Id</c> that north exist leads to.
+    /// Gets or sets the <c>Room.Id</c> that north exit leads to.
     /// </summary>
     public int ExitIdNorth { get; set; }
 
     /// <summary>
-    /// Gets or set the <c>Room.Id</c> that south exist leads to.
+    /// Gets or sets the <c>Room.Id</c> that south exit leads to.
     /// </summary>
     public int ExitIdSouth { get; set; }
 
     /// <summary>
-    /// Gets or set the <c>Room.Id</c> that west exist leads to.
+    /// Gets or sets the <c>Room.Id</c> that the up exit leads to.
+    /// </summary>
+    public int ExitIdUp { get; set; }
+
+    /// <summary>
+    /// Gets or sets the <c>Room.Id</c> that west exit leads to.
     /// </summary>
     public int ExitIdWest { get; set; }
 
@@ -48,6 +59,8 @@ public class Room : IIdentifiable
         ExitIdNorth = Constants.ROOM_ID_UNSET;
         ExitIdSouth = Constants.ROOM_ID_UNSET;
         ExitIdWest = Constants.ROOM_ID_UNSET;
+        ExitIdUp = Constants.ROOM_ID_UNSET;
+        ExitIdDown = Constants.ROOM_ID_UNSET;
         Id = Constants.ROOM_ID_UNSET;
         Name = string.Empty;
         ContainedItemIds = new List<int>();
@@ -61,14 +74,18 @@ public class Room : IIdentifiable
     {
         List<string> exits = new List<string>();
 
-        if(!(ExitIdEast==Constants.ROOM_ID_UNSET))
+        if (!(ExitIdEast == Constants.ROOM_ID_UNSET))
             exits.Add("e");
-        if(!(ExitIdNorth==Constants.ROOM_ID_UNSET))
+        if (!(ExitIdNorth == Constants.ROOM_ID_UNSET))
             exits.Add("n");
-        if(!(ExitIdSouth==Constants.ROOM_ID_UNSET))
+        if (!(ExitIdSouth == Constants.ROOM_ID_UNSET))
             exits.Add("s");
-        if(!(ExitIdWest==Constants.ROOM_ID_UNSET))
+        if (!(ExitIdWest == Constants.ROOM_ID_UNSET))
             exits.Add("w");
+        if (!(ExitIdUp == Constants.ROOM_ID_UNSET))
+            exits.Add("u");
+        if (!(ExitIdDown == Constants.ROOM_ID_UNSET))
+            exits.Add("d");
 
         return exits;
     }

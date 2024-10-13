@@ -23,7 +23,8 @@ public class GameDatabase
     public int StartingRoomId { get; set; }
 
     /// <summary>
-    /// Gets or sets the <c>Room.Id</c> where <c>Items</c> need to be placed to be scored.
+    /// Gets or sets the <c>Room.Id</c> where <c>Items</c> need to be placed
+    /// in order to be scored.
     /// </summary>
     public int TreasureRoomId { get; set; }
 
