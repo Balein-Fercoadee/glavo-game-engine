@@ -23,8 +23,8 @@ public class GameDatabaseTests
         GameDatabase gameDb = new GameDatabase();
         gameDb.Load(@"test_data\", "test_game_database.gge", true);
 
-        Assert.AreEqual(2, gameDb.Rooms.Count);
-        Assert.AreEqual(3, gameDb.Items.Count);
+        Assert.AreEqual(4, gameDb.Rooms.Count);
+        Assert.AreEqual(5, gameDb.Items.Count);
         Assert.AreEqual(0, gameDb.StartingRoomId);
 
         Room room1 = gameDb.Rooms.Where(r => r.Id == 0).First();

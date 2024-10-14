@@ -133,6 +133,7 @@ public class GameDatabase
             Description = loadedDatabase.Description;
             Name = loadedDatabase.Name;
             StartingRoomId = loadedDatabase.StartingRoomId;
+            TreasureRoomId = loadedDatabase.TreasureRoomId;
 
             Actions = loadedDatabase.Actions;
             Items = loadedDatabase.Items;

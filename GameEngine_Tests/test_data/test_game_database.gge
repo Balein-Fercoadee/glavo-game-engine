@@ -115,7 +115,8 @@
     {
       "Aliases": [
         "l",
-        "examine"
+        "examine",
+        "read"
       ],
       "Id": 1,
       "Name": "look",
@@ -241,12 +242,18 @@
       "Id": 17,
       "Name": "sign",
       "WordType": 1
-    }
+    },
     {
       "Aliases": [],
       "Id": 18,
       "Name": "stairs",
       "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 19,
+      "Name": "score",
+      "WordType": 2
     }
   ],
   "Actions": []

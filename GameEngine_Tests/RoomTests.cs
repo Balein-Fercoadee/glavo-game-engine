@@ -21,7 +21,7 @@ public class RoomTests
         room = gameDb.Rooms[1];
         exits = room.AvailableExits();
 
-        Assert.AreEqual(1, exits.Count);
-        Assert.AreEqual("s", exits[0]);
+        Assert.AreEqual(2, exits.Count);
+        Assert.AreEqual("e", exits[0]);
     }
 }

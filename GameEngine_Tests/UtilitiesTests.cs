@@ -51,10 +51,10 @@ public class UtilitiesTests
         Room roomS = ObjectFinder.GetRoom(gameDb.Rooms, 1);
 
         string exitN = MessageFormatter.RoomAvailableExits(roomN.AvailableExits());
-        string exitS = MessageFormatter.RoomAvailableExits(roomS.AvailableExits());
+        string exitES = MessageFormatter.RoomAvailableExits(roomS.AvailableExits());
 
         Assert.AreEqual("(N)orth", exitN);
-        Assert.AreEqual("(S)outh", exitS);
+        Assert.AreEqual("(E)ast, (S)outh", exitES);
     }
 
     [TestMethod]
@@ -65,7 +65,7 @@ public class UtilitiesTests
         Player player = new Player();
 
         string look = MessageFormatter.Look(1, gameDb, player, false);
-        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: smooth rock, *small ruby*\nAvailable exits: (S)outh";
+        string expectedOutput = "Second Room\nThe is the second room. It's so much more interesting.\nAlso visible: heavy stick, *small ruby*\nAvailable exits: (E)ast, (S)outh";
 
         Assert.AreEqual(expectedOutput, look);
     }

@@ -24,6 +24,9 @@ public static class Processor
                 case "look":
                     ProcessLook(noun, gameState.GameData, gameState.PlayerData);
                     break;
+                case "score":
+                    ProcessScore(gameState.GameData, gameState.PlayerData);
+                    break;
                 case "take":
                     ProcessTake(noun, gameState.GameData, gameState.PlayerData);
                     break;
@@ -44,7 +47,40 @@ public static class Processor
 
     private static void ProcessDrop(Word? noun, GameDatabase gameData, Player player)
     {
-
+        if (noun == null)
+        {
+            Console.WriteLine("Drop what??");
+        }
+        else
+        {
+            var currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
+            switch (noun.Name)
+            {
+                case "all":
+                    List<int> carriedItemIds = new List<int>(player.ItemInventory);
+                    foreach (int itemId in carriedItemIds)
+                    {
+                        currentRoom.ContainedItemIds.Add(itemId);
+                        player.ItemInventory.Remove(itemId);
+                        Console.WriteLine("You dropped all carried items into the room!");
+                    }
+                    break;
+                default:
+                    var carriedItems = ObjectFinder.GetItems(gameData.Items, player.ItemInventory);
+                    var carriedItem = ObjectFinder.GetItem(carriedItems, noun.Name);
+                    if (carriedItem != null)
+                    {
+                        currentRoom.ContainedItemIds.Add(carriedItem.Id);
+                        player.ItemInventory.Remove(carriedItem.Id);
+                        Console.WriteLine($"You dropped: {carriedItem.Name}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("You're not carrying that item!");
+                    }
+                    break;
+            }
+        }
     }
 
     private static void ProcessGo(Word? noun, GameDatabase gameData, Player player)
@@ -122,6 +158,20 @@ public static class Processor
         }
     }
 
+    private static void ProcessScore(GameDatabase gameData, Player player)
+    {
+        Room treasureRoom = ObjectFinder.GetRoom(gameData.Rooms, gameData.TreasureRoomId);
+        int countTreasures = gameData.Items.Where(i => i.IsTreasure).Count();
+        int storedTreasures = ObjectFinder.GetItems(gameData.Items, treasureRoom.ContainedItemIds).Count(i => i.IsTreasure);
+        float percentComplete = storedTreasures / countTreasures;
+        Console.WriteLine($"You have stored {storedTreasures} out of {countTreasures} treasures in the treasure room.\nYou have a score of {percentComplete:P0}.");
+        if (percentComplete == 1)
+        {
+            Console.WriteLine("CONGRATULATIONS!!! YOU WIN!!!");
+            Environment.Exit(0);
+        }
+    }
+
     private static void ProcessTake(Word? noun, GameDatabase gameData, Player player)
     {
         if (noun == null)
@@ -150,7 +200,7 @@ public static class Processor
                     var takenItem = ObjectFinder.GetItem(itemsInRoom, noun.Name);
                     if (takenItem != null)
                     {
-                        if(takenItem.CanTake)
+                        if (takenItem.CanTake)
                         {
                             player.ItemInventory.Add(takenItem.Id);
                             currentRoom.ContainedItemIds.Remove(takenItem.Id);
