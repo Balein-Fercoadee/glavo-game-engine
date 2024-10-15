@@ -1,5 +1,7 @@
 # Glavo Game Engine
 
+![Repository Automated Testing](https://github.com/Balein-Fercoadee/glavo-game-engine/actions/workflows/dotnet.yml/badge.svg)
+
 A text-based game engine built from the ground up on C#/.NET.
 
 ## Requirements
