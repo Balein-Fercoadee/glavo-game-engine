@@ -10,7 +10,7 @@ public class RoomTests
     public void RoomAvailableExits()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
         
         Room room = gameDb.Rooms[0];
         var exits = room.AvailableExits();
