@@ -1,4 +1,3 @@
-using System;
 using GameEngine.GameData;
 using GameEngine.Utilities;
 
@@ -11,7 +10,7 @@ public class UtilitiesTests
     public void ObjectFinderItemFound()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
 
         var returnedItems = ObjectFinder.GetItems(gameDb.Items, new List<int>() { 1, 2 });
 
@@ -22,7 +21,7 @@ public class UtilitiesTests
     public void ObjectFinderRoomFound()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
 
         var returnedRoom = ObjectFinder.GetRoom(gameDb.Rooms, 1);
 
@@ -34,7 +33,7 @@ public class UtilitiesTests
     public void ObjectFinderWordFound()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
 
         var returnedWord = ObjectFinder.GetWord(gameDb.Words, "n");
 
@@ -46,7 +45,7 @@ public class UtilitiesTests
     public void MessageFormatterExits()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);      
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);      
         Room roomN = ObjectFinder.GetRoom(gameDb.Rooms, 0);
         Room roomS = ObjectFinder.GetRoom(gameDb.Rooms, 1);
 
@@ -61,7 +60,7 @@ public class UtilitiesTests
     public void MessageFormatterLook()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);      
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);      
         Player player = new Player();
 
         string look = MessageFormatter.Look(1, gameDb, player, false);

@@ -14,16 +14,16 @@ public class GameDatabaseTests
         Room room = new Room() { Id = 1001 };
 
         gameDb.Rooms.Add(room);
-        gameDb.Save(@"test_data\", "game_database_test_save.gge", true);
+        gameDb.Save(@"test_data/", "game_database_test_save.gge", true);
 
-        File.Delete(@"test_data\game_database_test_save.gge");
+        File.Delete(@"test_data/game_database_test_save.gge");
     }
 
     [TestMethod]
     public void DbLoad()
     {
         GameDatabase gameDb = new GameDatabase();
-        gameDb.Load(@"test_data\", "test_game_database.gge", true);
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
 
         Assert.AreEqual(4, gameDb.Rooms.Count);
         Assert.AreEqual(8, gameDb.Items.Count);

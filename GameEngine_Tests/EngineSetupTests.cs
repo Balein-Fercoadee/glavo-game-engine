@@ -26,7 +26,7 @@ public class EngineSetupTests
     [TestMethod]
     public void ArgsWithGoodGameFileLocation()
     {
-        string gameLocation = @"test_data\fake_game.gge";
+        string gameLocation = @"test_data/fake_game.gge";
         string[] args = new string[1];
         args[0] = gameLocation;
 
@@ -42,7 +42,7 @@ public class EngineSetupTests
     [TestMethod]
     public void ArgsWithBadGameFileLocation()
     {
-        string gameLocation = @"test_data\bad_fake_game.gge";
+        string gameLocation = @"test_data/bad_fake_game.gge";
         string[] args = new string[1];
         args[0] = gameLocation;
 
@@ -55,8 +55,8 @@ public class EngineSetupTests
     [TestMethod]
     public void ArgsWithGoodSaveFileLocation()
     {
-        string gameLocation = @"test_data\fake_game.gge";
-        string saveLocation = @"test_data\fake_save.gges";
+        string gameLocation = @"test_data/fake_game.gge";
+        string saveLocation = @"test_data/fake_save.gges";
         string[] args = new string[2];
         args[0] = gameLocation;
         args[1] = saveLocation;
@@ -71,8 +71,8 @@ public class EngineSetupTests
     [TestMethod]
     public void ArgsWithBadSaveFileLocation()
     {
-        string gameLocation = @"test_data\fake_game.gge";
-        string saveLocation = @"test_data\bad_save.gges";
+        string gameLocation = @"test_data/fake_game.gge";
+        string saveLocation = @"test_data/bad_save.gges";
         string[] args = new string[2];
         args[0] = gameLocation;
         args[1] = saveLocation;
@@ -85,8 +85,8 @@ public class EngineSetupTests
     [TestMethod]
     public void ArgsWithDebugFlag()
     {
-        string gameLocation = @"test_data\fake_game.gge";
-        string saveLocation = @"test_data\fake_save.gges";
+        string gameLocation = @"test_data/fake_game.gge";
+        string saveLocation = @"test_data/fake_save.gges";
         string[] args = new string[3];
         args[0] = gameLocation;
         args[1] = saveLocation;
@@ -103,8 +103,8 @@ public class EngineSetupTests
     [TestMethod]
     public void ArgsWithBadFlag()
     {
-        string gameLocation = @"test_data\fake_game.gge";
-        string saveLocation = @"test_data\fake_save.gges";
+        string gameLocation = @"test_data/fake_game.gge";
+        string saveLocation = @"test_data/fake_save.gges";
         string[] args = new string[3];
         args[0] = gameLocation;
         args[1] = saveLocation;
