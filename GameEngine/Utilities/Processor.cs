@@ -34,7 +34,11 @@ public static class Processor
                     Console.WriteLine("Such a quiter. BOOOOOOOO!");
                     quitGame = true;
                     break;
+                default:
+                    break;
             }
+            // Process actions
+            ProcessActions(verb, noun, gameState.GameData, gameState.PlayerData);
         }
         else
         {
@@ -43,6 +47,52 @@ public static class Processor
         }
 
         return quitGame;
+    }
+
+    private static void ProcessActions(Word verb, Word? noun, GameDatabase gameData, Player player)
+    {
+        foreach (var action in gameData.Actions)
+        {
+            // The action's verb and noun match what the player entered
+            if (noun != null && action.TriggerVerbId == verb.Id && action.TriggerNounId == noun.Id)
+            {
+                // Check the conditions
+                Room currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
+                bool conditionsMet = true;
+
+                foreach (var condition in action.Conditions)
+                {
+                    switch (condition.Condition)
+                    {
+                        case ActionConditions.PlayerHasItem:
+                            break;
+                        case ActionConditions.PlayerWithItem:
+                            if (currentRoom.ContainedItemIds.Contains(condition.ObjectId))
+                            {
+                                conditionsMet &= true;
+                            }
+                            else
+                                conditionsMet &= false;
+                            break;
+                    }
+                }
+
+                // Execute the commands
+                if (conditionsMet)
+                {
+                    foreach(var command in action.Commands)
+                    {
+                        switch(command.Command)
+                        {
+                            case ActionCommands.DisplayMessage:
+                                var msg =ObjectFinder.GetMessage(gameData.Messages, command.ObjectId);
+                                Console.WriteLine(msg.Text);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private static void ProcessDrop(Word? noun, GameDatabase gameData, Player player)

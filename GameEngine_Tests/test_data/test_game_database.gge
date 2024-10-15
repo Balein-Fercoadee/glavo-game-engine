@@ -43,9 +43,38 @@
       "IsTreasure": false,
       "Name": "wooden stairs",
       "ShortName": "stairs"
+    },
+    {
+      "Id": 5,
+      "CanTake": false,
+      "Description": "A tall pine tree. It looks climbable.",
+      "IsTreasure": false,
+      "Name": "tall tree",
+      "ShortName": "tree"
+    },
+    {
+      "Id": 6,
+      "CanTake": false,
+      "Description": "The hollow stump of a pine tree.",
+      "IsTreasure": false,
+      "Name": "hollow stump",
+      "ShortName": "stump"
+    },
+    {
+      "Id": 7,
+      "CanTake": false,
+      "Description": "The trunk of a pine tree.",
+      "IsTreasure": false,
+      "Name": "fallen tree trunk",
+      "ShortName": "trunk"
     }
   ],
-  "Messages": [],
+  "Messages": [
+    {
+      "Id": 0,
+      "Text": "TIMBER!"
+    }
+  ],
   "Rooms": [
     {
       "Id": 0,
@@ -78,7 +107,9 @@
     },
     {
       "Id": 2,
-      "ContainedItemIds": [],
+      "ContainedItemIds": [
+        5
+      ],
       "Description": "The is the third room. It's meh.",
       "ExitIdEast": -1,
       "ExitIdNorth": -1,
@@ -254,7 +285,51 @@
       "Id": 19,
       "Name": "score",
       "WordType": 2
+    },
+    {
+      "Aliases": [
+        "cut"
+      ],
+      "Id": 20,
+      "Name": "chop",
+      "WordType": 2
+    },
+    {
+      "Aliases": [],
+      "Id": 21,
+      "Name": "tree",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 22,
+      "Name": "stump",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 23,
+      "Name": "trunk",
+      "WordType": 1
     }
   ],
-  "Actions": []
+  "Actions": [
+    {
+      "Id": 0,
+      "TriggerNounId": 21,
+      "TriggerVerbId": 20,
+      "Commands": [
+        {
+          "Command": 1,
+          "ObjectId": 0
+        }
+      ],
+      "Conditions": [
+        {
+          "Condition": 2,
+          "ObjectId": 5
+        }
+      ]
+    }
+  ]
 }

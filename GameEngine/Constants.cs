@@ -21,6 +21,8 @@ public static class Constants
     "A text-based game engine.\n" +
     "Release 1.0, (c)2024.";
 
+    public const int WORD_ID_UNSET = -1;
+
     /// <summary>
     /// The default value for an unset <c>Room.Id</c>.
     /// </summary>

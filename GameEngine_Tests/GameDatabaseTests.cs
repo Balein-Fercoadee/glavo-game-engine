@@ -1,4 +1,5 @@
 using GameEngine.GameData;
+using Action = GameEngine.GameData.Action;
 
 namespace GameEngine_Tests;
 
@@ -11,6 +12,7 @@ public class GameDatabaseTests
     {
         GameDatabase gameDb = new GameDatabase();
         Room room = new Room() { Id = 1001 };
+
         gameDb.Rooms.Add(room);
         gameDb.Save(@"test_data\", "game_database_test_save.gge", true);
 
@@ -24,7 +26,7 @@ public class GameDatabaseTests
         gameDb.Load(@"test_data\", "test_game_database.gge", true);
 
         Assert.AreEqual(4, gameDb.Rooms.Count);
-        Assert.AreEqual(5, gameDb.Items.Count);
+        Assert.AreEqual(8, gameDb.Items.Count);
         Assert.AreEqual(0, gameDb.StartingRoomId);
 
         Room room1 = gameDb.Rooms.Where(r => r.Id == 0).First();

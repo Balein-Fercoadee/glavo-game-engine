@@ -32,6 +32,10 @@ public static class ObjectFinder
         return items.Where(i => i.ShortName == itemShortName).FirstOrDefault();
     }
 
+    public static Message? GetMessage(IEnumerable<Message> messages, int messageId)
+    {
+        return messages.Where(m=>m.Id==messageId).FirstOrDefault();
+    }
 
     /// <summary>
     /// Gets the <c>Word object from a string.
