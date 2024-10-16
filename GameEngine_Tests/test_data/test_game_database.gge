@@ -315,6 +315,7 @@
   ],
   "Actions": [
     {
+      "Description": "Action allows the tree to be chopped down with the axe.",
       "Id": 0,
       "TriggerNounId": 21,
       "TriggerVerbId": 20,

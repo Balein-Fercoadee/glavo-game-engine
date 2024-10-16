@@ -45,7 +45,7 @@ public static class MessageFormatter
     {
         string helpMessage = string.Empty;
 
-        helpMessage += "Try these words:\n";
+        helpMessage += "Try these words (there are more than just these!):\n";
         helpMessage += Constants.HELP_STANDARD_VERBS + "\n";
         helpMessage += Constants.HELP_STANDARD_DIRECTIONS + "\n";
         helpMessage += Constants.HELP_STANDARD_MISC + "\n";
@@ -117,6 +117,8 @@ public static class MessageFormatter
                 case "s": formattedExit = "(S)outh"; break;
                 case "e": formattedExit = "(E)ast"; break;
                 case "w": formattedExit = "(W)est"; break;
+                case "u": formattedExit = "(U)p"; break;
+                case "d": formattedExit = "(D)own"; break;
             }
             exitList.Add(formattedExit);
         }

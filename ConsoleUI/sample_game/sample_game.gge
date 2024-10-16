@@ -1,0 +1,290 @@
+{
+  "Name": "Sample Game 1.0",
+  "Description": "A small game to demo what can be done using GGE.",
+  "StartingRoomId": 0,
+  "TreasureRoomId": 1,
+  "Items": [
+    {
+      "Id": 0,
+      "CanTake": false,
+      "IsTreasure": false,
+      "Description": "The sign reads: Find the *golden egg* and place it in the treasure room in order to win!",
+      "Name": "wooden sign",
+      "ShortName": "sign"
+    },
+    {
+      "Id": 1,
+      "CanTake": true,
+      "IsTreasure": true,
+      "Description": "A brilliany, gold egg. It would make one heck of an omlette!",
+      "Name": "golden egg",
+      "ShortName": "egg"
+    },
+    {
+      "Id": 2,
+      "CanTake": false,
+      "IsTreasure": false,
+      "Description": "A larger than average alder tree. It looks climbable.",
+      "Name": "tall alder tree",
+      "ShortName": "tree"
+    },
+    {
+      "Id": 3,
+      "CanTake": false,
+      "IsTreasure": false,
+      "Description": "A seemingly magical message that reads:\nYOU HAVE FOUND THE TREASURE ROOM!",
+      "Name": "glowing message",
+      "ShortName": "message"
+    }
+  ],
+  "Messages": [],
+  "Actions": [
+    {
+      "Description": "Allow the tree item to be climbed into a Room only if the player is in the same room as the tree.",
+      "Id": 0,
+      "TriggerNounId": 18,
+      "TriggerVerbId": 19,
+      "Commands": [
+        {
+          "Command": 4,
+          "ObjectId": 3
+        }
+      ],
+      "Conditions": [
+        {
+          "Condition": 2,
+          "ObjectId": 2
+        }
+      ]
+    }
+  ],
+  "Rooms": [
+    {
+      "Id": 0,
+      "ContainedItemIds": [
+        0
+      ],
+      "Description": "An open field with knee-high grass.",
+      "ExitIdEast": -1,
+      "ExitIdNorth": 2,
+      "ExitIdSouth": -1,
+      "ExitIdWest": -1,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
+      "Name": "Open field"
+    },
+    {
+      "Id": 1,
+      "ContainedItemIds": [
+        3
+      ],
+      "Description": "A dimly lit cave that looks surprisingly tidy.",
+      "ExitIdEast": -1,
+      "ExitIdNorth": -1,
+      "ExitIdSouth": -1,
+      "ExitIdWest": 4,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
+      "Name": "A small cave"
+    },
+    {
+      "Id": 2,
+      "ContainedItemIds": [
+        2
+      ],
+      "Description": "A fairly large opening in the forest.",
+      "ExitIdEast": 4,
+      "ExitIdNorth": -1,
+      "ExitIdSouth": 0,
+      "ExitIdWest": -1,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
+      "Name": "An open glade"
+    },
+    {
+      "Id": 3,
+      "ContainedItemIds": [
+        1
+      ],
+      "Description": "The top of an alder tree. You can see a clearing with a cave to the east.",
+      "ExitIdEast": 4,
+      "ExitIdNorth": -1,
+      "ExitIdSouth": -1,
+      "ExitIdWest": -1,
+      "ExitIdUp": -1,
+      "ExitIdDown": 2,
+      "Name": "Top of a tree"
+    },
+    {
+      "Id": 4,
+      "ContainedItemIds": [],
+      "Description": "A mostly barren clearing. There is a cave here.",
+      "ExitIdEast": 1,
+      "ExitIdNorth": -1,
+      "ExitIdSouth": -1,
+      "ExitIdWest": 2,
+      "ExitIdUp": -1,
+      "ExitIdDown": -1,
+      "Name": "A small clearing"
+    }
+  ],
+  "Words": [
+    {
+      "Aliases": [
+        "enter"
+      ],
+      "Id": 0,
+      "Name": "go",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "l",
+        "examine",
+        "read"
+      ],
+      "Id": 1,
+      "Name": "look",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "n"
+      ],
+      "Id": 2,
+      "Name": "north",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "s"
+      ],
+      "Id": 3,
+      "Name": "south",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "e"
+      ],
+      "Id": 4,
+      "Name": "east",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "w"
+      ],
+      "Id": 5,
+      "Name": "west",
+      "WordType": 1
+    },
+      {
+      "Aliases": [
+        "u"
+      ],
+      "Id": 6,
+      "Name": "up",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "d"
+      ],
+      "Id": 7,
+      "Name": "down",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "i",
+        "inv"
+      ],
+      "Id": 8,
+      "Name": "inventory",
+      "WordType": 1
+    },
+    {
+      "Aliases": [
+        "h"
+      ],
+      "Id": 9,
+      "Name": "help",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "q"
+      ],
+      "Id": 10,
+      "Name": "quit",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "get"
+      ],
+      "Id": 11,
+      "Name": "take",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "leave"
+      ],
+      "Id": 12,
+      "Name": "drop",
+      "WordType": 2
+    },
+    {
+      "Aliases": [
+        "everything"
+      ],
+      "Id": 13,
+      "Name": "all",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 14,
+      "Name": "score",
+      "WordType": 2
+    },
+    {
+      "Aliases": [],
+      "Id": 15,
+      "Name": "any",
+      "WordType": 1
+    },
+    {
+        "Aliases": [],
+        "Id": 16,
+        "Name": "sign",
+        "WordType": 1
+    },
+    {
+        "Aliases": [],
+        "Id": 17,
+        "Name": "egg",
+        "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 18,
+      "Name": "tree",
+      "WordType": 1
+    },
+    {
+      "Aliases": [],
+      "Id": 19,
+      "Name": "climb",
+      "WordType": 2
+    },
+    {
+      "Aliases": [],
+      "Id": 20,
+      "Name": "message",
+      "WordType": 1
+    }
+  ]
+}

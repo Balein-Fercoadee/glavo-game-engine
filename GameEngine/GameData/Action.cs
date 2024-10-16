@@ -6,6 +6,12 @@ public class Action : IIdentifiable
 {
     public int Id { get; set; }
 
+    /// <summary>
+    /// Gets or sets the description of the Action.
+    /// <para>The description is purely for documentation purposes. It won't be displayed in-game.</para>
+    /// </summary>
+    public string Description { get; set; }
+
     public int TriggerNounId { get; set; }
     public int TriggerVerbId { get; set; }
 
@@ -61,5 +67,9 @@ public enum ActionCommands
     /// <summary>
     /// Removes the item from the current room.
     /// </summary>
-    RemoveItemFromRoom = 3
+    RemoveItemFromRoom = 3,
+    /// <summary>
+    /// Changes the CurrentRoom to the ObjectId.
+    /// </summary>
+    MoveToRoom = 4
 }

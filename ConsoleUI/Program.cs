@@ -8,8 +8,12 @@ class Program()
     {
         Engine engine = new Engine();
 
-        args = new string[1];
-        args[0] = "c:\\temp\\test_game_database.gge";
+        // Running the exe with no args loads the sample game.
+        if (args.Length == 0)
+        {
+            args = new string[1];
+            args[0] = "sample_game/sample_game.gge";
+        }
         engine.GameLoop(args);
     }
 }

@@ -32,6 +32,7 @@ public static class Processor
                     break;
                 case "quit":
                     Console.WriteLine("Such a quiter. BOOOOOOOO!");
+                    ProcessScore(gameState.GameData, gameState.PlayerData);
                     quitGame = true;
                     break;
                 default:
@@ -80,13 +81,19 @@ public static class Processor
                 // Execute the commands
                 if (conditionsMet)
                 {
-                    foreach(var command in action.Commands)
+                    foreach (var command in action.Commands)
                     {
-                        switch(command.Command)
+                        switch (command.Command)
                         {
                             case ActionCommands.DisplayMessage:
-                                var msg =ObjectFinder.GetMessage(gameData.Messages, command.ObjectId);
+                                var msg = ObjectFinder.GetMessage(gameData.Messages, command.ObjectId);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                                 Console.WriteLine(msg.Text);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                                break;
+                            case ActionCommands.MoveToRoom:
+                                player.CurrentRoomId = command.ObjectId;
+                                ProcessLook(null, gameData, player);
                                 break;
                         }
                     }
@@ -152,6 +159,12 @@ public static class Processor
                     break;
                 case "west":
                     roomId = currentRoom.ExitIdWest;
+                    break;
+                case "up":
+                    roomId = currentRoom.ExitIdUp;
+                    break;
+                case "down":
+                    roomId = currentRoom.ExitIdDown;
                     break;
             }
 
