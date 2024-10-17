@@ -63,10 +63,10 @@ public class ProcessorTests
         string cleanOutput;
         // The IF below makes the Console output work regardless of OS
         // WriteLine on Windows uses '\r\n', Linux uses '\n'.
-        if (consoleOutput.EndsWith("\n"))
-            cleanOutput = consoleOutput.Substring(0, consoleOutput.Length - 2);
-        else // the string ends in '\r\n'
+        if (consoleOutput.EndsWith("\r\n"))
             cleanOutput = consoleOutput[..^3];
+        else // the string ends in '\r\n'
+            cleanOutput = consoleOutput.Substring(0, consoleOutput.Length - 2);
 
         return cleanOutput;
     }
