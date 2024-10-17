@@ -1,5 +1,3 @@
-
-using System.Runtime.CompilerServices;
 using GameEngine.GameData;
 
 namespace GameEngine.Utilities;

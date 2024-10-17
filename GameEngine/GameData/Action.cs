@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
 
+/// <summary>
+/// The <c>Action</c> class is used to define interactions beyond the built-in words.
+/// </summary>
 public class Action : IIdentifiable
 {
     public int Id { get; set; }
@@ -15,10 +18,16 @@ public class Action : IIdentifiable
     public int TriggerNounId { get; set; }
     public int TriggerVerbId { get; set; }
 
+    /// <summary>
+    /// Gets a collection of <c>ActionCommands</c>.
+    /// </summary>
     [JsonInclude]
-    public List<ActionCommand> Commands;
+    public List<ActionCommand> Commands { get; }
+    /// <summary>
+    /// Gets a collection of <c>ActionConditions</c>.
+    /// </summary>
     [JsonInclude]
-    public List<ActionCondition> Conditions;
+    public List<ActionCondition> Conditions { get; }
 
     public Action()
     {
@@ -27,6 +36,7 @@ public class Action : IIdentifiable
 
         Commands = new List<ActionCommand>();
         Conditions = new List<ActionCondition>();
+        Description = string.Empty;
     }
 }
 
@@ -36,6 +46,10 @@ public class ActionCommand
     public int ObjectId { get; set; }
 }
 
+/// <summary>
+/// <c>ActionCondition</c> defines a condition, when true, allows the <c>Action</c> to execute its <c>ActionCommands</c>.
+/// <para>Conditions are defined in the <c>ActionConditions</c> enum.</para>
+/// </summary>
 public class ActionCondition
 {
     public ActionConditions Condition { get; set; }
@@ -45,11 +59,11 @@ public class ActionCondition
 public enum ActionConditions
 {
     /// <summary>
-    /// Player has the item in inventory.
+    /// Player has the item, defined in <c>ActionCondition.ObjectId</c>, in inventory.
     /// </summary>
     PlayerHasItem = 1,
     /// <summary>
-    /// Player is in the room with the item.
+    /// Player and item, defined in <c>ActionCondition.ObjectId</c>, are in the same room.
     /// </summary>
     PlayerWithItem = 2,
 }
@@ -57,19 +71,19 @@ public enum ActionConditions
 public enum ActionCommands
 {
     /// <summary>
-    /// Display the message.
+    /// Display the message defined in <c>ActionCommand.ObjectId</c>.
     /// </summary>
     DisplayMessage = 1,
     /// <summary>
-    /// Adds the item into the current room.
+    /// Adds the item, defined in <c>ActionCommand.ObjectId</c>, into the current room.
     /// </summary>
     PutItemInRoom = 2,
     /// <summary>
-    /// Removes the item from the current room.
+    /// Removes the item, defined in <c>ActionCommand.ObjectId</c>, from the current room.
     /// </summary>
     RemoveItemFromRoom = 3,
     /// <summary>
-    /// Changes the CurrentRoom to the ObjectId.
+    /// Changes the CurrentRoom to the <c>ActionCommand.ObjectId</c>.
     /// </summary>
     MoveToRoom = 4
 }
