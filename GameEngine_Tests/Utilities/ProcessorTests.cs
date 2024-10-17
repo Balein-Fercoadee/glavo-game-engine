@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using GameEngine.GameData;
 using GameEngine.Utilities;
 
@@ -19,8 +20,7 @@ public class ProcessorTests
         Word? help = ObjectFinder.GetWord(gameDb.Words, "help");
 
         bool quit = false;
-        // For some reason the actual output appends a carrage return and line feed.
-        string expectedOutput = MessageFormatter.Help() + "\r\n";
+        string expectedOutput = MessageFormatter.Help();
         string actualOutput;
         using (StringWriter sw = new StringWriter())
         {
@@ -28,9 +28,10 @@ public class ProcessorTests
             quit = Processor.ProcessWords(help, null, gameState);
             sw.Flush();
 
-            actualOutput =  sw.ToString();
+            actualOutput = sw.ToString();
         }
 
+        actualOutput = CleanConsoleOutput(actualOutput);
         Assert.IsFalse(quit);
         Assert.AreEqual(expectedOutput, actualOutput);
     }
@@ -40,7 +41,7 @@ public class ProcessorTests
     {
         bool quit = false;
         // For some reason the actual output appends a carrage return and line feed.
-        string expectedOutput ="You don't know how to do that!\r\n";
+        string expectedOutput = "You don't know how to do that!";
         string actualOutput;
         using (StringWriter sw = new StringWriter())
         {
@@ -48,10 +49,25 @@ public class ProcessorTests
             quit = Processor.ProcessWords(null, null, null);
             sw.Flush();
 
-            actualOutput =  sw.ToString();
+            actualOutput = sw.ToString();
         }
 
+        actualOutput = CleanConsoleOutput(actualOutput);
         Assert.IsFalse(quit);
         Assert.AreEqual(expectedOutput, actualOutput);
+    }
+
+    [ExcludeFromCodeCoverage]
+    private string CleanConsoleOutput(string consoleOutput)
+    {
+        string cleanOutput;
+        // The IF below makes the Console output work regardless of OS
+        // WriteLine on Windows uses '\r\n', Linux uses '\n'.
+        if (consoleOutput.EndsWith("\n"))
+            cleanOutput = consoleOutput.Substring(0, consoleOutput.Length - 2);
+        else // the string ends in '\r\n'
+            cleanOutput = consoleOutput[..^3];
+
+        return cleanOutput;
     }
 }
