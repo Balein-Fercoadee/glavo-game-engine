@@ -1,4 +1,3 @@
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
@@ -26,7 +25,7 @@ public class Player
     /// Gets a collection of <c>Item.Id</c> of what the <c>Player</c> is carrying.
     /// </summary>
     [JsonInclude]
-    public List<int> ItemInventory { get; }
+    public List<int> ItemInventory { get; set; }
 
     /// <summary>
     /// Gets a list of <c>Room.Ids</c> where the <c>Player</c> has already visited.

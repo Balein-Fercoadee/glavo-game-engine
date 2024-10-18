@@ -66,7 +66,7 @@ public class Engine
             string? playerInput = string.Empty;
             do
             {
-                Console.Write("\n" + Constants.INPUT_PROMPT);
+                Console.Write(Constants.INPUT_PROMPT);
                 playerInput = Console.ReadLine();
             } while (string.IsNullOrWhiteSpace(playerInput));
 

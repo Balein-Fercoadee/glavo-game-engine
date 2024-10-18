@@ -31,7 +31,7 @@ public static class Processor
                     ProcessTake(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "quit":
-                    Console.WriteLine("Such a quiter. BOOOOOOOO!");
+                    Console.Write("Such a quiter. BOOOOOOOO!\n");
                     ProcessScore(gameState.GameData, gameState.PlayerData);
                     quitGame = true;
                     break;
@@ -241,7 +241,6 @@ public static class Processor
         {
             // Need a noun to pick up
             Console.WriteLine("Take what??");
-
         }
         else
         {
