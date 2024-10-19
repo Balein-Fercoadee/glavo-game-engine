@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine", "GameEngine\Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine_Tests", "GameEngine_Tests\GameEngine_Tests.csproj", "{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDatabaseEditor", "GameDatabaseEditor\GameDatabaseEditor.csproj", "{BA08B075-A118-4A44-B93E-8A1FE9E11FB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DA8380B-345C-4CFF-BB7E-B7D4FC6EB469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA08B075-A118-4A44-B93E-8A1FE9E11FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA08B075-A118-4A44-B93E-8A1FE9E11FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA08B075-A118-4A44-B93E-8A1FE9E11FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA08B075-A118-4A44-B93E-8A1FE9E11FB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
