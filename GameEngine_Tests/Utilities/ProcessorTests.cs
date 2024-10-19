@@ -127,6 +127,57 @@ public class ProcessorTests
     }
 
     [TestMethod]
+    public void GoNoDirection()
+    {
+        GameState gameState = SetupTestingGameState();
+        var gameDb = gameState.GameData;
+
+        Word? verb = ObjectFinder.GetWord(gameDb.Words, "go");
+
+        bool quit = false;
+        string expectedOutput = "Go where??";
+        string actualOutput;
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+            quit = Processor.ProcessWords(verb, null, gameState);
+            sw.Flush();
+
+            actualOutput = CleanConsoleOutput(sw.ToString());
+        }
+
+        Assert.IsFalse(quit);
+        Assert.AreEqual(expectedOutput, actualOutput);        
+    }
+
+    [TestMethod]
+    public void GoBadDirection()
+    {
+        GameState gameState = SetupTestingGameState();
+        var gameDb = gameState.GameData;
+        var player = gameState.PlayerData;
+        player.CurrentRoomId = gameDb.StartingRoomId;
+
+        Word? verb = ObjectFinder.GetWord(gameDb.Words, "go");
+        Word? noun = ObjectFinder.GetWord(gameDb.Words, "down");
+
+        bool quit = false;
+        string expectedOutput = "You can't go in that direction!!";
+        string actualOutput;
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+            quit = Processor.ProcessWords(verb, noun, gameState);
+            sw.Flush();
+
+            actualOutput = CleanConsoleOutput(sw.ToString());
+        }
+
+        Assert.IsFalse(quit);
+        Assert.AreEqual(expectedOutput, actualOutput);        
+    }
+
+    [TestMethod]
     public void Help()
     {
         GameState gameState = SetupTestingGameState();
@@ -285,6 +336,77 @@ public class ProcessorTests
         {
             Console.SetOut(sw);
             quit = Processor.ProcessWords(verb, noun, gameState);
+            sw.Flush();
+
+            actualOutput = CleanConsoleOutput(sw.ToString());
+        }
+
+        Assert.IsFalse(quit);
+        Assert.AreEqual(expectedOutput, actualOutput);
+    }
+
+    [TestMethod]
+    public void QuitNoTreasuresStored()
+    {
+        var gameState = SetupTestingGameState();
+        var verb = ObjectFinder.GetWord(gameState.GameData.Words, "quit");
+        bool quit;
+
+        string expectedOutput = "Such a quiter. BOOOOOOOO!\n" +
+        "You have stored 0 out of 1 treasures in the treasure room.\nYou have a score of 0%.";
+        string actualOutput;
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+            quit = Processor.ProcessWords(verb, null, gameState);
+            sw.Flush();
+
+            actualOutput = CleanConsoleOutput(sw.ToString());
+        }
+
+        Assert.IsTrue(quit);
+        Assert.AreEqual(expectedOutput, actualOutput);
+    }
+
+    [TestMethod]
+    public void ScoreAllTreasuresStored()
+    {
+        var gameState = SetupTestingGameState();
+        var treasureRoom = ObjectFinder.GetRoom(gameState.GameData.Rooms, gameState.GameData.TreasureRoomId);
+        treasureRoom.ContainedItemIds.Add(2);
+        var verb = ObjectFinder.GetWord(gameState.GameData.Words, "score");
+        bool quit;
+
+        string expectedOutput = "You have stored 1 out of 1 treasures in the treasure room.\nYou have a score of 100%.\n";
+        expectedOutput += "CONGRATULATIONS!!! YOU WIN!!!";
+
+        string actualOutput;
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+            quit = Processor.ProcessWords(verb, null, gameState);
+            sw.Flush();
+
+            actualOutput = CleanConsoleOutput(sw.ToString());
+        }
+
+        Assert.IsTrue(quit);
+        Assert.AreEqual(expectedOutput, actualOutput);
+    }
+
+    [TestMethod]
+    public void ScoreNoTreasuresStored()
+    {
+        var gameState = SetupTestingGameState();
+        var verb = ObjectFinder.GetWord(gameState.GameData.Words, "score");
+        bool quit;
+
+        string expectedOutput = "You have stored 0 out of 1 treasures in the treasure room.\nYou have a score of 0%.";
+        string actualOutput;
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+            quit = Processor.ProcessWords(verb, null, gameState);
             sw.Flush();
 
             actualOutput = CleanConsoleOutput(sw.ToString());

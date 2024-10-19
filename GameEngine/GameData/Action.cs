@@ -56,6 +56,9 @@ public class ActionCondition
     public int ObjectId { get; set; }
 }
 
+/// <summary>
+/// Enumeration of available conditions to use within an <c>Action</c>.
+/// </summary>
 public enum ActionConditions
 {
     /// <summary>
@@ -68,6 +71,9 @@ public enum ActionConditions
     PlayerWithItem = 2,
 }
 
+/// <summary>
+/// Enumeration of available commands to use within an <c>Action</c>.
+/// </summary>
 public enum ActionCommands
 {
     /// <summary>

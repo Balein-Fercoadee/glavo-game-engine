@@ -25,14 +25,14 @@ public static class Processor
                     ProcessLook(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "score":
-                    ProcessScore(gameState.GameData, gameState.PlayerData);
+                    quitGame = ProcessScore(gameState.GameData);
                     break;
                 case "take":
                     ProcessTake(noun, gameState.GameData, gameState.PlayerData);
                     break;
                 case "quit":
                     Console.Write("Such a quiter. BOOOOOOOO!\n");
-                    ProcessScore(gameState.GameData, gameState.PlayerData);
+                    ProcessScore(gameState.GameData);
                     quitGame = true;
                     break;
                 default:
@@ -133,7 +133,7 @@ public static class Processor
                     }
                     else
                     {
-                        Console.WriteLine("You're not carrying that item!");
+                        Console.Write("You're not carrying that item!\n");
                     }
                     break;
             }
@@ -145,7 +145,7 @@ public static class Processor
         if (noun != null)
         {
             Room currentRoom = ObjectFinder.GetRoom(gameData.Rooms, player.CurrentRoomId);
-            int roomId = -1;
+            int roomId = Constants.ROOM_ID_UNSET;
             switch (noun.Name)
             {
                 case "north":
@@ -170,30 +170,30 @@ public static class Processor
 
             if (roomId != Constants.ROOM_ID_UNSET)
             {
-                Console.WriteLine(MessageFormatter.Look(roomId, gameData, player));
+                Console.Write(MessageFormatter.Look(roomId, gameData, player) + "\n");
                 player.CurrentRoomId = roomId;
             }
             else
             {
-                Console.WriteLine("You can't go in that direction!!");
+                Console.Write("You can't go in that direction!!\n");
             }
         }
         else
         {
-            Console.WriteLine("Go where??");
+            Console.Write("Go where??\n");
         }
     }
 
     private static void ProcessLook(Word? noun, GameDatabase gameData, Player player)
     {
         if (noun == null) // look with no noun means to look at the room.
-            Console.WriteLine(MessageFormatter.Look(player.CurrentRoomId, gameData, player, true));
+            Console.Write(MessageFormatter.Look(player.CurrentRoomId, gameData, player, true) + "\n");
         else
         {
             switch (noun.Name)
             {
                 case "inventory":
-                    Console.WriteLine(MessageFormatter.Inventory(player, gameData));
+                    Console.Write(MessageFormatter.Inventory(player, gameData) + "\n");
                     break;
                 default:
                     // assume that we're looking at an item either in inventory or in the room
@@ -209,11 +209,11 @@ public static class Processor
 
                     if (lookedItem != null)
                     {
-                        Console.WriteLine($"{lookedItem.Name}: {lookedItem.Description}");
+                        Console.Write($"{lookedItem.Name}: {lookedItem.Description}\n");
                     }
                     else
                     {
-                        Console.WriteLine("You don't see that here!");
+                        Console.Write("You don't see that here!\n");
                     }
 
                     break;
@@ -221,18 +221,21 @@ public static class Processor
         }
     }
 
-    private static void ProcessScore(GameDatabase gameData, Player player)
+    private static bool ProcessScore(GameDatabase gameData)
     {
+        bool quitGame = false;
         Room treasureRoom = ObjectFinder.GetRoom(gameData.Rooms, gameData.TreasureRoomId);
         int countTreasures = gameData.Items.Where(i => i.IsTreasure).Count();
         int storedTreasures = ObjectFinder.GetItems(gameData.Items, treasureRoom.ContainedItemIds).Count(i => i.IsTreasure);
         float percentComplete = storedTreasures / countTreasures;
-        Console.WriteLine($"You have stored {storedTreasures} out of {countTreasures} treasures in the treasure room.\nYou have a score of {percentComplete:P0}.");
+        Console.Write($"You have stored {storedTreasures} out of {countTreasures} treasures in the treasure room.\nYou have a score of {percentComplete:P0}.\n");
         if (percentComplete == 1)
         {
-            Console.WriteLine("CONGRATULATIONS!!! YOU WIN!!!");
-            Environment.Exit(0);
+            Console.Write("CONGRATULATIONS!!! YOU WIN!!!\n");
+            quitGame = true;
         }
+
+        return quitGame;
     }
 
     private static void ProcessTake(Word? noun, GameDatabase gameData, Player player)
