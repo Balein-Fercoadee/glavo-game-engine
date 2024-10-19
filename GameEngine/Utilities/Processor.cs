@@ -228,7 +228,7 @@ public static class Processor
         int countTreasures = gameData.Items.Where(i => i.IsTreasure).Count();
         int storedTreasures = ObjectFinder.GetItems(gameData.Items, treasureRoom.ContainedItemIds).Count(i => i.IsTreasure);
         float percentComplete = storedTreasures / countTreasures;
-        Console.Write($"You have stored {storedTreasures} out of {countTreasures} treasures in the treasure room.\nYou have a score of {percentComplete:P0}.\n");
+        Console.Write($"You have stored {storedTreasures} out of {countTreasures} treasures in the treasure room.\nYou have a score of {percentComplete * 100:F0} %.\n");
         if (percentComplete == 1)
         {
             Console.Write("CONGRATULATIONS!!! YOU WIN!!!\n");

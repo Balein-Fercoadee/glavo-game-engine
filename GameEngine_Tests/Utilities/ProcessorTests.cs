@@ -353,7 +353,7 @@ public class ProcessorTests
         bool quit;
 
         string expectedOutput = "Such a quiter. BOOOOOOOO!\n" +
-        "You have stored 0 out of 1 treasures in the treasure room.\nYou have a score of 0%.";
+        "You have stored 0 out of 1 treasures in the treasure room.\nYou have a score of 0 %.";
         string actualOutput;
         using (StringWriter sw = new StringWriter())
         {
@@ -377,7 +377,7 @@ public class ProcessorTests
         var verb = ObjectFinder.GetWord(gameState.GameData.Words, "score");
         bool quit;
 
-        string expectedOutput = "You have stored 1 out of 1 treasures in the treasure room.\nYou have a score of 100%.\n";
+        string expectedOutput = "You have stored 1 out of 1 treasures in the treasure room.\nYou have a score of 100 %.\n";
         expectedOutput += "CONGRATULATIONS!!! YOU WIN!!!";
 
         string actualOutput;
@@ -401,7 +401,7 @@ public class ProcessorTests
         var verb = ObjectFinder.GetWord(gameState.GameData.Words, "score");
         bool quit;
 
-        string expectedOutput = "You have stored 0 out of 1 treasures in the treasure room.\nYou have a score of 0%.";
+        string expectedOutput = "You have stored 0 out of 1 treasures in the treasure room.\nYou have a score of 0 %.";
         string actualOutput;
         using (StringWriter sw = new StringWriter())
         {
