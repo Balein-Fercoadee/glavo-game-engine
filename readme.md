@@ -2,7 +2,7 @@
 
 ![Repository Automated Testing](https://github.com/Balein-Fercoadee/glavo-game-engine/actions/workflows/dotnet.yml/badge.svg)
 
-A text-based game engine built from the ground up on C#/.NET.
+The goal of this project is to create a text-based game engine in the spirit of the classic text RPG of the 80s.
 
 ## Requirements
 
@@ -13,9 +13,12 @@ A text-based game engine built from the ground up on C#/.NET.
 
 The engine is organized into a few projects:
 
-- Console UI
-- Game Engine
-- Game Engine Tests
+| Project | Description |
+|---------|-------------|
+| Console UI | The text UI that runs Game Engine |
+| Game Engine | The code that drives the game. All game logic is contained here. |
+| Game Engine Tests | Unit tests that run against Game Engine in the CI/CD pipeline. |
+| Game Database Editor | A MAUI application that allows for the creation and/or editing of game databases. |
 
 ## Running a game
 
@@ -33,6 +36,12 @@ If you have a game database you would like to load from the command line:
 glavo-game-engine.exe <game_db_name> [save_game] [-d]
 ```
 
-- game_db_name (required): The relative or full path and file name of the game to load
-- save_game (optional): The relative or full path and file name of the game to load
-- -d (optional): Output debug statements during game load and gameplay
+- `game_db_name` (required): The relative or full path and file name of the game to load
+- `save_game` (optional): The relative or full path and file name of the game to load
+- `-d` (optional): Output debug statements during game load and gameplay
+
+## Creating or editing a game database
+
+Creating a game database by hand (using a text editor) is possible but becomes cumbersome as the database becomes larger. This led to the creation of `GameDatabaseEditor`.
+
+`GameDatabaseEditor` is a MAUI (Multi-platform App UI) application that allows the creation of a new game database or the editing of an existing database.
