@@ -20,11 +20,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: Install requirements
+      run: dotnet workload install maui-android
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Install requirements
-      run: dotnet workload install maui-android
     - name: Test
       run: dotnet test --collect "Code Coverage;Format=cobertura" --no-build --verbosity normal
