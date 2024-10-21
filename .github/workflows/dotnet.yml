@@ -24,5 +24,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Install requirements
+      run: dotnet workload install maui
     - name: Test
       run: dotnet test --collect "Code Coverage;Format=cobertura" --no-build --verbosity normal
