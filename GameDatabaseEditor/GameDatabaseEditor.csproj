@@ -62,4 +62,10 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Reference Include="GameEngine">
+	    <HintPath>..\GameEngine\bin\Debug\net8.0\GameEngine.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
 </Project>

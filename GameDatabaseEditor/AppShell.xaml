@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GameDatabaseEditor"
     Shell.FlyoutBehavior="Disabled"
-    Title="GameDatabaseEditor">
+    Title="GGE Database Editor">
 
     <ShellContent
-        Title="Home"
+        Title="GGE Database Creator"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

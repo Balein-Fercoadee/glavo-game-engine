@@ -45,3 +45,5 @@ glavo-game-engine.exe <game_db_name> [save_game] [-d]
 Creating a game database by hand (using a text editor) is possible but becomes cumbersome as the database becomes larger. This led to the creation of `GameDatabaseEditor`.
 
 `GameDatabaseEditor` is a MAUI (Multi-platform App UI) application that allows the creation of a new game database or the editing of an existing database.
+
+As of Oct 2024, `GameDatabaseEditor` can only run on Windows and MacOS. That's why the project isn't included in the solution; Actions won't run successfully if the MAUI project is in the solution and the runner OS is set as Ubuntu.

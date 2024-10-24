@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameDatabaseEditor", "GameDatabaseEditor.csproj", "{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BE6F12-27F1-4201-A3D2-91E3DF5039A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9DC6A062-E0DB-4643-9C32-7580E6E93C5F}
+	EndGlobalSection
+EndGlobal
