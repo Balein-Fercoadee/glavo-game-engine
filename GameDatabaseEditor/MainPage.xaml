@@ -53,16 +53,16 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Database/Game Name:" />
-            <Entry Grid.Row="0" Grid.Column="1" x:Name="entName" Text="{Binding Path=Name}" WidthRequest="200" />
+            <Entry Grid.Row="0" Grid.Column="1" x:Name="entName" Text="{Binding Path=Name, Mode=TwoWay}" WidthRequest="200" />
 
             <Label Grid.Row="1" Grid.Column="0" Text="Database/Game Description:" />
-            <Entry Grid.Row="1" Grid.Column="1" x:Name="entDescription" Text="{Binding Path=Description}" WidthRequest="200" />
+            <Entry Grid.Row="1" Grid.Column="1" x:Name="entDescription" Text="{Binding Path=Description, Mode=TwoWay}" WidthRequest="200" />
             
             <Label Grid.Row="2" Grid.Column="0" Text="Starting Room ID:" />
-            <Picker Grid.Row="2" Grid.Column="1" x:Name="pckStartingRoom" ItemsSource="{Binding Path=Rooms}" ItemDisplayBinding="{Binding Name}" />
+            <Entry Grid.Row="2" Grid.Column="1" x:Name="entStartingRoomId" Text="{Binding Path=StartingRoomId, Mode=TwoWay}" WidthRequest="200" />
 
             <Label Grid.Row="3" Grid.Column="0" Text="Treasure Room ID:" />
-            <Picker Grid.Row="3" Grid.Column="1" x:Name="pckTreasureRoom" ItemsSource="{Binding Path=Rooms}" ItemDisplayBinding="{Binding Name}" />
+            <Entry Grid.Row="3" Grid.Column="1" x:Name="entTreasureRoomId" Text="{Binding Path=TreasureRoomId, Mode=TwoWay}" WidthRequest="200" />
         </Grid>
 
         <!-- Room Section -->
@@ -99,7 +99,7 @@
             </ListView>
 
             <Button Grid.Row="2" Grid.Column="0" Width="90" x:Name="btnOpenRoom" Text="Open Room"  />
-            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom" Text="Remove Room" BindingContext="{x:Reference lstRooms}" IsEnabled="{Binding SelectedItem}" Clicked="btnRemoveRoom_Clicked" />
+            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom" Text="Remove Room" BindingContext="{x:Reference lstRooms}" Clicked="btnRemoveRoom_Clicked" />
         </Grid>
 
     </Grid>
