@@ -6,6 +6,8 @@ public partial class MainPage : ContentPage
 {
     private GameDatabase _gameDatabase;
 
+    bool _hasChanged = false;
+
     public MainPage()
     {
         InitializeComponent();
@@ -19,7 +21,6 @@ public partial class MainPage : ContentPage
         room2.Name = "Treasure Room";
         _gameDatabase.Rooms.Add(room1);
         _gameDatabase.Rooms.Add(room2);
-
 
         this.BindingContext = _gameDatabase;
     }
@@ -35,9 +36,13 @@ public partial class MainPage : ContentPage
         if (removedRoom != null)
         {
             _gameDatabase.Rooms.Remove(removedRoom);
+            _hasChanged = true;
         }
+    }
 
-        
+    private void btnOpenRoom_Clicked(object sender, EventArgs e)
+    {
+
     }
 }
 

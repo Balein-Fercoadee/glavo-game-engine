@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GameDatabaseEditor"
              x:Class="GameDatabaseEditor.MainPage"
              Title="Database Contents" Height="450" Width="1179">
     <ContentPage.Resources>
@@ -21,6 +22,7 @@
         <Style TargetType="Picker">
             <Setter Property="Margin" Value="2" />
         </Style>
+        <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
     </ContentPage.Resources>
 
     <Grid Margin="1" >
@@ -65,6 +67,8 @@
             <Entry Grid.Row="3" Grid.Column="1" x:Name="entTreasureRoomId" Text="{Binding Path=TreasureRoomId, Mode=TwoWay}" WidthRequest="200" />
         </Grid>
 
+        <Label Grid.Row="3" Grid.Column="1" x:Name="lblTest" BindingContext="{x:Reference btnOpenRoom}" Text="{Binding Path=IsEnabled, StringFormat='Edit Room Enabled: {0}'}" />
+
         <!-- Room Section -->
         <Grid Grid.Row="3" Grid.Column="2" Margin="3">
             <Grid.ColumnDefinitions>
@@ -98,8 +102,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Grid.Row="2" Grid.Column="0" Width="90" x:Name="btnOpenRoom" Text="Open Room"  />
-            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom" Text="Remove Room" BindingContext="{x:Reference lstRooms}" Clicked="btnRemoveRoom_Clicked" />
+            <Button Grid.Row="2" Grid.Column="0" Width="90" x:Name="btnOpenRoom" Text="Edit Room" Clicked="btnOpenRoom_Clicked" IsEnabled="{Binding Source={x:Reference lstRooms}, Path=SelectedItem, Converter={StaticResource objectToBool}}" />
+            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom" Text="Remove Room" Clicked="btnRemoveRoom_Clicked" />
         </Grid>
 
     </Grid>
