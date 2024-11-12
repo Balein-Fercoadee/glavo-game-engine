@@ -7,7 +7,8 @@ namespace GameDatabaseEditor
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return value != null ? true : false;
+            bool isVisible = value != null ? true : false;
+            return isVisible;
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

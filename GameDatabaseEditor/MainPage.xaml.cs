@@ -4,7 +4,7 @@ namespace GameDatabaseEditor;
 
 public partial class MainPage : ContentPage
 {
-    private GameDatabase _gameDatabase;
+    public GameDatabase _gameDatabase;
 
     bool _hasChanged = false;
 
@@ -21,8 +21,21 @@ public partial class MainPage : ContentPage
         room2.Name = "Treasure Room";
         _gameDatabase.Rooms.Add(room1);
         _gameDatabase.Rooms.Add(room2);
+        //_gameDatabase.StartingRoomId = 0;
 
         this.BindingContext = _gameDatabase;
+
+        InitializeControls();
+    }
+
+    /// <summary>
+    /// Sets the intial states for some of the window controls.
+    /// This is due to data binding not working in some instances.
+    /// </summary>
+    private void InitializeControls()
+    {
+        btnEditRoom.IsEnabled = false;
+        btnRemoveRoom.IsEnabled = false;
     }
 
     private async void btnAddRoom_Clicked(object sender, EventArgs e)
@@ -40,8 +53,46 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void btnOpenRoom_Clicked(object sender, EventArgs e)
+    private void btnEditRoom_Clicked(object sender, EventArgs e)
     {
+
+    }
+
+    private void lstRooms_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        /*
+         * For some reason databinding wasn't working on IsEnabled (as of Nov-11-2024).
+         * Specifically, binding IsEnabled to another control's property.
+         * That's why the retro code.
+         */
+        if (e.SelectedItem != null)
+        {
+            btnEditRoom.IsEnabled = true;
+            btnRemoveRoom.IsEnabled = true;
+        }
+        else
+        {
+            btnEditRoom.IsEnabled = false;
+            btnRemoveRoom.IsEnabled = false;
+        }
+    }
+
+    private void pckStartingRoomId_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        /*
+        * For some reason databinding wasn't working on IsEnabled (as of Nov-11-2024).
+        * Specifically, binding Stroke to another control's property.
+        * That's why the retro code.
+        */
+        Picker picker = (Picker)sender;
+        if (picker.SelectedIndex == -1)
+        {
+            brdStartingRoom.Stroke = Brush.Red;
+        }
+        else
+        {
+            brdStartingRoom.Stroke = Brush.Transparent;
+        }
 
     }
 }
