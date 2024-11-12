@@ -35,4 +35,14 @@ public class GameDatabaseTests
         Room room2 = gameDb.Rooms.Where(r => r.Id == 1).First();
         Assert.AreEqual("Second Room", room2.Name);
     }
+
+    [TestMethod]
+    public void WordCounts()
+    {
+        GameDatabase gameDb = new GameDatabase();
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
+
+        Assert.AreEqual(16, gameDb.Nouns.Count());
+        Assert.AreEqual(8, gameDb.Verbs.Count());
+    }
 }
