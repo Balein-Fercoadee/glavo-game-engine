@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace GameDatabaseEditor
 {
-    public class ObjectToColorConverter : IValueConverter
+    public class IdToColorConverter : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            Brush brushColor = value != null ? Brush.Transparent : Brush.Red;
+            Brush brushColor = Brush.Red;
+            if (value != null)
+            {
+                brushColor = (int)value > -1 ? Brush.Transparent : Brush.Red;
+            }
             return brushColor;
         }
 

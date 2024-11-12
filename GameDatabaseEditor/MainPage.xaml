@@ -6,7 +6,7 @@
              Title="Database Contents" Height="450" Width="1179">
     <ContentPage.Resources>
         <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
-        <local:ObjectToColorConverter x:Key="objectToColor" />
+        <local:IdToColorConverter x:Key="idToColor" />
         <local:IdToObjectConverter x:Key="idToObject" />
     </ContentPage.Resources>
 
@@ -26,7 +26,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="1" Text="{Binding StartingRoomId, StringFormat='Starting Room Id - {0}'}" />
+        <Label Grid.Row="0" Grid.Column="1" Text="{Binding TreasureRoomId, StringFormat='Treasure Room Id - {0}'}" />
 
 
         <!-- General Database Information -->
@@ -49,11 +49,11 @@
             <Entry Grid.Row="1" Grid.Column="1" x:Name="entDescription" Text="{Binding Description, Mode=TwoWay}" WidthRequest="200" />
 
             <Label Grid.Row="2" Grid.Column="0" Text="Starting Room ID:" />
-            <Border Grid.Row="2" Grid.Column="1" x:Name="brdStartingRoom" Stroke="Red">
+            <Border Grid.Row="2" Grid.Column="1" Stroke="{Binding SelectedIndex, Converter={StaticResource idToColor}, Source={x:Reference pckStartingRoomId}, Mode=OneWay}">
                 <Picker x:Name="pckStartingRoomId"
                         ItemsSource="{Binding Rooms}"
                         SelectedItem="{Binding StartingRoomId, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckStartingRoomId}}, Mode=TwoWay}"
-                        SelectedIndexChanged="pckStartingRoomId_SelectedIndexChanged" WidthRequest="200">
+                        WidthRequest="200">
                     <Picker.ItemDisplayBinding>
                         <MultiBinding StringFormat="{}{0} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
@@ -64,7 +64,19 @@
             </Border>
 
             <Label Grid.Row="3" Grid.Column="0" Text="Treasure Room ID:" />
-            <Entry Grid.Row="3" Grid.Column="1" x:Name="entTreasureRoomId" Text="{Binding TreasureRoomId, Mode=TwoWay}" WidthRequest="200" />
+            <Border Grid.Row="3" Grid.Column="1" Stroke="{Binding SelectedIndex, Converter={StaticResource idToColor}, Source={x:Reference pckTreasureRoomId}, Mode=OneWay}">
+                <Picker x:Name="pckTreasureRoomId"
+                        ItemsSource="{Binding Rooms}"
+                        SelectedItem="{Binding TreasureRoomId, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckTreasureRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{}{0} - {1}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </Border>
         </Grid>
 
         <!-- Room Section -->
@@ -83,7 +95,7 @@
             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Path=Rooms.Count, StringFormat='Room objects (Count: {0})'}"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoom" Text="Add Room" Clicked="btnAddRoom_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single" ItemSelected="lstRooms_ItemSelected">
+                <ListView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -101,8 +113,14 @@
                 </ListView>
             </Border>
 
-            <Button Grid.Row="2" Grid.Column="0" Width="90" x:Name="btnEditRoom" Text="Edit Room" Clicked="btnEditRoom_Clicked" />
-            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom" Text="Remove Room" Clicked="btnRemoveRoom_Clicked" />
+            <Button Grid.Row="2" Grid.Column="0" Width="90" x:Name="btnEditRoom"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstRooms}}"
+                    Text="Edit Room"
+                    Clicked="btnEditRoom_Clicked" />
+            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstRooms}}"
+                    Text="Remove Room"
+                    Clicked="btnRemoveRoom_Clicked" />
         </Grid>
 
     </Grid>
