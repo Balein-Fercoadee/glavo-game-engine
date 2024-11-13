@@ -160,10 +160,10 @@
             </Border>
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditWord"
-                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstWords}}"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, ConverterParameter='word', Source={x:Reference lstWords}}"
                     Text="Edit Word" />
             <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveWord"
-                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstWords}}"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, ConverterParameter='word', Source={x:Reference lstWords}}"
                     Text="Remove Word" />
         </Grid>
 
@@ -181,7 +181,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Items"/>
-            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Word" />
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Item" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <ListView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single">
                     <ListView.ItemTemplate>
@@ -223,7 +223,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Messages"/>
-            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Word" />
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Message" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <ListView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single">
                     <ListView.ItemTemplate>
@@ -265,7 +265,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Actions"/>
-            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Word" />
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Action" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <ListView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single">
                     <ListView.ItemTemplate>

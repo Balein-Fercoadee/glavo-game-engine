@@ -14,8 +14,15 @@ namespace GameDatabaseEditor
             }
             else
             {
-                var selectedWord = (Word)value;
-                isVisible = selectedWord.Id > 15;
+                if (parameter == null)
+                {
+                    isVisible = true;
+                }
+                else
+                {
+                    var selectedWord = (IIdentifiable)value;
+                    isVisible = selectedWord.Id > 15;
+                }
             }
             return isVisible;
         }
