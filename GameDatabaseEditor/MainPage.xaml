@@ -94,7 +94,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Text="Rooms"/>
+            <Label Grid.Row="0" Grid.Column="0" Text="Rooms" />
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoom" Text="Add Room" Clicked="btnAddRoom_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <ListView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single">

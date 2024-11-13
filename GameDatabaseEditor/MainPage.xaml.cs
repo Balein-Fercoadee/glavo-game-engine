@@ -1,4 +1,5 @@
 ﻿using GameEngine.GameData;
+using System.Text.Json;
 
 namespace GameDatabaseEditor;
 
@@ -41,6 +42,15 @@ public partial class MainPage : ContentPage
     private void btnAddWord_Clicked(object sender, EventArgs e)
     {
 
+    }
+
+    private static List<Word> GetSacredWords()
+    {
+        string filePath = Path.Join(Environment.CurrentDirectory, "sacred-word-list.json");
+        string wordsJson = File.ReadAllText(filePath);
+        var words = JsonSerializer.Deserialize<List<Word>>(wordsJson);
+
+        return words;
     }
 }
 
