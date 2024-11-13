@@ -70,7 +70,7 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Resources\Styles\EditorSpecificStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	    <Generator></Generator>
 	  </MauiXaml>
 	</ItemGroup>
 

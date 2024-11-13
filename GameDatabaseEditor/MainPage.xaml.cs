@@ -13,18 +13,7 @@ public partial class MainPage : ContentPage
         InitializeComponent();
 
         _gameDatabase = new GameDatabase();
-        Room room1 = new Room();
-        room1.Id = 0;
-        room1.Name = "Starting Room";
-        Room room2 = new Room();
-        room2.Id = 1;
-        room2.Name = "Treasure Room";
-        Room room3 = new Room();
-        room3.Id = 2;
-        room3.Name = "Regular Room";
-        _gameDatabase.Rooms.Add(room1);
-        _gameDatabase.Rooms.Add(room2);
-        _gameDatabase.Rooms.Add(room3);
+        _gameDatabase.Load(@"C:\Temp\glavo_game_engine\", "sample_game.gge");
 
         this.BindingContext = _gameDatabase;
     }
@@ -45,6 +34,11 @@ public partial class MainPage : ContentPage
     }
 
     private void btnEditRoom_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void btnAddWord_Clicked(object sender, EventArgs e)
     {
 
     }

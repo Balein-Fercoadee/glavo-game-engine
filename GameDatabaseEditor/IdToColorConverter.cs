@@ -15,7 +15,17 @@ namespace GameDatabaseEditor
             Brush brushColor = Brush.Red;
             if (value != null)
             {
-                brushColor = (int)value > -1 ? Brush.Transparent : Brush.Red;
+                int numberToCompare;
+                if(parameter == null)
+                {
+                    numberToCompare = -1;
+                }
+                else
+                {
+                    numberToCompare = 0;
+                }
+
+                brushColor = (int)value > numberToCompare ? Brush.Transparent : Brush.Red;
             }
             return brushColor;
         }

@@ -26,9 +26,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="1" Text="{Binding TreasureRoomId, StringFormat='Treasure Room Id - {0}'}" />
-
-
         <!-- General Database Information -->
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -43,10 +40,15 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Database/Game Name:" />
-            <Entry Grid.Row="0" Grid.Column="1" x:Name="entName" Text="{Binding Name, Mode=TwoWay}" WidthRequest="200" />
-
+            <Border Grid.Row="0" Grid.Column="1" Stroke="{Binding Text.Length, Converter={StaticResource idToColor}, ConverterParameter='length', Source={x:Reference entName}, Mode=OneWay}">
+                <Entry x:Name="entName" Text="{Binding Name, Mode=TwoWay}" WidthRequest="200" />
+            </Border>
+            
             <Label Grid.Row="1" Grid.Column="0" Text="Database/Game Description:" />
-            <Entry Grid.Row="1" Grid.Column="1" x:Name="entDescription" Text="{Binding Description, Mode=TwoWay}" WidthRequest="200" />
+            <Border Grid.Row="1" Grid.Column="1" Stroke="{Binding Text.Length, Converter={StaticResource idToColor}, ConverterParameter='length', Source={x:Reference entDescription}, Mode=OneWay}">
+                <Entry x:Name="entDescription" Text="{Binding Description, Mode=TwoWay}" WidthRequest="200" />
+            </Border>
+            
 
             <Label Grid.Row="2" Grid.Column="0" Text="Starting Room ID:" />
             <Border Grid.Row="2" Grid.Column="1" Stroke="{Binding SelectedIndex, Converter={StaticResource idToColor}, Source={x:Reference pckStartingRoomId}, Mode=OneWay}">
@@ -55,7 +57,7 @@
                         SelectedItem="{Binding StartingRoomId, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckStartingRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{}{0} - {1}" TargetNullValue="">
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -70,7 +72,7 @@
                         SelectedItem="{Binding TreasureRoomId, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckTreasureRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{}{0} - {1}" TargetNullValue="">
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -92,7 +94,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Path=Rooms.Count, StringFormat='Room objects (Count: {0})'}"/>
+            <Label Grid.Row="0" Grid.Column="0" Text="Rooms"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoom" Text="Add Room" Clicked="btnAddRoom_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <ListView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single">
@@ -101,7 +103,7 @@
                             <ViewCell>
                                 <Label>
                                     <Label.Text>
-                                        <MultiBinding StringFormat="{}{0} - {1}">
+                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
                                             <Binding Path="Id" />
                                             <Binding Path="Name" />
                                         </MultiBinding>
@@ -113,16 +115,183 @@
                 </ListView>
             </Border>
 
-            <Button Grid.Row="2" Grid.Column="0" Width="90" x:Name="btnEditRoom"
+            <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditRoom"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstRooms}}"
                     Text="Edit Room"
                     Clicked="btnEditRoom_Clicked" />
-            <Button Grid.Row="2" Grid.Column="2"  Width="90" x:Name="btnRemoveRoom"
+            <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveRoom"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstRooms}}"
                     Text="Remove Room"
                     Clicked="btnRemoveRoom_Clicked" />
         </Grid>
 
+        <!-- Word Section -->
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Words"/>
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddWord" Text="Add Word" Clicked="btnAddWord_Clicked" />
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <ListView x:Name="lstWords" ItemsSource="{Binding Words}" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Style="{StaticResource sacredWordHighlight}">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                            <Binding Path="Id" />
+                                            <Binding Path="Name" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+            <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditWord"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstWords}}"
+                    Text="Edit Word" />
+            <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveWord"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstWords}}"
+                    Text="Remove Word" />
+        </Grid>
+
+        <!-- Item Section -->
+        <Grid Grid.Row="3" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Items"/>
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Word" />
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <ListView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label>
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                            <Binding Path="Id" />
+                                            <Binding Path="Name" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+            <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditItem"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstItems}}"
+                    Text="Edit Item" />
+            <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveItem"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstItems}}"
+                    Text="Remove Item" />
+        </Grid>
+
+        <!-- Message Section -->
+        <Grid Grid.Row="3" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Messages"/>
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Word" />
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <ListView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label>
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                            <Binding Path="Id" />
+                                            <Binding Path="Text" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+            <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMessage"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstMessages}}"
+                    Text="Edit Message" />
+            <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveMessage"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstMessages}}"
+                    Text="Remove Message" />
+        </Grid>
+
+        <!-- Action Section -->
+        <Grid Grid.Row="3" Grid.Column="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Actions"/>
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Word" />
+            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <ListView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label>
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                            <Binding Path="Id" />
+                                            <Binding Path="Description" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+            <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditAction"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstActions}}"
+                    Text="Edit Action" />
+            <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveAction"
+                    IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstActions}}"
+                    Text="Remove Action" />
+        </Grid>
     </Grid>
 
 </ContentPage>

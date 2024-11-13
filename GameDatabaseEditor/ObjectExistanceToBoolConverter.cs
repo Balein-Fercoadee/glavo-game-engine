@@ -7,7 +7,16 @@ namespace GameDatabaseEditor
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            bool isVisible = value != null ? true : false;
+            bool isVisible;
+            if (value == null)
+            {
+                isVisible = false;
+            }
+            else
+            {
+                var selectedWord = (Word)value;
+                isVisible = selectedWord.Id > 15;
+            }
             return isVisible;
         }
 

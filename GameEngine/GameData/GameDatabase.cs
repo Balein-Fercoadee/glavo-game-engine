@@ -82,7 +82,7 @@ public class GameDatabase : BaseGameObject
     /// Gets a collection of <c>Actions</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public ObservableCollection<Action> Actions;
+    public ObservableCollection<Action> Actions { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of <c>Items</c> available in the game.
