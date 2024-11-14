@@ -72,12 +72,9 @@
 	  <MauiXaml Update="Resources\Styles\EditorSpecificStyles.xaml">
 	    <Generator></Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="sacred-word-list.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
+	  <MauiXaml Update="Windows\RoomEditorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

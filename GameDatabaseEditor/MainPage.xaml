@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GameDatabaseEditor"
              x:Class="GameDatabaseEditor.MainPage"
-             Title="Database Contents" Height="450" Width="1179">
+             Title="Glavo Game Engine Database Editor" Height="450" Width="1000">
     <ContentPage.Resources>
         <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
         <local:IdToColorConverter x:Key="idToColor" />
@@ -17,17 +17,23 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!-- Database Options -->
+        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" FlowDirection="LeftToRight">
+            <Button x:Name="btnNewDatabase" Text="New Database" />
+            <Button x:Name="btnOpenDatabase" Text="Open Database" Clicked="btnOpenDatabase_Clicked" />
+            <Button x:Name="btnSaveDatabase" Text="Save Database" />
+        </StackLayout>
+        
         <!-- General Database Information -->
-        <Grid Grid.Row="0" Grid.Column="0">
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -49,7 +55,6 @@
                 <Entry x:Name="entDescription" Text="{Binding Description, Mode=TwoWay}" WidthRequest="200" />
             </Border>
             
-
             <Label Grid.Row="2" Grid.Column="0" Text="Starting Room ID:" />
             <Border Grid.Row="2" Grid.Column="1" Stroke="{Binding SelectedIndex, Converter={StaticResource idToColor}, Source={x:Reference pckStartingRoomId}, Mode=OneWay}">
                 <Picker x:Name="pckStartingRoomId"
@@ -81,6 +86,13 @@
             </Border>
         </Grid>
 
+        <!--
+        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" HorizontalOptions="Center" Orientation="Vertical">
+            <Label Text="Game Objects" HorizontalOptions="Center" FontAttributes="Bold" />
+            <Button x:Name="btnAddStandardObjects" Text="Add Standard Objects" />
+        </StackLayout>
+        -->
+        
         <!-- Room Section -->
         <Grid Grid.Row="3" Grid.Column="0">
             <Grid.ColumnDefinitions>

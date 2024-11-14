@@ -12,16 +12,17 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-
-        _gameDatabase = new GameDatabase();
-        _gameDatabase.Load(@"C:\Temp\glavo_game_engine\", "sample_game.gge");
-
-        this.BindingContext = _gameDatabase;
     }
 
     private async void btnAddRoom_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Pop-up", "You clicks AddRoom!", "OK");
+        var roomWindow = new Windows.RoomEditorPage();
+        roomWindow.Title = "Room - Add New";
+        roomWindow.EditorMode = EditorModes.Add;
+        roomWindow.BindingContext = new Room();
+
+        await Navigation.PushAsync(roomWindow);
+
     }
 
     private void btnRemoveRoom_Clicked(object sender, EventArgs e)
@@ -51,6 +52,29 @@ public partial class MainPage : ContentPage
         var words = JsonSerializer.Deserialize<List<Word>>(wordsJson);
 
         return words;
+    }
+
+    private async void btnOpenDatabase_Clicked(object sender, EventArgs e)
+    {
+        var file = await FilePicker.Default.PickAsync(new PickOptions
+        {
+            PickerTitle = "Load GGE Database",
+            FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { DevicePlatform.WinUI, new[] { ".gge" } }, // file extension
+                })
+        });
+
+        if (file != null)
+        {
+            string filePath = Path.GetDirectoryName(file.FullPath);
+            string fileName = file.FileName;
+
+            _gameDatabase = new GameDatabase();
+            _gameDatabase.Load(filePath, fileName);
+
+            this.BindingContext = _gameDatabase;
+        }
     }
 }
 
