@@ -27,7 +27,7 @@
 
         <!-- Database Options -->
         <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" FlowDirection="LeftToRight">
-            <Button x:Name="btnNewDatabase" Text="New Database" />
+            <Button x:Name="btnNewDatabase" Text="New Database" Clicked="btnNewDatabase_Clicked" />
             <Button x:Name="btnOpenDatabase" Text="Open Database" Clicked="btnOpenDatabase_Clicked" />
             <Button x:Name="btnSaveDatabase" Text="Save Database" />
         </StackLayout>
@@ -85,13 +85,6 @@
                 </Picker>
             </Border>
         </Grid>
-
-        <!--
-        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" HorizontalOptions="Center" Orientation="Vertical">
-            <Label Text="Game Objects" HorizontalOptions="Center" FontAttributes="Bold" />
-            <Button x:Name="btnAddStandardObjects" Text="Add Standard Objects" />
-        </StackLayout>
-        -->
         
         <!-- Room Section -->
         <Grid Grid.Row="3" Grid.Column="0">

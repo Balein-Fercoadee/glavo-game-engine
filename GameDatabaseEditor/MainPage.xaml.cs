@@ -1,4 +1,5 @@
-﻿using GameEngine.GameData;
+﻿using GameDatabaseEditor.Utilities;
+using GameEngine.GameData;
 using System.Text.Json;
 
 namespace GameDatabaseEditor;
@@ -12,6 +13,9 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+
+        _gameDatabase = new GameDatabase();
+        this.BindingContext = _gameDatabase;
     }
 
     private async void btnAddRoom_Clicked(object sender, EventArgs e)
@@ -45,15 +49,6 @@ public partial class MainPage : ContentPage
 
     }
 
-    private static List<Word> GetSacredWords()
-    {
-        string filePath = Path.Join(Environment.CurrentDirectory, "sacred-word-list.json");
-        string wordsJson = File.ReadAllText(filePath);
-        var words = JsonSerializer.Deserialize<List<Word>>(wordsJson);
-
-        return words;
-    }
-
     private async void btnOpenDatabase_Clicked(object sender, EventArgs e)
     {
         var file = await FilePicker.Default.PickAsync(new PickOptions
@@ -67,11 +62,32 @@ public partial class MainPage : ContentPage
 
         if (file != null)
         {
-            string filePath = Path.GetDirectoryName(file.FullPath);
+            string? filePath = Path.GetDirectoryName(file.FullPath);
             string fileName = file.FileName;
 
-            _gameDatabase = new GameDatabase();
-            _gameDatabase.Load(filePath, fileName);
+            if (filePath != null)
+            {
+                _gameDatabase = new GameDatabase();
+                _gameDatabase.Load(filePath, fileName);
+            }
+
+            this.BindingContext = _gameDatabase;
+        }
+    }
+
+    private async void btnNewDatabase_Clicked(object sender, EventArgs e)
+    {
+        bool isEmpty = GeneralUtilities.IsDatabaseEmpty(_gameDatabase);
+
+        bool setupNewDatabase = true;
+        if (!isEmpty)
+        {
+            setupNewDatabase = await DisplayAlert("Database not empty!", "The current database has objects. Are you sure you want to overwrite?", "Yes", "No");
+        }
+
+        if (setupNewDatabase)
+        {
+            _gameDatabase = GeneralUtilities.GetFreshDatabase();
 
             this.BindingContext = _gameDatabase;
         }
