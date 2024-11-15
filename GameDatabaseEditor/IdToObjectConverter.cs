@@ -36,7 +36,11 @@ namespace GameDatabaseEditor
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            int objectId = ((IIdentifiable)value).Id;
+            int? objectId = null;
+            if (value != null)
+            {
+                objectId = ((IIdentifiable)value).Id;
+            }
             return objectId;
         }
     }

@@ -25,6 +25,13 @@
     <Style TargetType="Picker">
         <Setter Property="Margin" Value="2" />
     </Style>
+    <Style x:Key="treasureItem" TargetType="Label">
+        <Style.Triggers>
+            <DataTrigger TargetType="Label" Binding="{Binding IsTreasure}" Value="true">
+                <Setter Property="TextColor" Value="Gold" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <!-- The below style colors the "sacred 16" words. -->
     <Style x:Key="sacredWordHighlight" TargetType="Label">
         <Style.Triggers>
