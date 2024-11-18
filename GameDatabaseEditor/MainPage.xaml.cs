@@ -1,4 +1,7 @@
-﻿using GameDatabaseEditor.Utilities;
+﻿using CommunityToolkit.Maui.Views;
+using GameDatabaseEditor.Utilities;
+using GameDatabaseEditor.Views;
+using GameDatabaseEditor.Windows;
 using GameEngine.GameData;
 using System.Text.Json;
 
@@ -18,15 +21,30 @@ public partial class MainPage : ContentPage
         this.BindingContext = _gameDatabase;
     }
 
-    private async void btnAddRoom_Clicked(object sender, EventArgs e)
+    private void btnAddRoom_Clicked(object sender, EventArgs e)
     {
-        var roomWindow = new Windows.RoomEditorPage();
-        roomWindow.Title = "Room - Add New";
-        roomWindow.EditorMode = EditorModes.Add;
-        roomWindow.BindingContext = new Room();
+        var newRoom = new Room();
+        var roomView = new Views.RoomEditorView();
+        roomView.BindingContext = newRoom;
+        roomView.Rooms = _gameDatabase.Rooms;
 
-        await Navigation.PushAsync(roomWindow);
+        var popup = SetupEditorPopup(roomView);
 
+        this.ShowPopup(popup);
+    }
+
+    private Popup SetupEditorPopup(ContentView editorView)
+    {
+        var popup = new GenericEditorPopup()
+        {
+            Color = this.BackgroundColor,
+            CanBeDismissedByTappingOutsideOfPopup = false,
+            Parent = this,
+        };
+
+        popup.EditorView = editorView;
+
+        return popup;
     }
 
     private void btnRemoveRoom_Clicked(object sender, EventArgs e)
