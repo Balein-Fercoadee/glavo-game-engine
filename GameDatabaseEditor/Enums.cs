@@ -11,4 +11,9 @@ namespace GameDatabaseEditor
         Add,
         Edit
     }
+
+    public enum EditorTypes
+    {
+        Room,
+    }
 }

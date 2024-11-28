@@ -1,9 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using GameDatabaseEditor.Utilities;
 using GameDatabaseEditor.Views;
-using GameDatabaseEditor.Windows;
 using GameEngine.GameData;
-using System.Text.Json;
 
 namespace GameDatabaseEditor;
 
@@ -24,16 +22,22 @@ public partial class MainPage : ContentPage
     private void btnAddRoom_Clicked(object sender, EventArgs e)
     {
         var newRoom = new Room();
-        var roomView = new Views.RoomEditorView();
+        var roomView = new RoomEditorView();
         roomView.BindingContext = newRoom;
         roomView.Rooms = _gameDatabase.Rooms;
+        roomView.Items = _gameDatabase.Items;
 
-        var popup = SetupEditorPopup(roomView);
+        var popup = SetupEditorPopup(roomView, EditorTypes.Room);
 
         this.ShowPopup(popup);
+
+        if (popup.Result != null && popup.Result.Result != null && (bool)(popup.Result.Result) == true)
+        {
+            // Add the Room to the Room collection
+        }
     }
 
-    private Popup SetupEditorPopup(ContentView editorView)
+    private Popup SetupEditorPopup(ContentView editorView, EditorTypes editorTypes)
     {
         var popup = new GenericEditorPopup()
         {
@@ -43,6 +47,7 @@ public partial class MainPage : ContentPage
         };
 
         popup.EditorView = editorView;
+        popup.EditorType = editorTypes;
 
         return popup;
     }
