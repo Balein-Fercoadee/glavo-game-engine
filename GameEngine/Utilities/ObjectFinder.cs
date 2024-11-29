@@ -15,7 +15,7 @@ public static class ObjectFinder
         return rooms.Where(r => r.Id == roomId).First();
     }
 
-    public static List<Item> GetItems(IEnumerable<Item> items, List<int> itemIds)
+    public static List<Item> GetItems(IEnumerable<Item> items, IEnumerable<int> itemIds)
     {
         return items.Where(i => itemIds.Contains(i.Id)).ToList<Item>();
     }

@@ -55,6 +55,12 @@ public static class MessageFormatter
         return helpMessage;
     }
 
+    /// <summary>
+    /// Creates a formatted message of what the player has in their inventory.
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="gameDb"></param>
+    /// <returns></returns>
     public static string Inventory(Player player, GameDatabase gameDb)
     {
         string inv = string.Empty;
@@ -74,7 +80,7 @@ public static class MessageFormatter
     }
 
     /// <summary>
-    /// 
+    /// Creates a formatted message of what the player sees in a <c>Room</c>.
     /// </summary>
     /// <param name="currentRoomId">The <c>Room.Id</c> of the room where the player is currently at.</param>
     /// <param name="gameState">The <c>GameState</c> object.</param>
