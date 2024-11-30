@@ -19,7 +19,7 @@ public partial class MainPage : ContentPage
         this.BindingContext = _gameDatabase;
     }
 
-    private void btnAddRoom_Clicked(object sender, EventArgs e)
+    private async void btnAddRoom_Clicked(object sender, EventArgs e)
     {
         var newRoom = new Room();
         var roomView = new RoomEditorView();
@@ -27,9 +27,9 @@ public partial class MainPage : ContentPage
         roomView.Rooms = _gameDatabase.Rooms;
         roomView.Items = _gameDatabase.Items;
 
-        var popup = SetupEditorPopup(roomView, EditorTypes.Room);
+        var popup = SetupEditorPopup(roomView, EditorTypes.Room, EditorModes.Add);
 
-        this.ShowPopup(popup);
+        await this.ShowPopupAsync(popup);
 
         if (popup.Result != null && popup.Result.Result != null && (bool)(popup.Result.Result) == true)
         {
@@ -37,7 +37,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private Popup SetupEditorPopup(ContentView editorView, EditorTypes editorTypes)
+    private Popup SetupEditorPopup(ContentView editorView, EditorTypes editorType, EditorModes editorMode)
     {
         var popup = new GenericEditorPopup()
         {
@@ -47,7 +47,7 @@ public partial class MainPage : ContentPage
         };
 
         popup.EditorView = editorView;
-        popup.EditorType = editorTypes;
+        popup.EditorType = editorType;
 
         return popup;
     }

@@ -12,6 +12,9 @@
         <Setter Property="Margin" Value="2" />
         <Setter Property="WidthRequest" Value="125" />
     </Style>
+    <Style TargetType="Button" x:Key="ResetButton">
+        <Setter Property="WidthRequest" Value="60" />
+    </Style>
     <Style TargetType="Entry">
         <Setter Property="Margin" Value="2" />
     </Style>

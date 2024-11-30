@@ -4,7 +4,9 @@ namespace GameDatabaseEditor.Views;
 
 public partial class GenericEditorPopup : Popup
 {
+    private EditorModes _editorMode;
     private EditorTypes _editorType;
+
     /// <summary>
     /// Sets the editor view for the popup
     /// </summary>
@@ -17,6 +19,14 @@ public partial class GenericEditorPopup : Popup
         }
     }
 
+    public EditorModes EditorMode
+    {
+        set
+        {
+            _editorMode = value;
+            lblTitle.Text = BuildPopupHeader();
+        }
+    }
     public EditorTypes EditorType
     {
         set
@@ -53,6 +63,21 @@ public partial class GenericEditorPopup : Popup
 
             default:
                 editorType = "Unset";
+                break;
+        }
+
+        switch (_editorMode)
+        {
+            case EditorModes.Add:
+                editorMode = _editorMode.ToString();
+                break;
+
+            case EditorModes.Edit:
+                editorMode = _editorMode.ToString();
+                break;
+
+            default:
+                editorMode = "Unset";
                 break;
         }
 

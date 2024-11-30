@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:local="clr-namespace:GameDatabaseEditor"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GameDatabaseEditor.Views.RoomEditorView"
-             HeightRequest="400" WidthRequest="600">
+             HeightRequest="800" WidthRequest="800">
+    <ContentView.Resources>
+        <local:IdToObjectConverter x:Key="idToObject" />
+    </ContentView.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -23,5 +28,101 @@
 
         <Label Grid.Column="0" Grid.Row="2" Text="Description:" />
         <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Description}" />
+
+        <!-- Room Exits -->
+        <Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Text="Exits" FontAttributes="Bold" />
+
+                <Label Grid.Column="0" Grid.Row="1" Text="North:" />
+                <Picker x:Name="pckNorthExitRoomId" Grid.Column="1" Grid.Row="1"
+                        SelectedItem="{Binding ExitIdNorth, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckNorthExitRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                <Button x:Name="btnResetNorth" Grid.Column="2" Grid.Row="1" Text="Reset" WidthRequest="60" Clicked="ResetButton_Clicked" />
+
+                <Label Grid.Column="0" Grid.Row="2" Text="South:" />
+                <Picker x:Name="pckSouthExitRoomId" Grid.Column="1" Grid.Row="2"
+                        SelectedItem="{Binding ExitIdSouth, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckSouthExitRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                
+                <Label Grid.Column="0" Grid.Row="3" Text="East:" />
+                <Picker x:Name="pckEastExitRoomId" Grid.Column="1" Grid.Row="3"
+                        SelectedItem="{Binding ExitIdEast, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckEastExitRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                
+                <Label Grid.Column="0" Grid.Row="4" Text="West:" />
+                <Picker x:Name="pckWestExitRoomId" Grid.Column="1" Grid.Row="4"
+                        SelectedItem="{Binding ExitIdWest, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckWestExitRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                
+                <Label Grid.Column="3" Grid.Row="1" Text="Up:" />
+                <Picker x:Name="pckUpExitRoomId" Grid.Column="4" Grid.Row="1"
+                        SelectedItem="{Binding ExitIdUp, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckUpExitRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                
+                <Label Grid.Column="3" Grid.Row="2" Text="Down:" />
+                <Picker x:Name="pckDownExitRoomId" Grid.Column="4" Grid.Row="2"
+                        SelectedItem="{Binding ExitIdDown, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckDownExitRoomId}}, Mode=TwoWay}"
+                        WidthRequest="200">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </Grid>
+        </Border>
     </Grid>
 </ContentView>
