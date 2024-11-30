@@ -23,9 +23,10 @@ public partial class MainPage : ContentPage
     {
         var newRoom = new Room();
         var roomView = new RoomEditorView();
-        roomView.BindingContext = newRoom;
         roomView.Rooms = _gameDatabase.Rooms;
         roomView.Items = _gameDatabase.Items;
+        roomView.EditedRoom = newRoom;
+
 
         var popup = SetupEditorPopup(roomView, EditorTypes.Room, EditorModes.Add);
 

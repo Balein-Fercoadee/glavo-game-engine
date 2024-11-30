@@ -19,7 +19,7 @@ namespace GameDatabaseEditor
         {
             Object gameObject = null;
             int objectId = (int)value;
-            if (objectId > -1)
+            if (objectId > -2)
             {
                 if(parameter is Binding binding)
                 {
@@ -27,8 +27,11 @@ namespace GameDatabaseEditor
                 }
 
                 IEnumerable<IIdentifiable> identifiables = (IEnumerable<IIdentifiable>)parameter;
-                var identifiable = identifiables.Where(i => i.Id == objectId).FirstOrDefault();
-                gameObject = identifiable;
+                if (identifiables != null)
+                {
+                    var identifiable = identifiables.Where(i => i.Id == objectId).FirstOrDefault();
+                    gameObject = identifiable;
+                }
             }
 
             return gameObject;

@@ -4,14 +4,29 @@ namespace GameDatabaseEditor.Views;
 
 public partial class RoomEditorView : ContentView
 {
+    private Room? _editedRoom;
     private IEnumerable<Room>? _rooms;
+
+    /// <summary>
+    /// Gets or sets the <c>Room</c> to be added/edited.
+    /// </summary>
+    public Room? EditedRoom
+    {
+        get { return _editedRoom; }
+        set
+        {
+            _editedRoom = value;
+            this.BindingContext = _editedRoom;
+        }
+    }
 
     public IEnumerable<Room>? Rooms
     {
         get { return _rooms; }
         set
         {
-            _rooms = value;
+            var roomList = SetupRoomCollection(value);
+            _rooms = roomList;
             SetRoomItemsSource();
         }
     }
@@ -21,6 +36,19 @@ public partial class RoomEditorView : ContentView
     public RoomEditorView()
     {
         InitializeComponent();
+    }
+
+    private IEnumerable<Room> SetupRoomCollection(IEnumerable<Room>? rooms)
+    {
+        List<Room> roomList = new List<Room>();
+
+        roomList.Add(new Room() { Id = -1, Name = "Unset" });
+        if (rooms != null && rooms.Any())
+        {
+            roomList.AddRange(rooms);
+        }
+
+        return roomList;
     }
 
     private void SetRoomItemsSource()
@@ -33,18 +61,5 @@ public partial class RoomEditorView : ContentView
         pckSouthExitRoomId.ItemsSource = castRooms;
         pckUpExitRoomId.ItemsSource = castRooms;
         pckWestExitRoomId.ItemsSource = castRooms;
-    }
-
-    private void ResetButton_Clicked(object sender, EventArgs e)
-    {
-        Button button = (Button)sender;
-        string direction = button.Text.Replace("btnReset", string.Empty).ToLowerInvariant();
-
-        switch (direction)
-        {
-            case "north":
-                pckNorthExitRoomId.SelectedIndex = -1;
-                break;
-        }
     }
 }
