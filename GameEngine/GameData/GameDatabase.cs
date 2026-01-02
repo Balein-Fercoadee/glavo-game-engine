@@ -32,7 +32,7 @@ public class GameDatabase
     /// Gets a collection of <c>Actions</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public List<Action> Actions;
+    public List<Action> Actions { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of <c>Items</c> available in the game.

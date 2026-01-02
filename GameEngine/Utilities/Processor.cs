@@ -68,12 +68,7 @@ public static class Processor
                         case ActionConditions.PlayerHasItem:
                             break;
                         case ActionConditions.PlayerWithItem:
-                            if (currentRoom.ContainedItemIds.Contains(condition.ObjectId))
-                            {
-                                conditionsMet &= true;
-                            }
-                            else
-                                conditionsMet &= false;
+                            conditionsMet &= currentRoom.ContainedItemIds.Contains(condition.ObjectId);
                             break;
                     }
                 }

@@ -22,12 +22,12 @@ public class Action : IIdentifiable
     /// Gets a collection of <c>ActionCommands</c>.
     /// </summary>
     [JsonInclude]
-    public List<ActionCommand> Commands { get; }
+    public List<ActionCommand> Commands { get; set; }
     /// <summary>
     /// Gets a collection of <c>ActionConditions</c>.
     /// </summary>
     [JsonInclude]
-    public List<ActionCondition> Conditions { get; }
+    public List<ActionCondition> Conditions { get; set; }
 
     public Action()
     {

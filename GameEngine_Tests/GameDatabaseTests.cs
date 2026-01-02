@@ -27,12 +27,17 @@ public class GameDatabaseTests
 
         Assert.AreEqual(4, gameDb.Rooms.Count);
         Assert.AreEqual(8, gameDb.Items.Count);
+        Assert.AreEqual(1, gameDb.Actions.Count);
         Assert.AreEqual(0, gameDb.StartingRoomId);
 
-        Room room1 = gameDb.Rooms.Where(r => r.Id == 0).First();
+        Room room1 = gameDb.Rooms.First(r => r.Id == 0);
         Assert.AreEqual("Starting Room", room1.Name);
 
-        Room room2 = gameDb.Rooms.Where(r => r.Id == 1).First();
+        Room room2 = gameDb.Rooms.First(r => r.Id == 1);
         Assert.AreEqual("Second Room", room2.Name);
+
+        Action action1 = gameDb.Actions.First(a => a.Id == 0);
+        Assert.AreEqual(1, action1.Commands.Count);
+        Assert.AreEqual(1, action1.Conditions.Count);
     }
 }
