@@ -68,7 +68,7 @@ public enum ActionConditions
     /// <summary>
     /// Player and item, defined in <c>ActionCondition.ObjectId</c>, are in the same room.
     /// </summary>
-    PlayerWithItem = 2,
+    PlayerInRoomWithItem = 2,
 }
 
 /// <summary>

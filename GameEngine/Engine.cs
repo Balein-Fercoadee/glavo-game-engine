@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using GameEngine.GameData;
+﻿using GameEngine.GameData;
 using GameEngine.Utilities;
 
 namespace GameEngine;
