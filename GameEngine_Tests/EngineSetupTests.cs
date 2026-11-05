@@ -101,6 +101,22 @@ public class EngineSetupTests
     }
 
     [TestMethod]
+    public void ArgsWithDebugFlagWithoutSaveFile()
+    {
+        string gameLocation = @"test_data/fake_game.gge";
+        string[] args = new string[2];
+        args[0] = gameLocation;
+        args[1] = "-d";
+
+        var result = EngineSetup.StartSetup(args);
+        Assert.IsTrue(result.SetupSuccessful);
+        Assert.AreEqual(gameLocation, result.GameDatabaseFilePath);
+        Assert.AreEqual(string.Empty, result.SaveFilePath);
+        Assert.IsTrue(result.OutputDebugStatements);
+        Assert.IsTrue(result.ErrorMessages.Count == 0);
+    }
+
+    [TestMethod]
     public void ArgsWithBadFlag()
     {
         string gameLocation = @"test_data/fake_game.gge";

@@ -5,7 +5,7 @@ namespace ConsoleUI;
 
 class Program()
 {
-    static void Main(string[] args)
+    static int Main(string[] args)
     {
         // Setup command line parameters
         Option<string> fileOption = new("--gamefile")
@@ -25,16 +25,17 @@ class Program()
         rootCommand.Options.Add(fileOption);
         rootCommand.Options.Add(saveFileOption);
 
-        rootCommand.Parse(args).Invoke();
-        
-        Engine engine = new Engine();
-
-        // Running the exe with no args loads the sample game.
-        if (args.Length == 0)
+        rootCommand.SetAction(parseResult =>
         {
-            args = new string[1];
-            args[0] = "sample_game/sample_game.gge";
-        }
-        engine.GameLoop(args);
+            string gameFilePath = parseResult.GetValue(fileOption) ?? "sample_game/sample_game.gge";
+            string saveFilePath = parseResult.GetValue(saveFileOption) ?? string.Empty;
+            string[] engineArgs = string.IsNullOrWhiteSpace(saveFilePath)
+                ? [gameFilePath]
+                : [gameFilePath, saveFilePath];
+
+            return new Engine().GameLoop(engineArgs);
+        });
+
+        return rootCommand.Parse(args).Invoke();
     }
 }

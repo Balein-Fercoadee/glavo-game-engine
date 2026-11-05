@@ -15,7 +15,7 @@ public class EngineSetup
     {
         EngineSetupReturn setupReturn = new EngineSetupReturn();
         setupReturn.SetupSuccessful = true;
-        
+
         // Check that args contain at least one value.
         // I.e. Has at least a path to a game database.
         if (args.Length == 0)
@@ -31,30 +31,36 @@ public class EngineSetup
             }
             else
             {
-                if (args.Length > 1 && args[1].Length > 2)
+                for (int i = 1; i < args.Length; i++)
                 {
-                    setupReturn.SaveFilePath = args[1].Trim();
+                    string arg = args[i].Trim();
 
-                    if (!File.Exists(setupReturn.SaveFilePath))
+                    if (string.IsNullOrWhiteSpace(arg))
                     {
-                        setupReturn.ErrorMessages.Add($"Invalid [save_name] file/path: {setupReturn.SaveFilePath}");
+                        continue;
                     }
-                    else
-                    {
-                        // Loop through the args for any optional paramters
-                        foreach (string arg in args.Where(a => a.StartsWith('-')))
-                        {
-                            string cleanArg = arg.Replace("-", string.Empty);
 
-                            switch (cleanArg)
-                            {
-                                case "d":
-                                    setupReturn.OutputDebugStatements = true;
-                                    break;
-                                default:
-                                    setupReturn.ErrorMessages.Add($"Invalid option parameter: {cleanArg}");
-                                    break;
-                            }
+                    if (arg.StartsWith('-'))
+                    {
+                        string cleanArg = arg.TrimStart('-');
+
+                        switch (cleanArg)
+                        {
+                            case "d":
+                                setupReturn.OutputDebugStatements = true;
+                                break;
+                            default:
+                                setupReturn.ErrorMessages.Add($"Invalid option parameter: {cleanArg}");
+                                break;
+                        }
+                    }
+                    else if (string.IsNullOrWhiteSpace(setupReturn.SaveFilePath))
+                    {
+                        setupReturn.SaveFilePath = arg;
+
+                        if (!File.Exists(setupReturn.SaveFilePath))
+                        {
+                            setupReturn.ErrorMessages.Add($"Invalid [save_name] file/path: {setupReturn.SaveFilePath}");
                         }
                     }
                 }
