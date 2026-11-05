@@ -6,7 +6,7 @@ The goal of this project is to create a text-based game engine in the spirit of 
 
 ## Requirements
 
-- .NET 8.0 or greater
+- .NET 10.0 or greater
 - VSCode with the 'C# Dev Kit' extension installed, or Visual Studio 2022 or greater
 
 ## Design
