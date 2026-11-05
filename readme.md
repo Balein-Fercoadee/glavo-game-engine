@@ -22,23 +22,29 @@ The engine is organized into a few projects:
 
 ## Running a game
 
-If you want to a small sample of what the engine is capable of, from the command line:
+To run the sample game from the command line:
 
 ```bash
 glavo-game-engine.exe
 ```
 
-This loads the file located in `ConsoleUI/sample_game`
+With no options, the Console UI loads `sample_game/sample_game.gge`.
 
-If you have a game database you would like to load from the command line:
+To load a different game database, use `--gamefile`:
 
 ```bash
-glavo-game-engine.exe <game_db_name> [save_game] [-d]
+glavo-game-engine.exe --gamefile <game_db_path>
 ```
 
-- `game_db_name` (required): The relative or full path and file name of the game to load
-- `save_game` (optional): The relative or full path and file name of the game to load
-- `-d` (optional): Output debug statements during game load and gameplay
+To load a saved game, also provide `--saveFile`:
+
+```bash
+glavo-game-engine.exe --gamefile <game_db_path> --saveFile <save_file_path>
+```
+
+- `--gamefile` (optional): The relative or full path to the game database. Defaults to `sample_game/sample_game.gge`.
+- `--saveFile` (optional): The relative or full path to the save file to load.
+- `--help` (or `-h`): Display command-line usage information.
 
 ## Creating or editing a game database
 
