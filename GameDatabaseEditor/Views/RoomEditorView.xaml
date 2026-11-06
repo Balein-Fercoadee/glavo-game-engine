@@ -55,7 +55,7 @@
                         SelectedItem="{Binding ExitIdNorth, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckNorthExitRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -67,7 +67,7 @@
                         SelectedItem="{Binding ExitIdSouth, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckSouthExitRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -79,7 +79,7 @@
                         SelectedItem="{Binding ExitIdEast, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckEastExitRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -91,7 +91,7 @@
                         SelectedItem="{Binding ExitIdWest, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckWestExitRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -103,7 +103,7 @@
                         SelectedItem="{Binding ExitIdUp, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckUpExitRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -115,7 +115,7 @@
                         SelectedItem="{Binding ExitIdDown, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckDownExitRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>

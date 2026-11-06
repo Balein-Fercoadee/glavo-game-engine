@@ -64,7 +64,7 @@
                         SelectedItem="{Binding StartingRoomId, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckStartingRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -79,7 +79,7 @@
                         SelectedItem="{Binding TreasureRoomId, Converter={StaticResource idToObject}, ConverterParameter={Binding Path=ItemsSource, Source={x:Reference pckTreasureRoomId}}, Mode=TwoWay}"
                         WidthRequest="200">
                     <Picker.ItemDisplayBinding>
-                        <MultiBinding StringFormat="{StaticResource idObjectFormat}" TargetNullValue="">
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}" TargetNullValue="">
                             <Binding Path="Id" />
                             <Binding Path="Name" />
                         </MultiBinding>
@@ -109,7 +109,7 @@
                         <DataTemplate>
                             <Label>
                                 <Label.Text>
-                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
                                         <Binding Path="Name" />
                                     </MultiBinding>
@@ -151,7 +151,7 @@
                         <DataTemplate>
                             <Label Style="{StaticResource sacredWordHighlight}">
                                 <Label.Text>
-                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
                                         <Binding Path="Name" />
                                     </MultiBinding>
@@ -231,7 +231,7 @@
                         <DataTemplate>
                             <Label>
                                 <Label.Text>
-                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
                                         <Binding Path="Text" />
                                     </MultiBinding>
@@ -271,7 +271,7 @@
                         <DataTemplate>
                             <Label>
                                 <Label.Text>
-                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
                                         <Binding Path="Description" />
                                     </MultiBinding>

@@ -89,5 +89,4 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <x:String x:Key="idObjectFormat">{}{0,3} - {1}</x:String>
 </ResourceDictionary>

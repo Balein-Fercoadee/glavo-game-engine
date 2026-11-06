@@ -4,6 +4,12 @@
 		<TargetFrameworks>net10.0-android</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('OSX'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst;net10.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks Condition="'$(_IsPublishing)' == 'true' and $([MSBuild]::IsOSPlatform('windows'))"></TargetFrameworks>
+		<TargetFramework Condition="'$(_IsPublishing)' == 'true' and $([MSBuild]::IsOSPlatform('windows'))">net10.0-windows10.0.19041.0</TargetFramework>
+		<PublishSelfContained Condition="'$(_IsPublishing)' == 'true' and $([MSBuild]::IsOSPlatform('windows'))">true</PublishSelfContained>
+		<RuntimeIdentifierOverride Condition="'$(_IsPublishing)' == 'true' and $([MSBuild]::IsOSPlatform('windows'))">win10-x64</RuntimeIdentifierOverride>
+		<WindowsPackageType Condition="'$(_IsPublishing)' == 'true' and $([MSBuild]::IsOSPlatform('windows'))">None</WindowsPackageType>
+		<WindowsAppSDKSelfContained Condition="'$(_IsPublishing)' == 'true' and $([MSBuild]::IsOSPlatform('windows'))">true</WindowsAppSDKSelfContained>
 		<MauiVersion>10.0.20</MauiVersion>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net10.0-tizen</TargetFrameworks> -->
