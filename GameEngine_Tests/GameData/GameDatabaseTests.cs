@@ -1,7 +1,7 @@
 using GameEngine.GameData;
 using Action = GameEngine.GameData.Action;
 
-namespace GameEngine_Tests;
+namespace GameEngine_Tests.GameData;
 
 [TestClass]
 public class GameDatabaseTests

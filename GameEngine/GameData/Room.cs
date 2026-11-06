@@ -96,6 +96,11 @@ public class Room : BaseGameObject, IIdentifiable
     {
         string jsonRoom = JsonSerializer.Serialize(this);
 
+        return Deserialize(jsonRoom);
+    }
+
+    internal static Room Deserialize(string jsonRoom)
+    {
         return JsonSerializer.Deserialize<Room>(jsonRoom)
             ?? throw new InvalidOperationException("The room could not be cloned.");
     }

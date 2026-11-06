@@ -177,6 +177,65 @@ public class ProcessorTests
         Assert.AreEqual(expectedOutput, actualOutput);        
     }
 
+    [DataTestMethod]
+    [DataRow("north")]
+    [DataRow("south")]
+    [DataRow("east")]
+    [DataRow("west")]
+    [DataRow("up")]
+    [DataRow("down")]
+    public void GoThroughAvailableExit(string direction)
+    {
+        var gameState = SetupTestingGameState();
+        var currentRoom = ObjectFinder.GetRoom(gameState.GameData.Rooms, gameState.PlayerData.CurrentRoomId);
+
+        switch (direction)
+        {
+            case "north":
+                currentRoom.ExitIdNorth = 1;
+                break;
+            case "south":
+                currentRoom.ExitIdSouth = 1;
+                break;
+            case "east":
+                currentRoom.ExitIdEast = 1;
+                break;
+            case "west":
+                currentRoom.ExitIdWest = 1;
+                break;
+            case "up":
+                currentRoom.ExitIdUp = 1;
+                break;
+            case "down":
+                currentRoom.ExitIdDown = 1;
+                break;
+        }
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "go"),
+                ObjectFinder.GetWord(gameState.GameData.Words, direction),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(1, gameState.PlayerData.CurrentRoomId);
+        StringAssert.Contains(output.Text, "Second Room");
+    }
+
+    [TestMethod]
+    public void GoUnknownDirection()
+    {
+        var gameState = SetupTestingGameState();
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "go"),
+                new Word { Name = "northeast" },
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual("You can't go in that direction!!", CleanConsoleOutput(output.Text));
+    }
+
     [TestMethod]
     public void Help()
     {
@@ -533,6 +592,185 @@ public class ProcessorTests
     }
 
     [TestMethod]
+    public void ActionRunsWhenAllConditionsAreMet()
+    {
+        var gameState = SetupTestingGameState();
+        gameState.PlayerData.CurrentRoomId = 2;
+        gameState.PlayerData.ItemInventory.Add(1);
+        gameState.GameData.Actions[0].Conditions.Add(new ActionCondition
+        {
+            Condition = ActionConditions.PlayerHasItem,
+            ObjectId = 1
+        });
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "tree"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual("TIMBER!", CleanConsoleOutput(output.Text));
+    }
+
+    [TestMethod]
+    public void ActionDoesNotRunWhenPlayerLacksRequiredItem()
+    {
+        var gameState = SetupTestingGameState();
+        gameState.PlayerData.CurrentRoomId = 2;
+        gameState.GameData.Actions[0].Conditions.Add(new ActionCondition
+        {
+            Condition = ActionConditions.PlayerHasItem,
+            ObjectId = 1
+        });
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "tree"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(string.Empty, output.Text);
+    }
+
+    [TestMethod]
+    public void ActionDoesNotRunWhenRequiredItemIsNotInCurrentRoom()
+    {
+        var gameState = SetupTestingGameState();
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "tree"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(string.Empty, output.Text);
+    }
+
+    [TestMethod]
+    public void ActionMovesPlayerToTargetRoom()
+    {
+        var gameState = SetupTestingGameState();
+        gameState.GameData.Actions.Clear();
+        gameState.GameData.Actions.Add(new GameEngine.GameData.Action
+        {
+            TriggerVerbId = 20,
+            TriggerNounId = 21,
+            Commands =
+            [
+                new ActionCommand
+                {
+                    Command = ActionCommands.MoveToRoom,
+                    ObjectId = 1
+                }
+            ]
+        });
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "tree"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(1, gameState.PlayerData.CurrentRoomId);
+        StringAssert.Contains(output.Text, "Second Room");
+    }
+
+    [TestMethod]
+    public void ActionWithUnknownConditionStillRuns()
+    {
+        var gameState = SetupTestingGameState();
+        gameState.GameData.Actions.Clear();
+        gameState.GameData.Actions.Add(new GameEngine.GameData.Action
+        {
+            TriggerVerbId = 20,
+            TriggerNounId = 21,
+            Conditions =
+            [
+                new ActionCondition
+                {
+                    Condition = (ActionConditions)int.MaxValue
+                }
+            ],
+            Commands =
+            [
+                new ActionCommand
+                {
+                    Command = ActionCommands.DisplayMessage,
+                    ObjectId = 0
+                }
+            ]
+        });
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "tree"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual("TIMBER!", CleanConsoleOutput(output.Text));
+    }
+
+    [TestMethod]
+    public void ActionWithUnknownCommandProducesNoOutput()
+    {
+        var gameState = SetupTestingGameState();
+        gameState.GameData.Actions.Clear();
+        gameState.GameData.Actions.Add(new GameEngine.GameData.Action
+        {
+            TriggerVerbId = 20,
+            TriggerNounId = 21,
+            Commands =
+            [
+                new ActionCommand
+                {
+                    Command = (ActionCommands)int.MaxValue
+                }
+            ]
+        });
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "tree"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(string.Empty, output.Text);
+    }
+
+    [TestMethod]
+    public void ActionDoesNotRunWhenVerbAndNounDoNotMatch()
+    {
+        var gameState = SetupTestingGameState();
+        gameState.PlayerData.CurrentRoomId = 2;
+
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(
+                ObjectFinder.GetWord(gameState.GameData.Words, "chop"),
+                ObjectFinder.GetWord(gameState.GameData.Words, "stump"),
+                gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(string.Empty, output.Text);
+    }
+
+    [TestMethod]
+    public void UnknownVerbWithNounProducesNoOutput()
+    {
+        var gameState = SetupTestingGameState();
+        var output = CaptureOutput(() =>
+            Processor.ProcessWords(new Word { Name = "unknown" }, null, gameState));
+
+        Assert.IsFalse(output.Result);
+        Assert.AreEqual(string.Empty, output.Text);
+    }
+
+    [TestMethod]
     public void NullVerb()
     {
         GameState gameState = SetupTestingGameState();
@@ -571,6 +809,24 @@ public class ProcessorTests
             cleanOutput = consoleOutput[..^1];
 
         return cleanOutput;
+    }
+
+    [ExcludeFromCodeCoverage]
+    private static (bool Result, string Text) CaptureOutput(Func<bool> action)
+    {
+        TextWriter originalOutput = Console.Out;
+        using StringWriter writer = new();
+        try
+        {
+            Console.SetOut(writer);
+            bool result = action();
+            writer.Flush();
+            return (result, writer.ToString());
+        }
+        finally
+        {
+            Console.SetOut(originalOutput);
+        }
     }
 
     [ExcludeFromCodeCoverage]
