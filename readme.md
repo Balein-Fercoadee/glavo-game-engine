@@ -9,6 +9,10 @@ The goal of this project is to create a text-based game engine in the spirit of 
 - .NET 10.0 or greater
 - VSCode with the 'C# Dev Kit' extension installed, or Visual Studio 2022 or greater
 
+If you want to play with the Database Editor in VS Code:
+
+- .NET MAUI extension
+
 ## Design
 
 The engine is organized into a few projects:
