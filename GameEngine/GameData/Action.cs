@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
@@ -22,24 +23,27 @@ public class Action : IIdentifiable
     /// Gets a collection of <c>ActionCommands</c>.
     /// </summary>
     [JsonInclude]
-    public List<ActionCommand> Commands { get; set; }
+    public ObservableCollection<ActionCommand> Commands { get; set; }
     /// <summary>
     /// Gets a collection of <c>ActionConditions</c>.
     /// </summary>
     [JsonInclude]
-    public List<ActionCondition> Conditions { get; set; }
+    public ObservableCollection<ActionCondition> Conditions { get; set; }
 
     public Action()
     {
         TriggerNounId = Constants.WORD_ID_UNSET;
         TriggerVerbId = Constants.WORD_ID_UNSET;
 
-        Commands = new List<ActionCommand>();
-        Conditions = new List<ActionCondition>();
+        Commands = new ObservableCollection<ActionCommand>();
+        Conditions = new ObservableCollection<ActionCondition>();
         Description = string.Empty;
     }
 }
 
+/// <summary>
+/// <c>ActionCommand</c> defines a command which is executed when all of an <c>Action's ActionConditions</c> are true.
+/// </summary>
 public class ActionCommand
 {
     public ActionCommands Command { get; set; }

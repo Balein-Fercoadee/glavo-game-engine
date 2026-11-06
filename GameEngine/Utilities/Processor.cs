@@ -2,7 +2,7 @@ using GameEngine.GameData;
 
 namespace GameEngine.Utilities;
 
-public static class Processor
+internal static class Processor
 {
     public static bool ProcessWords(Word? verb, Word? noun, GameState gameState)
     {

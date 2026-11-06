@@ -1,0 +1,54 @@
+name: Publish Game Database Editor
+
+on:
+  push:
+    tags:
+      - "gamedatabaseeditor-v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install MAUI workload
+        run: dotnet workload install maui-windows
+
+      - name: Publish Windows app
+        run: >-
+          dotnet publish GameDatabaseEditor\GameDatabaseEditor.csproj
+          --configuration Release
+          --framework net10.0-windows10.0.19041.0
+          --self-contained true
+          --output artifacts\GameDatabaseEditor-win-x64
+          -p:RuntimeIdentifierOverride=win10-x64
+          -p:WindowsPackageType=None
+          -p:WindowsAppSDKSelfContained=true
+
+      - name: Create download archive
+        run: Compress-Archive -Path "artifacts\GameDatabaseEditor-win-x64\*" -DestinationPath "GameDatabaseEditor-win-x64.zip"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GameDatabaseEditor-win-x64
+          path: GameDatabaseEditor-win-x64.zip
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: GameDatabaseEditor ${{ github.ref_name }}
+          files: GameDatabaseEditor-win-x64.zip
+          fail_on_unmatched_files: true

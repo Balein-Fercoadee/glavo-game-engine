@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gameData="clr-namespace:GameEngine.GameData;assembly=GameEngine">
+
+    <Style TargetType="Border">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Stroke" Value="Black" />
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="WidthRequest" Value="125" />
+    </Style>
+    <Style TargetType="Button" x:Key="ResetButton">
+        <Setter Property="WidthRequest" Value="60" />
+    </Style>
+    <Style TargetType="Entry">
+        <Setter Property="Margin" Value="2" />
+    </Style>
+    <Style TargetType="Grid">
+        <Setter Property="Margin" Value="2" />
+    </Style>
+    <Style TargetType="Label">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+    <Style TargetType="Picker">
+        <Setter Property="Margin" Value="2" />
+    </Style>
+    <Style x:Key="treasureItem" TargetType="Label" x:DataType="gameData:Item">
+        <Style.Triggers>
+            <DataTrigger TargetType="Label" Binding="{Binding IsTreasure}" Value="true">
+                <Setter Property="TextColor" Value="Gold" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!-- The below style colors the "sacred 16" words. -->
+    <Style x:Key="sacredWordHighlight" TargetType="Label" x:DataType="gameData:Word">
+        <Style.Triggers>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="0">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="1">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="2">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="3">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="4">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="5">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="6">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="7">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="8">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="9">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="10">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="11">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="12">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="13">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="14">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="15">
+                <Setter Property="TextColor" Value="LightBlue" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

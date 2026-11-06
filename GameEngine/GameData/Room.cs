@@ -1,16 +1,18 @@
 using System.Collections.ObjectModel;
-using System.Reflection.Metadata;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
 
-public class Room : IIdentifiable
+public class Room : BaseGameObject, IIdentifiable
 {
     public int Id { get; set; }
 
     /// <summary>
     /// Gets or sets the <c>Item.Id</c> of <c>Items</c> located in the <c>Room</c>.
     /// </summary>
-    public List<int> ContainedItemIds { get; set; }
+    [JsonInclude()]
+    public ObservableCollection<int> ContainedItemIds { get; set; }
 
     /// <summary>
     /// Gets or sets the descriptionf of the <c>Room</c>.
@@ -63,14 +65,14 @@ public class Room : IIdentifiable
         ExitIdDown = Constants.ROOM_ID_UNSET;
         Id = Constants.ROOM_ID_UNSET;
         Name = string.Empty;
-        ContainedItemIds = new List<int>();
+        ContainedItemIds = new ObservableCollection<int>();
     }
 
     /// <summary>
     /// Gets a list of string that represent the Room's available exits.
     /// </summary>
     /// <returns></returns>
-    public List<string> AvailableExits()
+    internal List<string> AvailableExits()
     {
         List<string> exits = new List<string>();
 
@@ -88,5 +90,13 @@ public class Room : IIdentifiable
             exits.Add("d");
 
         return exits;
+    }
+
+    internal override object Clone()
+    {
+        string jsonRoom = JsonSerializer.Serialize(this);
+
+        return JsonSerializer.Deserialize<Room>(jsonRoom)
+            ?? throw new InvalidOperationException("The room could not be cloned.");
     }
 }

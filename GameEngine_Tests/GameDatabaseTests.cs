@@ -40,4 +40,14 @@ public class GameDatabaseTests
         Assert.AreEqual(1, action1.Commands.Count);
         Assert.AreEqual(1, action1.Conditions.Count);
     }
+
+    [TestMethod]
+    public void WordCounts()
+    {
+        GameDatabase gameDb = new GameDatabase();
+        gameDb.Load(@"test_data/", "test_game_database.gge", true);
+
+        Assert.AreEqual(16, gameDb.Nouns.Count());
+        Assert.AreEqual(8, gameDb.Verbs.Count());
+    }
 }

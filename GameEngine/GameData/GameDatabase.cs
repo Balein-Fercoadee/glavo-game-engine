@@ -1,68 +1,118 @@
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
 
-public class GameDatabase
+public class GameDatabase : BaseGameObject
 {
+    private string _description;
+    private string _name;
+    private int _startingRoomId;
+    private int _treasureRoomId;
+
     /// <summary>
     /// Gets or set the name of the Game.
     /// </summary>
-    public string Name { get; set; }
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+        set
+        {
+            _name = value;
+            OnPropertyChanged();
+        }
+    }
 
     /// <summary>
     /// Gets or sets the description of the Game.
     /// <para>The description will be displayed once the Game is loaded
     /// and before the first <c>Room</c> is displayed.</para>
     /// </summary>
-    public string Description { get; set; }
+    public string Description
+    {
+        get
+        {
+            return _description;
+        }
+        set
+        {
+            _description = value;
+            OnPropertyChanged();
+        }
+    }
 
     /// <summary>
     /// Gets or sets the <c>Room.Id</c> where the <c>Player</c> will start the Game.
     /// </summary>
-    public int StartingRoomId { get; set; }
+    public int StartingRoomId
+    {
+        get
+        {
+            return _startingRoomId;
+        }
+        set
+        {
+            _startingRoomId = value;
+            OnPropertyChanged();
+        }
+    }
 
     /// <summary>
     /// Gets or sets the <c>Room.Id</c> where <c>Items</c> need to be placed
     /// in order to be scored.
     /// </summary>
-    public int TreasureRoomId { get; set; }
+    public int TreasureRoomId
+    {
+        get
+        {
+            return _treasureRoomId;
+        }
+        set
+        {
+            _treasureRoomId = value;
+            OnPropertyChanged();
+        }
+    }
 
     /// <summary>
     /// Gets a collection of <c>Actions</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public List<Action> Actions { get; set; }
+    public ObservableCollection<Action> Actions { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of <c>Items</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public List<Item> Items { get; set; }
+    public ObservableCollection<Item> Items { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of <c>Messages</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public List<Message> Messages { get; set; }
+    public ObservableCollection<Message> Messages { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of <c>Rooms</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public List<Room> Rooms { get; set; }
+    public ObservableCollection<Room> Rooms { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of <c>Words</c> available in the game.
     /// </summary>
     [JsonInclude]
-    public List<Word> Words { get; set; }
+    public ObservableCollection<Word> Words { get; set; }
 
     /// <summary>
     /// Gets all <c>Words</c> that are nouns.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<Word> Nouns
+    internal IEnumerable<Word> Nouns
     {
         get { return Words.Where(w => w.WordType == WordTypes.Noun); }
     }
@@ -71,23 +121,23 @@ public class GameDatabase
     /// Gets all <c>Words</c> that are verbs.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<Word> Verbs
+    internal IEnumerable<Word> Verbs
     {
         get { return Words.Where(w => w.WordType == WordTypes.Verb); }
     }
 
     public GameDatabase()
     {
-        Description = string.Empty;
-        Name = string.Empty;
+        _description = string.Empty;
+        _name = string.Empty;
         StartingRoomId = Constants.ROOM_ID_UNSET;
         TreasureRoomId = Constants.ROOM_ID_UNSET;
 
-        Actions = new List<Action>();
-        Items = new List<Item>();
-        Messages = new List<Message>();
-        Rooms = new List<Room>();
-        Words = new List<Word>();
+        Actions = new ObservableCollection<Action>();
+        Items = new ObservableCollection<Item>();
+        Messages = new ObservableCollection<Message>();
+        Rooms = new ObservableCollection<Room>();
+        Words = new ObservableCollection<Word>();
     }
 
     /// <summary>
@@ -95,7 +145,7 @@ public class GameDatabase
     /// </summary>
     /// <param name="saveDirectory">The directory to save file.</param>
     /// <param name="databaseFileName">The file name for the database.</param>
-    public void Save(string saveDirectory, string databaseFileName, bool debug = false)
+    internal void Save(string saveDirectory, string databaseFileName, bool debug = false)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         string gameDatabaseJson = JsonSerializer.Serialize(this, options);
