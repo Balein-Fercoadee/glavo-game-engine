@@ -27,7 +27,12 @@ public class Engine
     /// <param name="args"></param>
     public int GameLoop(string[] args)
     {
-        Console.Clear();
+        // Check if the console output is redirected (happens when debugging). If it is, we don't want to clear the screen.
+        if (!Console.IsOutputRedirected)
+        {
+            Console.Clear();
+        }
+
         // Show the engine intro text.
         Console.WriteLine(Constants.LOADING_TEXT);
 
@@ -57,7 +62,7 @@ public class Engine
         // Show the game name & description
         Console.Write(MessageFormatter.GameLoaded(gameState.GameData));
 
-        // Force a Look
+        // Force a Look to start the game.
         Console.WriteLine(MessageFormatter.Look(gameState.PlayerData.CurrentRoomId, gameState.GameData, gameState.PlayerData, true));
         // Game Loop
         while (true)

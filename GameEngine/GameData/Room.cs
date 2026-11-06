@@ -72,7 +72,7 @@ public class Room : BaseGameObject, IIdentifiable
     /// Gets a list of string that represent the Room's available exits.
     /// </summary>
     /// <returns></returns>
-    public List<string> AvailableExits()
+    internal List<string> AvailableExits()
     {
         List<string> exits = new List<string>();
 
@@ -92,7 +92,7 @@ public class Room : BaseGameObject, IIdentifiable
         return exits;
     }
 
-    public override object Clone()
+    internal override object Clone()
     {
         string jsonRoom = JsonSerializer.Serialize(this);
 

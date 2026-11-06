@@ -25,9 +25,18 @@ namespace GameDatabaseEditor.Utilities
         /// <returns></returns>
         public static int GetIdNumber(List<IIdentifiable> identifiableList)
         {
-            List<int> idList = identifiableList.Select(i => i.Id).ToList();
+            List<int> ids = identifiableList.Select(item => item.Id).ToList();
+            int id = ids.Count;
 
-            return GameEngine.Utilities.GeneralUtilities.GetNextIdNumber(idList);
+            for (int index = 0; index < ids.Count; index++)
+            {
+                if (ids[index] > index)
+                {
+                    return index;
+                }
+            }
+
+            return id;
         }
 
         public static bool IsDatabaseEmpty(GameDatabase database)

@@ -2,7 +2,7 @@ using System;
 
 namespace GameEngine;
 
-public static class Constants
+internal static class Constants
 {
  
     public const string INPUT_PROMPT = "What will you do?> ";

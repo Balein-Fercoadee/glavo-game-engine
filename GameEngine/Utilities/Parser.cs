@@ -2,7 +2,7 @@ using GameEngine.GameData;
 
 namespace GameEngine.Utilities;
 
-public static class Parser
+internal static class Parser
 {
     public static (Word? verb, Word? noun) GetWordsFromInput(string playerInput, IEnumerable<Word> words)
     {

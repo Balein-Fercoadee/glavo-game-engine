@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
 
-public class Player
+internal class Player
 {
     int _currentRoomId;
     /// <summary>
@@ -48,7 +48,7 @@ public class Player
         }
     }
 
-    public bool HasAlreadyVisitedRoom(int roomId)
+    internal bool HasAlreadyVisitedRoom(int roomId)
     {
         bool hasVisited = VisitedRoomIds.Contains(roomId);
 

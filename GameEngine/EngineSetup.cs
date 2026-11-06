@@ -1,6 +1,6 @@
 namespace GameEngine;
 
-public class EngineSetup
+internal class EngineSetup
 {
     public EngineSetup()
     {
@@ -76,7 +76,7 @@ public class EngineSetup
     }
 }
 
-public class EngineSetupReturn
+internal class EngineSetupReturn
 {
     public List<string> ErrorMessages { get; set; }
     public string GameDatabaseFilePath { get; set; }

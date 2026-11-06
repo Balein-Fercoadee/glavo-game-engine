@@ -11,7 +11,7 @@ public class BaseGameObject : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public BaseGameObject()
+    protected BaseGameObject()
     {
     }
 
@@ -25,7 +25,7 @@ public class BaseGameObject : INotifyPropertyChanged
     /// </summary>
     /// <returns>A deep clone of the Game Object.</returns>
     /// <exception cref="NotImplementedException">If the Game Object does not support cloning, this exception is thrown.</exception>
-    public virtual object Clone()
+    internal virtual object Clone()
     {
         throw new NotImplementedException();
     }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace GameEngine.GameData;
 
-public class GameState
+internal class GameState
 {
     [JsonInclude]
     public GameDatabase GameData { get; set; }

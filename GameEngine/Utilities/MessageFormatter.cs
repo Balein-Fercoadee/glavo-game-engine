@@ -2,7 +2,7 @@ using GameEngine.GameData;
 
 namespace GameEngine.Utilities;
 
-public static class MessageFormatter
+internal static class MessageFormatter
 {
     /// <summary>
     /// Creates a formatted error message used during game startup.

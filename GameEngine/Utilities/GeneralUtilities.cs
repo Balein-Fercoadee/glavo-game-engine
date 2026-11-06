@@ -2,7 +2,7 @@ using System;
 
 namespace GameEngine.Utilities;
 
-public static class GeneralUtilities
+internal static class GeneralUtilities
 {
 
     /// <summary>

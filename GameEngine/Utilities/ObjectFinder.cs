@@ -2,7 +2,7 @@ using GameEngine.GameData;
 
 namespace GameEngine.Utilities;
 
-public static class ObjectFinder
+internal static class ObjectFinder
 {
     /// <summary>
     /// Gets a Room object from its Room.Id.

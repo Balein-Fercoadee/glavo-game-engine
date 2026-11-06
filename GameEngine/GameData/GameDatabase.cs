@@ -112,7 +112,7 @@ public class GameDatabase : BaseGameObject
     /// Gets all <c>Words</c> that are nouns.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<Word> Nouns
+    internal IEnumerable<Word> Nouns
     {
         get { return Words.Where(w => w.WordType == WordTypes.Noun); }
     }
@@ -121,7 +121,7 @@ public class GameDatabase : BaseGameObject
     /// Gets all <c>Words</c> that are verbs.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<Word> Verbs
+    internal IEnumerable<Word> Verbs
     {
         get { return Words.Where(w => w.WordType == WordTypes.Verb); }
     }
@@ -145,7 +145,7 @@ public class GameDatabase : BaseGameObject
     /// </summary>
     /// <param name="saveDirectory">The directory to save file.</param>
     /// <param name="databaseFileName">The file name for the database.</param>
-    public void Save(string saveDirectory, string databaseFileName, bool debug = false)
+    internal void Save(string saveDirectory, string databaseFileName, bool debug = false)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         string gameDatabaseJson = JsonSerializer.Serialize(this, options);
