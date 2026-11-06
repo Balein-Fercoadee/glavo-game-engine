@@ -5,7 +5,7 @@ namespace GameDatabaseEditor.Views;
 public partial class RoomEditorView : ContentView
 {
     private Room? _editedRoom;
-    private IEnumerable<Room>? _rooms;
+    private List<Room> _rooms = new();
 
     /// <summary>
     /// Gets or sets the <c>Room</c> to be added/edited.
@@ -38,7 +38,7 @@ public partial class RoomEditorView : ContentView
         InitializeComponent();
     }
 
-    private IEnumerable<Room> SetupRoomCollection(IEnumerable<Room>? rooms)
+    private List<Room> SetupRoomCollection(IEnumerable<Room>? rooms)
     {
         List<Room> roomList = new List<Room>();
 
@@ -53,13 +53,11 @@ public partial class RoomEditorView : ContentView
 
     private void SetRoomItemsSource()
     {
-        var castRooms = (System.Collections.IList)_rooms;
-
-        pckDownExitRoomId.ItemsSource = castRooms;
-        pckEastExitRoomId.ItemsSource = castRooms;
-        pckNorthExitRoomId.ItemsSource = castRooms;
-        pckSouthExitRoomId.ItemsSource = castRooms;
-        pckUpExitRoomId.ItemsSource = castRooms;
-        pckWestExitRoomId.ItemsSource = castRooms;
+        pckDownExitRoomId.ItemsSource = _rooms;
+        pckEastExitRoomId.ItemsSource = _rooms;
+        pckNorthExitRoomId.ItemsSource = _rooms;
+        pckSouthExitRoomId.ItemsSource = _rooms;
+        pckUpExitRoomId.ItemsSource = _rooms;
+        pckWestExitRoomId.ItemsSource = _rooms;
     }
 }

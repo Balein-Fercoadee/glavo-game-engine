@@ -17,34 +17,27 @@ namespace GameDatabaseEditor
         /// <returns></returns>
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            Object gameObject = null;
-            int objectId = (int)value;
-            if (objectId > -2)
+            if (value is not int objectId || objectId <= -2)
             {
-                if(parameter is Binding binding)
-                {
-                    parameter = BindingUtilities.GetPropertyValue(binding.Source, binding.Path);
-                }
-
-                IEnumerable<IIdentifiable> identifiables = (IEnumerable<IIdentifiable>)parameter;
-                if (identifiables != null)
-                {
-                    var identifiable = identifiables.Where(i => i.Id == objectId).FirstOrDefault();
-                    gameObject = identifiable;
-                }
+                return null;
             }
 
-            return gameObject;
+            if (parameter is Binding binding)
+            {
+                parameter = BindingUtilities.GetPropertyValue(binding.Source, binding.Path);
+            }
+
+            if (parameter is not IEnumerable<IIdentifiable> identifiables)
+            {
+                return null;
+            }
+
+            return identifiables.FirstOrDefault(item => item.Id == objectId);
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            int? objectId = null;
-            if (value != null)
-            {
-                objectId = ((IIdentifiable)value).Id;
-            }
-            return objectId;
+            return value is IIdentifiable identifiable ? identifiable.Id : null;
         }
     }
 }

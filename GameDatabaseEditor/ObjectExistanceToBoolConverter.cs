@@ -29,7 +29,7 @@ namespace GameDatabaseEditor
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            return (bool)value ? new Room() : null;
+            return value is true ? new Room() : null;
         }
     }
 }

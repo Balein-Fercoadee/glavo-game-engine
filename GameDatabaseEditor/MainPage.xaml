@@ -104,22 +104,20 @@
             <Label Grid.Row="0" Grid.Column="0" Text="Rooms" />
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoom" Text="Add Room" Clicked="btnAddRoom_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single">
-                    <ListView.ItemTemplate>
+                <CollectionView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Label>
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
-                                            <Binding Path="Id" />
-                                            <Binding Path="Name" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </ViewCell>
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Border>
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditRoom"
@@ -148,22 +146,20 @@
             <Label Grid.Row="0" Grid.Column="0" Text="Words"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddWord" Text="Add Word" Clicked="btnAddWord_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListView x:Name="lstWords" ItemsSource="{Binding Words}" SelectionMode="Single">
-                    <ListView.ItemTemplate>
+                <CollectionView x:Name="lstWords" ItemsSource="{Binding Words}" SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Label Style="{StaticResource sacredWordHighlight}">
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
-                                            <Binding Path="Id" />
-                                            <Binding Path="Name" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </ViewCell>
+                            <Label Style="{StaticResource sacredWordHighlight}">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Border>
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditWord"
@@ -190,22 +186,20 @@
             <Label Grid.Row="0" Grid.Column="0" Text="Items"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Item" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single">
-                    <ListView.ItemTemplate>
+                <CollectionView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Label Style="{StaticResource treasureItem}">
-                                    <Label.Text>
-                                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
-                                            <Binding Path="Id" />
-                                            <Binding Path="Name" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </ViewCell>
+                            <Label Style="{StaticResource treasureItem}">
+                                <Label.Text>
+                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Border>
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditItem"
@@ -232,22 +226,20 @@
             <Label Grid.Row="0" Grid.Column="0" Text="Messages"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Message" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single">
-                    <ListView.ItemTemplate>
+                <CollectionView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Label>
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
-                                            <Binding Path="Id" />
-                                            <Binding Path="Text" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </ViewCell>
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Text" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Border>
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMessage"
@@ -274,22 +266,20 @@
             <Label Grid.Row="0" Grid.Column="0" Text="Actions"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Action" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <ListView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single">
-                    <ListView.ItemTemplate>
+                <CollectionView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Label>
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{StaticResource idObjectFormat}">
-                                            <Binding Path="Id" />
-                                            <Binding Path="Description" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </ViewCell>
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{StaticResource idObjectFormat}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Description" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Border>
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditAction"

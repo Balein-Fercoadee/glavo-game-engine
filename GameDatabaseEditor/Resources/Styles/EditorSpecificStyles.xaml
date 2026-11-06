@@ -2,7 +2,8 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gameData="clr-namespace:GameEngine.GameData;assembly=GameEngine">
 
     <Style TargetType="Border">
         <Setter Property="Margin" Value="2" />
@@ -28,7 +29,7 @@
     <Style TargetType="Picker">
         <Setter Property="Margin" Value="2" />
     </Style>
-    <Style x:Key="treasureItem" TargetType="Label">
+    <Style x:Key="treasureItem" TargetType="Label" x:DataType="gameData:Item">
         <Style.Triggers>
             <DataTrigger TargetType="Label" Binding="{Binding IsTreasure}" Value="true">
                 <Setter Property="TextColor" Value="Gold" />
@@ -36,7 +37,7 @@
         </Style.Triggers>
     </Style>
     <!-- The below style colors the "sacred 16" words. -->
-    <Style x:Key="sacredWordHighlight" TargetType="Label">
+    <Style x:Key="sacredWordHighlight" TargetType="Label" x:DataType="gameData:Word">
         <Style.Triggers>
             <DataTrigger TargetType="Label" Binding="{Binding Path=Id}" Value="0">
                 <Setter Property="TextColor" Value="LightBlue" />

@@ -9,8 +9,6 @@ public partial class MainPage : ContentPage
 {
     public GameDatabase _gameDatabase;
 
-    bool _hasChanged = false;
-
     public MainPage()
     {
         InitializeComponent();
@@ -59,7 +57,6 @@ public partial class MainPage : ContentPage
         if (removedRoom != null)
         {
             _gameDatabase.Rooms.Remove(removedRoom);
-            _hasChanged = true;
         }
     }
 
@@ -106,7 +103,7 @@ public partial class MainPage : ContentPage
         bool setupNewDatabase = true;
         if (!isEmpty)
         {
-            setupNewDatabase = await DisplayAlert("Database not empty!", "The current database has objects. Are you sure you want to overwrite?", "Yes", "No");
+            setupNewDatabase = await DisplayAlertAsync("Database not empty!", "The current database has objects. Are you sure you want to overwrite?", "Yes", "No");
         }
 
         if (setupNewDatabase)
@@ -117,4 +114,3 @@ public partial class MainPage : ContentPage
         }
     }
 }
-

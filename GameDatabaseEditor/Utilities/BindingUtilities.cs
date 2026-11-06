@@ -8,17 +8,23 @@ namespace GameDatabaseEditor.Utilities
 {
     public static class BindingUtilities
     {
-        public static object GetPropertyValue(object source, string propertyName)
+        public static object? GetPropertyValue(object? source, string? propertyName)
         {
-            if (propertyName.Contains("."))
+            if (source == null || string.IsNullOrEmpty(propertyName))
+            {
+                return null;
+            }
+
+            if (propertyName.Contains('.'))
             {
                 var splitIndex = propertyName.IndexOf('.');
                 var parent = propertyName.Substring(0, splitIndex);
                 var child = propertyName.Substring(splitIndex + 1);
-                var obj = source?.GetType().GetProperty(parent)?.GetValue(source, null);
+                var obj = source.GetType().GetProperty(parent)?.GetValue(source, null);
                 return GetPropertyValue(obj, child);
             }
-            return source?.GetType().GetProperty(propertyName)?.GetValue(source, null);
+
+            return source.GetType().GetProperty(propertyName)?.GetValue(source, null);
         }
     }
 }

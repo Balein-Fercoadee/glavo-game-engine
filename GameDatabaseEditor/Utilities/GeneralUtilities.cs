@@ -14,7 +14,8 @@ namespace GameDatabaseEditor.Utilities
         /// <returns></returns>
         public static ObservableCollection<Word> GetSacredWords()
         {
-            return JsonSerializer.Deserialize<ObservableCollection<Word>>(sacredWordJson);
+            return JsonSerializer.Deserialize<ObservableCollection<Word>>(sacredWordJson)
+                ?? throw new InvalidOperationException("The built-in word list could not be loaded.");
         }
 
         /// <summary>
