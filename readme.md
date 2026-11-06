@@ -1,6 +1,7 @@
 # Glavo Game Engine
 
 ![Repository Automated Testing](https://github.com/Balein-Fercoadee/glavo-game-engine/actions/workflows/dotnet.yml/badge.svg)
+[![Code Coverage](https://codecov.io/gh/Balein-Fercoadee/glavo-game-engine/branch/main/graph/badge.svg)](https://codecov.io/gh/Balein-Fercoadee/glavo-game-engine)
 
 The goal of this project is to create a text-based game engine in the spirit of the classic text RPG of the 80s.
 
