@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  id: GameEngine.GameData
+  children:
+  - GameEngine.GameData.Action
+  - GameEngine.GameData.ActionCommand
+  - GameEngine.GameData.ActionCommands
+  - GameEngine.GameData.ActionCondition
+  - GameEngine.GameData.ActionConditions
+  - GameEngine.GameData.BaseGameObject
+  - GameEngine.GameData.GameDatabase
+  - GameEngine.GameData.IIdentifiable
+  - GameEngine.GameData.Item
+  - GameEngine.GameData.Message
+  - GameEngine.GameData.Room
+  - GameEngine.GameData.Word
+  - GameEngine.GameData.WordTypes
+  langs:
+  - csharp
+  - vb
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  type: Namespace
+  assemblies:
+  - GameEngine
+references:
+- uid: GameEngine.GameData.Action
+  commentId: T:GameEngine.GameData.Action
+  href: GameEngine.GameData.Action.html
+  name: Action
+  nameWithType: Action
+  fullName: GameEngine.GameData.Action
+- uid: GameEngine.GameData.ActionCommand
+  commentId: T:GameEngine.GameData.ActionCommand
+  href: GameEngine.GameData.ActionCommand.html
+  name: ActionCommand
+  nameWithType: ActionCommand
+  fullName: GameEngine.GameData.ActionCommand
+- uid: GameEngine.GameData.ActionCondition
+  commentId: T:GameEngine.GameData.ActionCondition
+  href: GameEngine.GameData.ActionCondition.html
+  name: ActionCondition
+  nameWithType: ActionCondition
+  fullName: GameEngine.GameData.ActionCondition
+- uid: GameEngine.GameData.ActionConditions
+  commentId: T:GameEngine.GameData.ActionConditions
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.ActionConditions.html
+  name: ActionConditions
+  nameWithType: ActionConditions
+  fullName: GameEngine.GameData.ActionConditions
+- uid: GameEngine.GameData.ActionCommands
+  commentId: T:GameEngine.GameData.ActionCommands
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.ActionCommands.html
+  name: ActionCommands
+  nameWithType: ActionCommands
+  fullName: GameEngine.GameData.ActionCommands
+- uid: GameEngine.GameData.BaseGameObject
+  commentId: T:GameEngine.GameData.BaseGameObject
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.BaseGameObject.html
+  name: BaseGameObject
+  nameWithType: BaseGameObject
+  fullName: GameEngine.GameData.BaseGameObject
+- uid: GameEngine.GameData.GameDatabase
+  commentId: T:GameEngine.GameData.GameDatabase
+  href: GameEngine.GameData.GameDatabase.html
+  name: GameDatabase
+  nameWithType: GameDatabase
+  fullName: GameEngine.GameData.GameDatabase
+- uid: GameEngine.GameData.IIdentifiable
+  commentId: T:GameEngine.GameData.IIdentifiable
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.IIdentifiable.html
+  name: IIdentifiable
+  nameWithType: IIdentifiable
+  fullName: GameEngine.GameData.IIdentifiable
+- uid: GameEngine.GameData.Item
+  commentId: T:GameEngine.GameData.Item
+  href: GameEngine.GameData.Item.html
+  name: Item
+  nameWithType: Item
+  fullName: GameEngine.GameData.Item
+- uid: GameEngine.GameData.Message
+  commentId: T:GameEngine.GameData.Message
+  href: GameEngine.GameData.Message.html
+  name: Message
+  nameWithType: Message
+  fullName: GameEngine.GameData.Message
+- uid: GameEngine.GameData.Room
+  commentId: T:GameEngine.GameData.Room
+  href: GameEngine.GameData.Room.html
+  name: Room
+  nameWithType: Room
+  fullName: GameEngine.GameData.Room
+- uid: GameEngine.GameData.Word
+  commentId: T:GameEngine.GameData.Word
+  href: GameEngine.GameData.Word.html
+  name: Word
+  nameWithType: Word
+  fullName: GameEngine.GameData.Word
+- uid: GameEngine.GameData.WordTypes
+  commentId: T:GameEngine.GameData.WordTypes
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.WordTypes.html
+  name: WordTypes
+  nameWithType: WordTypes
+  fullName: GameEngine.GameData.WordTypes
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData

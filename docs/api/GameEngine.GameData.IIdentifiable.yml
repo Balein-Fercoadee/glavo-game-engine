@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData.IIdentifiable
+  commentId: T:GameEngine.GameData.IIdentifiable
+  id: IIdentifiable
+  parent: GameEngine.GameData
+  children:
+  - GameEngine.GameData.IIdentifiable.Id
+  langs:
+  - csharp
+  - vb
+  name: IIdentifiable
+  nameWithType: IIdentifiable
+  fullName: GameEngine.GameData.IIdentifiable
+  type: Interface
+  source:
+    remote:
+      path: GameEngine/GameData/IIdentifiable.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: IIdentifiable
+    path: ../GameEngine/GameData/IIdentifiable.cs
+    startLine: 6
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Interface that defines ID properties.
+  example: []
+  syntax:
+    content: public interface IIdentifiable
+    content.vb: Public Interface IIdentifiable
+  derivedClasses:
+  - GameEngine.GameData.Action
+  - GameEngine.GameData.Item
+  - GameEngine.GameData.Message
+  - GameEngine.GameData.Room
+  - GameEngine.GameData.Word
+- uid: GameEngine.GameData.IIdentifiable.Id
+  commentId: P:GameEngine.GameData.IIdentifiable.Id
+  id: Id
+  parent: GameEngine.GameData.IIdentifiable
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IIdentifiable.Id
+  fullName: GameEngine.GameData.IIdentifiable.Id
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/IIdentifiable.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Id
+    path: ../GameEngine/GameData/IIdentifiable.cs
+    startLine: 11
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets the <code>Id</code> for the Game object.
+  example: []
+  syntax:
+    content: int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property Id As Integer
+  overload: GameEngine.GameData.IIdentifiable.Id*
+references:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+- uid: GameEngine.GameData.IIdentifiable.Id*
+  commentId: Overload:GameEngine.GameData.IIdentifiable.Id
+  href: GameEngine.GameData.IIdentifiable.html#GameEngine_GameData_IIdentifiable_Id
+  name: Id
+  nameWithType: IIdentifiable.Id
+  fullName: GameEngine.GameData.IIdentifiable.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

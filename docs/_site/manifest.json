@@ -1,0 +1,280 @@
+{
+  "docfx_version": "2.81.0+ba844df625370a6bd7c1ecab0d0ec4d1d9128ac4",
+  "source_base_path": "C:/repos/glavo-game-engine/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.Engine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.Engine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.Engine",
+      "Summary": "<p sourcefile=\"api/GameEngine.Engine.yml\" sourcestartlinenumber=\"1\">Engine contains the main game loop as well as\nall of the supporting function of a game:</p>\n<ul><li>Loading of a game database.</li><li>Loading and saving of a game session.</li><li>Iterpreting user input into game actions.</li></ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.Action.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.Action.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.Action",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.Action.yml\" sourcestartlinenumber=\"1\">The <code>Action</code> class is used to define interactions beyond the built-in words.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.ActionCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.ActionCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.ActionCommand",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.ActionCommand.yml\" sourcestartlinenumber=\"1\"><code>ActionCommand</code> defines a command which is executed when all of an <code>Action's ActionConditions</code> are true.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.ActionCommands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.ActionCommands.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.ActionCommands",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.ActionCommands.yml\" sourcestartlinenumber=\"1\">Enumeration of available commands to use within an <code>Action</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.ActionCondition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.ActionCondition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.ActionCondition",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.ActionCondition.yml\" sourcestartlinenumber=\"1\"><code>ActionCondition</code> defines a condition, when true, allows the <code>Action</code> to execute its <code>ActionCommands</code>.</p>\n<p>Conditions are defined in the <code>ActionConditions</code> enum.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.ActionConditions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.ActionConditions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.ActionConditions",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.ActionConditions.yml\" sourcestartlinenumber=\"1\">Enumeration of available conditions to use within an <code>Action</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.BaseGameObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.BaseGameObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.BaseGameObject",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.BaseGameObject.yml\" sourcestartlinenumber=\"1\">The base class for all game objects.\nThis class enables data binding via PropertyChanged event.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.GameDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.GameDatabase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.GameDatabase",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.IIdentifiable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.IIdentifiable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.IIdentifiable",
+      "Summary": "<p sourcefile=\"api/GameEngine.GameData.IIdentifiable.yml\" sourcestartlinenumber=\"1\">Interface that defines ID properties.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.Item.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.Item.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.Item",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.Message.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.Message",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.Room.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.Room.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.Room",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.Word.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.Word.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.Word",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.WordTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.WordTypes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData.WordTypes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.GameData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.GameData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine.GameData",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameEngine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameEngine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameEngine",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

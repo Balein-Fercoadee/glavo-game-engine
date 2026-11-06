@@ -1,0 +1,171 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData.ActionCommands
+  commentId: T:GameEngine.GameData.ActionCommands
+  id: ActionCommands
+  parent: GameEngine.GameData
+  children:
+  - GameEngine.GameData.ActionCommands.DisplayMessage
+  - GameEngine.GameData.ActionCommands.MoveToRoom
+  - GameEngine.GameData.ActionCommands.PutItemInRoom
+  - GameEngine.GameData.ActionCommands.RemoveItemFromRoom
+  langs:
+  - csharp
+  - vb
+  name: ActionCommands
+  nameWithType: ActionCommands
+  fullName: GameEngine.GameData.ActionCommands
+  type: Enum
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: ActionCommands
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 80
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Enumeration of available commands to use within an <code>Action</code>.
+  example: []
+  syntax:
+    content: public enum ActionCommands
+    content.vb: Public Enum ActionCommands
+- uid: GameEngine.GameData.ActionCommands.DisplayMessage
+  commentId: F:GameEngine.GameData.ActionCommands.DisplayMessage
+  id: DisplayMessage
+  parent: GameEngine.GameData.ActionCommands
+  langs:
+  - csharp
+  - vb
+  name: DisplayMessage
+  nameWithType: ActionCommands.DisplayMessage
+  fullName: GameEngine.GameData.ActionCommands.DisplayMessage
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: DisplayMessage
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 85
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Display the message defined in <code>ActionCommand.ObjectId</code>.
+  example: []
+  syntax:
+    content: DisplayMessage = 1
+    return:
+      type: GameEngine.GameData.ActionCommands
+- uid: GameEngine.GameData.ActionCommands.PutItemInRoom
+  commentId: F:GameEngine.GameData.ActionCommands.PutItemInRoom
+  id: PutItemInRoom
+  parent: GameEngine.GameData.ActionCommands
+  langs:
+  - csharp
+  - vb
+  name: PutItemInRoom
+  nameWithType: ActionCommands.PutItemInRoom
+  fullName: GameEngine.GameData.ActionCommands.PutItemInRoom
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: PutItemInRoom
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 89
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Adds the item, defined in <code>ActionCommand.ObjectId</code>, into the current room.
+  example: []
+  syntax:
+    content: PutItemInRoom = 2
+    return:
+      type: GameEngine.GameData.ActionCommands
+- uid: GameEngine.GameData.ActionCommands.RemoveItemFromRoom
+  commentId: F:GameEngine.GameData.ActionCommands.RemoveItemFromRoom
+  id: RemoveItemFromRoom
+  parent: GameEngine.GameData.ActionCommands
+  langs:
+  - csharp
+  - vb
+  name: RemoveItemFromRoom
+  nameWithType: ActionCommands.RemoveItemFromRoom
+  fullName: GameEngine.GameData.ActionCommands.RemoveItemFromRoom
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: RemoveItemFromRoom
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 93
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Removes the item, defined in <code>ActionCommand.ObjectId</code>, from the current room.
+  example: []
+  syntax:
+    content: RemoveItemFromRoom = 3
+    return:
+      type: GameEngine.GameData.ActionCommands
+- uid: GameEngine.GameData.ActionCommands.MoveToRoom
+  commentId: F:GameEngine.GameData.ActionCommands.MoveToRoom
+  id: MoveToRoom
+  parent: GameEngine.GameData.ActionCommands
+  langs:
+  - csharp
+  - vb
+  name: MoveToRoom
+  nameWithType: ActionCommands.MoveToRoom
+  fullName: GameEngine.GameData.ActionCommands.MoveToRoom
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: MoveToRoom
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 97
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Changes the CurrentRoom to the <code>ActionCommand.ObjectId</code>.
+  example: []
+  syntax:
+    content: MoveToRoom = 4
+    return:
+      type: GameEngine.GameData.ActionCommands
+references:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+- uid: GameEngine.GameData.ActionCommands
+  commentId: T:GameEngine.GameData.ActionCommands
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.ActionCommands.html
+  name: ActionCommands
+  nameWithType: ActionCommands
+  fullName: GameEngine.GameData.ActionCommands

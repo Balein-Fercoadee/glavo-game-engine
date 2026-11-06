@@ -36,7 +36,7 @@ internal static class ObjectFinder
     }
 
     /// <summary>
-    /// Gets the <c>Word object from a string.
+    /// Gets the <c>Word</c> object from a string.
     /// </summary>
     /// <param name="words">A collection of Words</param>
     /// <param name="command">The string command the translates to a Word.</param>

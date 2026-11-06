@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine
+  commentId: N:GameEngine
+  id: GameEngine
+  children:
+  - GameEngine.Engine
+  langs:
+  - csharp
+  - vb
+  name: GameEngine
+  nameWithType: GameEngine
+  fullName: GameEngine
+  type: Namespace
+  assemblies:
+  - GameEngine
+references:
+- uid: GameEngine.Engine
+  commentId: T:GameEngine.Engine
+  href: GameEngine.Engine.html
+  name: Engine
+  nameWithType: Engine
+  fullName: GameEngine.Engine

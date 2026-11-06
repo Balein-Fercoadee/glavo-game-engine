@@ -1,0 +1,113 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData.ActionConditions
+  commentId: T:GameEngine.GameData.ActionConditions
+  id: ActionConditions
+  parent: GameEngine.GameData
+  children:
+  - GameEngine.GameData.ActionConditions.PlayerHasItem
+  - GameEngine.GameData.ActionConditions.PlayerInRoomWithItem
+  langs:
+  - csharp
+  - vb
+  name: ActionConditions
+  nameWithType: ActionConditions
+  fullName: GameEngine.GameData.ActionConditions
+  type: Enum
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: ActionConditions
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 65
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Enumeration of available conditions to use within an <code>Action</code>.
+  example: []
+  syntax:
+    content: public enum ActionConditions
+    content.vb: Public Enum ActionConditions
+- uid: GameEngine.GameData.ActionConditions.PlayerHasItem
+  commentId: F:GameEngine.GameData.ActionConditions.PlayerHasItem
+  id: PlayerHasItem
+  parent: GameEngine.GameData.ActionConditions
+  langs:
+  - csharp
+  - vb
+  name: PlayerHasItem
+  nameWithType: ActionConditions.PlayerHasItem
+  fullName: GameEngine.GameData.ActionConditions.PlayerHasItem
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: PlayerHasItem
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 70
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Player has the item, defined in <code>ActionCondition.ObjectId</code>, in inventory.
+  example: []
+  syntax:
+    content: PlayerHasItem = 1
+    return:
+      type: GameEngine.GameData.ActionConditions
+- uid: GameEngine.GameData.ActionConditions.PlayerInRoomWithItem
+  commentId: F:GameEngine.GameData.ActionConditions.PlayerInRoomWithItem
+  id: PlayerInRoomWithItem
+  parent: GameEngine.GameData.ActionConditions
+  langs:
+  - csharp
+  - vb
+  name: PlayerInRoomWithItem
+  nameWithType: ActionConditions.PlayerInRoomWithItem
+  fullName: GameEngine.GameData.ActionConditions.PlayerInRoomWithItem
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Action.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: PlayerInRoomWithItem
+    path: ../GameEngine/GameData/Action.cs
+    startLine: 74
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Player and item, defined in <code>ActionCondition.ObjectId</code>, are in the same room.
+  example: []
+  syntax:
+    content: PlayerInRoomWithItem = 2
+    return:
+      type: GameEngine.GameData.ActionConditions
+references:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+- uid: GameEngine.GameData.ActionConditions
+  commentId: T:GameEngine.GameData.ActionConditions
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.ActionConditions.html
+  name: ActionConditions
+  nameWithType: ActionConditions
+  fullName: GameEngine.GameData.ActionConditions

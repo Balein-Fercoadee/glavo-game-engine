@@ -1,0 +1,635 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData.Item
+  commentId: T:GameEngine.GameData.Item
+  id: Item
+  parent: GameEngine.GameData
+  children:
+  - GameEngine.GameData.Item.#ctor
+  - GameEngine.GameData.Item.CanTake
+  - GameEngine.GameData.Item.Description
+  - GameEngine.GameData.Item.Id
+  - GameEngine.GameData.Item.IsTreasure
+  - GameEngine.GameData.Item.Name
+  - GameEngine.GameData.Item.ShortName
+  langs:
+  - csharp
+  - vb
+  name: Item
+  nameWithType: Item
+  fullName: GameEngine.GameData.Item
+  type: Class
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Item
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 2
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: 'public class Item : IIdentifiable'
+    content.vb: Public Class Item Implements IIdentifiable
+  inheritance:
+  - System.Object
+  implements:
+  - GameEngine.GameData.IIdentifiable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: GameEngine.GameData.Item.CanTake
+  commentId: P:GameEngine.GameData.Item.CanTake
+  id: CanTake
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: CanTake
+  nameWithType: Item.CanTake
+  fullName: GameEngine.GameData.Item.CanTake
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: CanTake
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 9
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: >-
+    Gets or sets whether the item can be taken by the Player.
+
+
+    <p>Typically, items that can't be taken are features of the <code>Room</code>.
+
+    </p>
+  example: []
+  syntax:
+    content: public bool CanTake { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property CanTake As Boolean
+  overload: GameEngine.GameData.Item.CanTake*
+- uid: GameEngine.GameData.Item.Id
+  commentId: P:GameEngine.GameData.Item.Id
+  id: Id
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Item.Id
+  fullName: GameEngine.GameData.Item.Id
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Id
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 11
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets the <code>Id</code> for the Game object.
+  example: []
+  syntax:
+    content: public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Id As Integer
+  overload: GameEngine.GameData.Item.Id*
+  implements:
+  - GameEngine.GameData.IIdentifiable.Id
+- uid: GameEngine.GameData.Item.IsTreasure
+  commentId: P:GameEngine.GameData.Item.IsTreasure
+  id: IsTreasure
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: IsTreasure
+  nameWithType: Item.IsTreasure
+  fullName: GameEngine.GameData.Item.IsTreasure
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: IsTreasure
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 21
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: >-
+    Gets or sets whether the <code>Item</code> is a treasure.
+
+
+    <p>
+
+    <remarks>
+
+    Treasure <code>Items</code> are meant to be collect and place in a <code>Room</code> to score or complete the game.
+
+    </remarks>
+
+    </p>
+  example: []
+  syntax:
+    content: public bool IsTreasure { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsTreasure As Boolean
+  overload: GameEngine.GameData.Item.IsTreasure*
+- uid: GameEngine.GameData.Item.Description
+  commentId: P:GameEngine.GameData.Item.Description
+  id: Description
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: Item.Description
+  fullName: GameEngine.GameData.Item.Description
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Description
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 26
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets the description of the <code>Item</code>.
+  example: []
+  syntax:
+    content: public string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Description As String
+  overload: GameEngine.GameData.Item.Description*
+- uid: GameEngine.GameData.Item.Name
+  commentId: P:GameEngine.GameData.Item.Name
+  id: Name
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Item.Name
+  fullName: GameEngine.GameData.Item.Name
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Name
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 31
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets the name of the <code>Item</code>.
+  example: []
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: GameEngine.GameData.Item.Name*
+- uid: GameEngine.GameData.Item.ShortName
+  commentId: P:GameEngine.GameData.Item.ShortName
+  id: ShortName
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: ShortName
+  nameWithType: Item.ShortName
+  fullName: GameEngine.GameData.Item.ShortName
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: ShortName
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 38
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: >-
+    Gets or sets the short name of the <code>Item</code>.
+
+
+    <p>The short name is what the Parser and Processor understand.
+
+    </p>
+  example: []
+  syntax:
+    content: public string ShortName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ShortName As String
+  overload: GameEngine.GameData.Item.ShortName*
+- uid: GameEngine.GameData.Item.#ctor
+  commentId: M:GameEngine.GameData.Item.#ctor
+  id: '#ctor'
+  parent: GameEngine.GameData.Item
+  langs:
+  - csharp
+  - vb
+  name: Item()
+  nameWithType: Item.Item()
+  fullName: GameEngine.GameData.Item.Item()
+  type: Constructor
+  source:
+    remote:
+      path: GameEngine/GameData/Item.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: .ctor
+    path: ../GameEngine/GameData/Item.cs
+    startLine: 40
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: public Item()
+    content.vb: Public Sub New()
+  overload: GameEngine.GameData.Item.#ctor*
+  nameWithType.vb: Item.New()
+  fullName.vb: GameEngine.GameData.Item.New()
+  name.vb: New()
+references:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: GameEngine.GameData.IIdentifiable
+  commentId: T:GameEngine.GameData.IIdentifiable
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.IIdentifiable.html
+  name: IIdentifiable
+  nameWithType: IIdentifiable
+  fullName: GameEngine.GameData.IIdentifiable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GameEngine.GameData.Item.CanTake*
+  commentId: Overload:GameEngine.GameData.Item.CanTake
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item_CanTake
+  name: CanTake
+  nameWithType: Item.CanTake
+  fullName: GameEngine.GameData.Item.CanTake
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: GameEngine.GameData.Item.Id*
+  commentId: Overload:GameEngine.GameData.Item.Id
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item_Id
+  name: Id
+  nameWithType: Item.Id
+  fullName: GameEngine.GameData.Item.Id
+- uid: GameEngine.GameData.IIdentifiable.Id
+  commentId: P:GameEngine.GameData.IIdentifiable.Id
+  parent: GameEngine.GameData.IIdentifiable
+  href: GameEngine.GameData.IIdentifiable.html#GameEngine_GameData_IIdentifiable_Id
+  name: Id
+  nameWithType: IIdentifiable.Id
+  fullName: GameEngine.GameData.IIdentifiable.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: GameEngine.GameData.Item.IsTreasure*
+  commentId: Overload:GameEngine.GameData.Item.IsTreasure
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item_IsTreasure
+  name: IsTreasure
+  nameWithType: Item.IsTreasure
+  fullName: GameEngine.GameData.Item.IsTreasure
+- uid: GameEngine.GameData.Item.Description*
+  commentId: Overload:GameEngine.GameData.Item.Description
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item_Description
+  name: Description
+  nameWithType: Item.Description
+  fullName: GameEngine.GameData.Item.Description
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: GameEngine.GameData.Item.Name*
+  commentId: Overload:GameEngine.GameData.Item.Name
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item_Name
+  name: Name
+  nameWithType: Item.Name
+  fullName: GameEngine.GameData.Item.Name
+- uid: GameEngine.GameData.Item.ShortName*
+  commentId: Overload:GameEngine.GameData.Item.ShortName
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item_ShortName
+  name: ShortName
+  nameWithType: Item.ShortName
+  fullName: GameEngine.GameData.Item.ShortName
+- uid: GameEngine.GameData.Item.#ctor*
+  commentId: Overload:GameEngine.GameData.Item.#ctor
+  href: GameEngine.GameData.Item.html#GameEngine_GameData_Item__ctor
+  name: Item
+  nameWithType: Item.Item
+  fullName: GameEngine.GameData.Item.Item
+  nameWithType.vb: Item.New
+  fullName.vb: GameEngine.GameData.Item.New
+  name.vb: New

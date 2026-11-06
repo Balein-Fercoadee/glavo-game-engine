@@ -39,7 +39,7 @@ jobs:
         run: Compress-Archive -Path "artifacts\GameDatabaseEditor-win-x64\*" -DestinationPath "GameDatabaseEditor-win-x64.zip"
 
       - name: Upload workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: GameDatabaseEditor-win-x64
           path: GameDatabaseEditor-win-x64.zip

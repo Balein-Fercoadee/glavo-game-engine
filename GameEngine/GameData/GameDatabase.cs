@@ -145,6 +145,7 @@ public class GameDatabase : BaseGameObject
     /// </summary>
     /// <param name="saveDirectory">The directory to save file.</param>
     /// <param name="databaseFileName">The file name for the database.</param>
+    /// <param name="debug">Whether to write the serialized database to the console.</param>
     internal void Save(string saveDirectory, string databaseFileName, bool debug = false)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };

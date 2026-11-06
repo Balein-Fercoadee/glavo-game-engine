@@ -83,7 +83,8 @@ internal static class MessageFormatter
     /// Creates a formatted message of what the player sees in a <c>Room</c>.
     /// </summary>
     /// <param name="currentRoomId">The <c>Room.Id</c> of the room where the player is currently at.</param>
-    /// <param name="gameState">The <c>GameState</c> object.</param>
+    /// <param name="gameDb">The game database containing the room and items.</param>
+    /// <param name="player">The player whose visited rooms determine the displayed description.</param>
     /// <param name="overrideToFullDescription">Should the full description be returned regardless if the <c>Player</c> has arleady visited the <c>Room</c>.</param>
     /// <returns></returns>
     public static string Look(int currentRoomId, GameDatabase gameDb, Player player, bool overrideToFullDescription = false)

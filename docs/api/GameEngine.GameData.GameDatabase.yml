@@ -1,0 +1,1124 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData.GameDatabase
+  commentId: T:GameEngine.GameData.GameDatabase
+  id: GameDatabase
+  parent: GameEngine.GameData
+  children:
+  - GameEngine.GameData.GameDatabase.#ctor
+  - GameEngine.GameData.GameDatabase.Actions
+  - GameEngine.GameData.GameDatabase.Description
+  - GameEngine.GameData.GameDatabase.Items
+  - GameEngine.GameData.GameDatabase.Load(System.String,System.String,System.Boolean)
+  - GameEngine.GameData.GameDatabase.Messages
+  - GameEngine.GameData.GameDatabase.Name
+  - GameEngine.GameData.GameDatabase.Rooms
+  - GameEngine.GameData.GameDatabase.StartingRoomId
+  - GameEngine.GameData.GameDatabase.TreasureRoomId
+  - GameEngine.GameData.GameDatabase.Words
+  langs:
+  - csharp
+  - vb
+  name: GameDatabase
+  nameWithType: GameDatabase
+  fullName: GameEngine.GameData.GameDatabase
+  type: Class
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: GameDatabase
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 6
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: 'public class GameDatabase : BaseGameObject, INotifyPropertyChanged'
+    content.vb: Public Class GameDatabase Inherits BaseGameObject Implements INotifyPropertyChanged
+  inheritance:
+  - System.Object
+  - GameEngine.GameData.BaseGameObject
+  implements:
+  - System.ComponentModel.INotifyPropertyChanged
+  inheritedMembers:
+  - GameEngine.GameData.BaseGameObject.PropertyChanged
+  - GameEngine.GameData.BaseGameObject.OnPropertyChanged(System.String)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: GameEngine.GameData.GameDatabase.Name
+  commentId: P:GameEngine.GameData.GameDatabase.Name
+  id: Name
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: GameDatabase.Name
+  fullName: GameEngine.GameData.GameDatabase.Name
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Name
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 16
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or set the name of the Game.
+  example: []
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: GameEngine.GameData.GameDatabase.Name*
+- uid: GameEngine.GameData.GameDatabase.Description
+  commentId: P:GameEngine.GameData.GameDatabase.Description
+  id: Description
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: GameDatabase.Description
+  fullName: GameEngine.GameData.GameDatabase.Description
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Description
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 34
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: >-
+    Gets or sets the description of the Game.
+
+
+    <p>The description will be displayed once the Game is loaded
+
+    and before the first <code>Room</code> is displayed.</p>
+  example: []
+  syntax:
+    content: public string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Description As String
+  overload: GameEngine.GameData.GameDatabase.Description*
+- uid: GameEngine.GameData.GameDatabase.StartingRoomId
+  commentId: P:GameEngine.GameData.GameDatabase.StartingRoomId
+  id: StartingRoomId
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: StartingRoomId
+  nameWithType: GameDatabase.StartingRoomId
+  fullName: GameEngine.GameData.GameDatabase.StartingRoomId
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: StartingRoomId
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 50
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets the <code>Room.Id</code> where the <code>Player</code> will start the Game.
+  example: []
+  syntax:
+    content: public int StartingRoomId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property StartingRoomId As Integer
+  overload: GameEngine.GameData.GameDatabase.StartingRoomId*
+- uid: GameEngine.GameData.GameDatabase.TreasureRoomId
+  commentId: P:GameEngine.GameData.GameDatabase.TreasureRoomId
+  id: TreasureRoomId
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: TreasureRoomId
+  nameWithType: GameDatabase.TreasureRoomId
+  fullName: GameEngine.GameData.GameDatabase.TreasureRoomId
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: TreasureRoomId
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 67
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: >-
+    Gets or sets the <code>Room.Id</code> where <code>Items</code> need to be placed
+
+    in order to be scored.
+  example: []
+  syntax:
+    content: public int TreasureRoomId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TreasureRoomId As Integer
+  overload: GameEngine.GameData.GameDatabase.TreasureRoomId*
+- uid: GameEngine.GameData.GameDatabase.Actions
+  commentId: P:GameEngine.GameData.GameDatabase.Actions
+  id: Actions
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Actions
+  nameWithType: GameDatabase.Actions
+  fullName: GameEngine.GameData.GameDatabase.Actions
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Actions
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 83
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets a collection of <code>Actions</code> available in the game.
+  example: []
+  syntax:
+    content: >-
+      [JsonInclude]
+
+      public ObservableCollection<Action> Actions { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Action}
+    content.vb: >-
+      <JsonInclude>
+
+      Public Property Actions As ObservableCollection(Of Action)
+  overload: GameEngine.GameData.GameDatabase.Actions*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIncludeAttribute
+    ctor: System.Text.Json.Serialization.JsonIncludeAttribute.#ctor
+    arguments: []
+- uid: GameEngine.GameData.GameDatabase.Items
+  commentId: P:GameEngine.GameData.GameDatabase.Items
+  id: Items
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Items
+  nameWithType: GameDatabase.Items
+  fullName: GameEngine.GameData.GameDatabase.Items
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Items
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 89
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets a collection of <code>Items</code> available in the game.
+  example: []
+  syntax:
+    content: >-
+      [JsonInclude]
+
+      public ObservableCollection<Item> Items { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Item}
+    content.vb: >-
+      <JsonInclude>
+
+      Public Property Items As ObservableCollection(Of Item)
+  overload: GameEngine.GameData.GameDatabase.Items*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIncludeAttribute
+    ctor: System.Text.Json.Serialization.JsonIncludeAttribute.#ctor
+    arguments: []
+- uid: GameEngine.GameData.GameDatabase.Messages
+  commentId: P:GameEngine.GameData.GameDatabase.Messages
+  id: Messages
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Messages
+  nameWithType: GameDatabase.Messages
+  fullName: GameEngine.GameData.GameDatabase.Messages
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Messages
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 95
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets a collection of <code>Messages</code> available in the game.
+  example: []
+  syntax:
+    content: >-
+      [JsonInclude]
+
+      public ObservableCollection<Message> Messages { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Message}
+    content.vb: >-
+      <JsonInclude>
+
+      Public Property Messages As ObservableCollection(Of Message)
+  overload: GameEngine.GameData.GameDatabase.Messages*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIncludeAttribute
+    ctor: System.Text.Json.Serialization.JsonIncludeAttribute.#ctor
+    arguments: []
+- uid: GameEngine.GameData.GameDatabase.Rooms
+  commentId: P:GameEngine.GameData.GameDatabase.Rooms
+  id: Rooms
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Rooms
+  nameWithType: GameDatabase.Rooms
+  fullName: GameEngine.GameData.GameDatabase.Rooms
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Rooms
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 101
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets a collection of <code>Rooms</code> available in the game.
+  example: []
+  syntax:
+    content: >-
+      [JsonInclude]
+
+      public ObservableCollection<Room> Rooms { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Room}
+    content.vb: >-
+      <JsonInclude>
+
+      Public Property Rooms As ObservableCollection(Of Room)
+  overload: GameEngine.GameData.GameDatabase.Rooms*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIncludeAttribute
+    ctor: System.Text.Json.Serialization.JsonIncludeAttribute.#ctor
+    arguments: []
+- uid: GameEngine.GameData.GameDatabase.Words
+  commentId: P:GameEngine.GameData.GameDatabase.Words
+  id: Words
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Words
+  nameWithType: GameDatabase.Words
+  fullName: GameEngine.GameData.GameDatabase.Words
+  type: Property
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Words
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 107
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  summary: Gets or sets a collection of <code>Words</code> available in the game.
+  example: []
+  syntax:
+    content: >-
+      [JsonInclude]
+
+      public ObservableCollection<Word> Words { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Word}
+    content.vb: >-
+      <JsonInclude>
+
+      Public Property Words As ObservableCollection(Of Word)
+  overload: GameEngine.GameData.GameDatabase.Words*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIncludeAttribute
+    ctor: System.Text.Json.Serialization.JsonIncludeAttribute.#ctor
+    arguments: []
+- uid: GameEngine.GameData.GameDatabase.#ctor
+  commentId: M:GameEngine.GameData.GameDatabase.#ctor
+  id: '#ctor'
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: GameDatabase()
+  nameWithType: GameDatabase.GameDatabase()
+  fullName: GameEngine.GameData.GameDatabase.GameDatabase()
+  type: Constructor
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: .ctor
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 128
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: public GameDatabase()
+    content.vb: Public Sub New()
+  overload: GameEngine.GameData.GameDatabase.#ctor*
+  nameWithType.vb: GameDatabase.New()
+  fullName.vb: GameEngine.GameData.GameDatabase.New()
+  name.vb: New()
+- uid: GameEngine.GameData.GameDatabase.Load(System.String,System.String,System.Boolean)
+  commentId: M:GameEngine.GameData.GameDatabase.Load(System.String,System.String,System.Boolean)
+  id: Load(System.String,System.String,System.Boolean)
+  parent: GameEngine.GameData.GameDatabase
+  langs:
+  - csharp
+  - vb
+  name: Load(string, string, bool)
+  nameWithType: GameDatabase.Load(string, string, bool)
+  fullName: GameEngine.GameData.GameDatabase.Load(string, string, bool)
+  type: Method
+  source:
+    remote:
+      path: GameEngine/GameData/GameDatabase.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Load
+    path: ../GameEngine/GameData/GameDatabase.cs
+    startLine: 162
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: public void Load(string saveDirectory, string databaseFileName, bool debug = false)
+    parameters:
+    - id: saveDirectory
+      type: System.String
+    - id: databaseFileName
+      type: System.String
+    - id: debug
+      type: System.Boolean
+    content.vb: Public Sub Load(saveDirectory As String, databaseFileName As String, debug As Boolean = False)
+  overload: GameEngine.GameData.GameDatabase.Load*
+  nameWithType.vb: GameDatabase.Load(String, String, Boolean)
+  fullName.vb: GameEngine.GameData.GameDatabase.Load(String, String, Boolean)
+  name.vb: Load(String, String, Boolean)
+references:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: GameEngine.GameData.BaseGameObject
+  commentId: T:GameEngine.GameData.BaseGameObject
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.BaseGameObject.html
+  name: BaseGameObject
+  nameWithType: BaseGameObject
+  fullName: GameEngine.GameData.BaseGameObject
+- uid: System.ComponentModel.INotifyPropertyChanged
+  commentId: T:System.ComponentModel.INotifyPropertyChanged
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged
+  name: INotifyPropertyChanged
+  nameWithType: INotifyPropertyChanged
+  fullName: System.ComponentModel.INotifyPropertyChanged
+- uid: GameEngine.GameData.BaseGameObject.PropertyChanged
+  commentId: E:GameEngine.GameData.BaseGameObject.PropertyChanged
+  parent: GameEngine.GameData.BaseGameObject
+  href: GameEngine.GameData.BaseGameObject.html#GameEngine_GameData_BaseGameObject_PropertyChanged
+  name: PropertyChanged
+  nameWithType: BaseGameObject.PropertyChanged
+  fullName: GameEngine.GameData.BaseGameObject.PropertyChanged
+- uid: GameEngine.GameData.BaseGameObject.OnPropertyChanged(System.String)
+  commentId: M:GameEngine.GameData.BaseGameObject.OnPropertyChanged(System.String)
+  parent: GameEngine.GameData.BaseGameObject
+  isExternal: true
+  href: GameEngine.GameData.BaseGameObject.html#GameEngine_GameData_BaseGameObject_OnPropertyChanged_System_String_
+  name: OnPropertyChanged(string)
+  nameWithType: BaseGameObject.OnPropertyChanged(string)
+  fullName: GameEngine.GameData.BaseGameObject.OnPropertyChanged(string)
+  nameWithType.vb: BaseGameObject.OnPropertyChanged(String)
+  fullName.vb: GameEngine.GameData.BaseGameObject.OnPropertyChanged(String)
+  name.vb: OnPropertyChanged(String)
+  spec.csharp:
+  - uid: GameEngine.GameData.BaseGameObject.OnPropertyChanged(System.String)
+    name: OnPropertyChanged
+    href: GameEngine.GameData.BaseGameObject.html#GameEngine_GameData_BaseGameObject_OnPropertyChanged_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: GameEngine.GameData.BaseGameObject.OnPropertyChanged(System.String)
+    name: OnPropertyChanged
+    href: GameEngine.GameData.BaseGameObject.html#GameEngine_GameData_BaseGameObject_OnPropertyChanged_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: GameEngine.GameData.GameDatabase.Name*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Name
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Name
+  name: Name
+  nameWithType: GameDatabase.Name
+  fullName: GameEngine.GameData.GameDatabase.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: GameEngine.GameData.GameDatabase.Description*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Description
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Description
+  name: Description
+  nameWithType: GameDatabase.Description
+  fullName: GameEngine.GameData.GameDatabase.Description
+- uid: GameEngine.GameData.GameDatabase.StartingRoomId*
+  commentId: Overload:GameEngine.GameData.GameDatabase.StartingRoomId
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_StartingRoomId
+  name: StartingRoomId
+  nameWithType: GameDatabase.StartingRoomId
+  fullName: GameEngine.GameData.GameDatabase.StartingRoomId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: GameEngine.GameData.GameDatabase.TreasureRoomId*
+  commentId: Overload:GameEngine.GameData.GameDatabase.TreasureRoomId
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_TreasureRoomId
+  name: TreasureRoomId
+  nameWithType: GameDatabase.TreasureRoomId
+  fullName: GameEngine.GameData.GameDatabase.TreasureRoomId
+- uid: GameEngine.GameData.GameDatabase.Actions*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Actions
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Actions
+  name: Actions
+  nameWithType: GameDatabase.Actions
+  fullName: GameEngine.GameData.GameDatabase.Actions
+- uid: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Action}
+  commentId: T:System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Action}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ObservableCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  name: ObservableCollection<Action>
+  nameWithType: ObservableCollection<Action>
+  fullName: System.Collections.ObjectModel.ObservableCollection<GameEngine.GameData.Action>
+  nameWithType.vb: ObservableCollection(Of Action)
+  fullName.vb: System.Collections.ObjectModel.ObservableCollection(Of GameEngine.GameData.Action)
+  name.vb: ObservableCollection(Of Action)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: <
+  - uid: GameEngine.GameData.Action
+    name: Action
+    href: GameEngine.GameData.Action.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: GameEngine.GameData.Action
+    name: Action
+    href: GameEngine.GameData.Action.html
+  - name: )
+- uid: System.Collections.ObjectModel.ObservableCollection`1
+  commentId: T:System.Collections.ObjectModel.ObservableCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  name: ObservableCollection<T>
+  nameWithType: ObservableCollection<T>
+  fullName: System.Collections.ObjectModel.ObservableCollection<T>
+  nameWithType.vb: ObservableCollection(Of T)
+  fullName.vb: System.Collections.ObjectModel.ObservableCollection(Of T)
+  name.vb: ObservableCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: GameEngine.GameData.GameDatabase.Items*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Items
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Items
+  name: Items
+  nameWithType: GameDatabase.Items
+  fullName: GameEngine.GameData.GameDatabase.Items
+- uid: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Item}
+  commentId: T:System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Item}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ObservableCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  name: ObservableCollection<Item>
+  nameWithType: ObservableCollection<Item>
+  fullName: System.Collections.ObjectModel.ObservableCollection<GameEngine.GameData.Item>
+  nameWithType.vb: ObservableCollection(Of Item)
+  fullName.vb: System.Collections.ObjectModel.ObservableCollection(Of GameEngine.GameData.Item)
+  name.vb: ObservableCollection(Of Item)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: <
+  - uid: GameEngine.GameData.Item
+    name: Item
+    href: GameEngine.GameData.Item.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: GameEngine.GameData.Item
+    name: Item
+    href: GameEngine.GameData.Item.html
+  - name: )
+- uid: GameEngine.GameData.GameDatabase.Messages*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Messages
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Messages
+  name: Messages
+  nameWithType: GameDatabase.Messages
+  fullName: GameEngine.GameData.GameDatabase.Messages
+- uid: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Message}
+  commentId: T:System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Message}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ObservableCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  name: ObservableCollection<Message>
+  nameWithType: ObservableCollection<Message>
+  fullName: System.Collections.ObjectModel.ObservableCollection<GameEngine.GameData.Message>
+  nameWithType.vb: ObservableCollection(Of Message)
+  fullName.vb: System.Collections.ObjectModel.ObservableCollection(Of GameEngine.GameData.Message)
+  name.vb: ObservableCollection(Of Message)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: <
+  - uid: GameEngine.GameData.Message
+    name: Message
+    href: GameEngine.GameData.Message.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: GameEngine.GameData.Message
+    name: Message
+    href: GameEngine.GameData.Message.html
+  - name: )
+- uid: GameEngine.GameData.GameDatabase.Rooms*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Rooms
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Rooms
+  name: Rooms
+  nameWithType: GameDatabase.Rooms
+  fullName: GameEngine.GameData.GameDatabase.Rooms
+- uid: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Room}
+  commentId: T:System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Room}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ObservableCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  name: ObservableCollection<Room>
+  nameWithType: ObservableCollection<Room>
+  fullName: System.Collections.ObjectModel.ObservableCollection<GameEngine.GameData.Room>
+  nameWithType.vb: ObservableCollection(Of Room)
+  fullName.vb: System.Collections.ObjectModel.ObservableCollection(Of GameEngine.GameData.Room)
+  name.vb: ObservableCollection(Of Room)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: <
+  - uid: GameEngine.GameData.Room
+    name: Room
+    href: GameEngine.GameData.Room.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: GameEngine.GameData.Room
+    name: Room
+    href: GameEngine.GameData.Room.html
+  - name: )
+- uid: GameEngine.GameData.GameDatabase.Words*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Words
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Words
+  name: Words
+  nameWithType: GameDatabase.Words
+  fullName: GameEngine.GameData.GameDatabase.Words
+- uid: System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Word}
+  commentId: T:System.Collections.ObjectModel.ObservableCollection{GameEngine.GameData.Word}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ObservableCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  name: ObservableCollection<Word>
+  nameWithType: ObservableCollection<Word>
+  fullName: System.Collections.ObjectModel.ObservableCollection<GameEngine.GameData.Word>
+  nameWithType.vb: ObservableCollection(Of Word)
+  fullName.vb: System.Collections.ObjectModel.ObservableCollection(Of GameEngine.GameData.Word)
+  name.vb: ObservableCollection(Of Word)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: <
+  - uid: GameEngine.GameData.Word
+    name: Word
+    href: GameEngine.GameData.Word.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ObservableCollection`1
+    name: ObservableCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: GameEngine.GameData.Word
+    name: Word
+    href: GameEngine.GameData.Word.html
+  - name: )
+- uid: GameEngine.GameData.GameDatabase.#ctor*
+  commentId: Overload:GameEngine.GameData.GameDatabase.#ctor
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase__ctor
+  name: GameDatabase
+  nameWithType: GameDatabase.GameDatabase
+  fullName: GameEngine.GameData.GameDatabase.GameDatabase
+  nameWithType.vb: GameDatabase.New
+  fullName.vb: GameEngine.GameData.GameDatabase.New
+  name.vb: New
+- uid: GameEngine.GameData.GameDatabase.Load*
+  commentId: Overload:GameEngine.GameData.GameDatabase.Load
+  href: GameEngine.GameData.GameDatabase.html#GameEngine_GameData_GameDatabase_Load_System_String_System_String_System_Boolean_
+  name: Load
+  nameWithType: GameDatabase.Load
+  fullName: GameEngine.GameData.GameDatabase.Load
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

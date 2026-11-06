@@ -1,0 +1,107 @@
+### YamlMime:ManagedReference
+items:
+- uid: GameEngine.GameData.WordTypes
+  commentId: T:GameEngine.GameData.WordTypes
+  id: WordTypes
+  parent: GameEngine.GameData
+  children:
+  - GameEngine.GameData.WordTypes.Noun
+  - GameEngine.GameData.WordTypes.Verb
+  langs:
+  - csharp
+  - vb
+  name: WordTypes
+  nameWithType: WordTypes
+  fullName: GameEngine.GameData.WordTypes
+  type: Enum
+  source:
+    remote:
+      path: GameEngine/GameData/Word.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: WordTypes
+    path: ../GameEngine/GameData/Word.cs
+    startLine: 20
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: public enum WordTypes
+    content.vb: Public Enum WordTypes
+- uid: GameEngine.GameData.WordTypes.Noun
+  commentId: F:GameEngine.GameData.WordTypes.Noun
+  id: Noun
+  parent: GameEngine.GameData.WordTypes
+  langs:
+  - csharp
+  - vb
+  name: Noun
+  nameWithType: WordTypes.Noun
+  fullName: GameEngine.GameData.WordTypes.Noun
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Word.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Noun
+    path: ../GameEngine/GameData/Word.cs
+    startLine: 22
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: Noun = 1
+    return:
+      type: GameEngine.GameData.WordTypes
+- uid: GameEngine.GameData.WordTypes.Verb
+  commentId: F:GameEngine.GameData.WordTypes.Verb
+  id: Verb
+  parent: GameEngine.GameData.WordTypes
+  langs:
+  - csharp
+  - vb
+  name: Verb
+  nameWithType: WordTypes.Verb
+  fullName: GameEngine.GameData.WordTypes.Verb
+  type: Field
+  source:
+    remote:
+      path: GameEngine/GameData/Word.cs
+      branch: main
+      repo: git@github.com:Balein-Fercoadee/glavo-game-engine.git
+    id: Verb
+    path: ../GameEngine/GameData/Word.cs
+    startLine: 23
+  assemblies:
+  - GameEngine
+  namespace: GameEngine.GameData
+  syntax:
+    content: Verb = 2
+    return:
+      type: GameEngine.GameData.WordTypes
+references:
+- uid: GameEngine.GameData
+  commentId: N:GameEngine.GameData
+  name: GameEngine.GameData
+  nameWithType: GameEngine.GameData
+  fullName: GameEngine.GameData
+  spec.csharp:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+  spec.vb:
+  - uid: GameEngine
+    name: GameEngine
+  - name: .
+  - uid: GameEngine.GameData
+    name: GameData
+- uid: GameEngine.GameData.WordTypes
+  commentId: T:GameEngine.GameData.WordTypes
+  parent: GameEngine.GameData
+  href: GameEngine.GameData.WordTypes.html
+  name: WordTypes
+  nameWithType: WordTypes
+  fullName: GameEngine.GameData.WordTypes
