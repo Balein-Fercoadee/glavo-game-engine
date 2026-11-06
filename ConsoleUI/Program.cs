@@ -1,4 +1,5 @@
 ﻿using System.CommandLine;
+using System.Reflection;
 using GameEngine;
 
 namespace ConsoleUI;
@@ -35,6 +36,10 @@ class Program()
 
             return new Engine().GameLoop(engineArgs);
         });
+
+
+        var version = typeof(Engine).Assembly.GetName().Version;
+        Console.WriteLine($"Glavo Game Engine {version?.ToString(3) ?? "unknown"}");
 
         return rootCommand.Parse(args).Invoke();
     }
