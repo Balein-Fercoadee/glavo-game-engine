@@ -1,0 +1,79 @@
+{
+    "$id": "https://glavo-game-engine.com/game_database_schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Game Database format for the Glavo Game Engine",
+    "title": "GameDatabase",
+    "type": "object",
+    "properties": {
+        "Name": {
+            "type": "string",
+            "description": "The name/title of the game."
+        },
+        "Description": {
+            "type": "string",
+            "description": "A short description of the game."
+        },
+        "StartingRoomId": {
+            "type": "integer",
+            "description": "The ID of the Room that is the starting room of the game."
+        },
+        "TreasureRoomId": {
+            "type": "integer",
+            "description": "The ID of the Room that is the treasure room of the game."
+        },
+        "Items": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/Item" }
+        },
+        "Messages": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/Message" }
+        }
+    },
+    "$defs": {
+        "Item": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "description": "The ID for the Item."
+                },
+                "CanTake": {
+                    "type": "boolean",
+                    "description": "Can the item be picked up by the player? Typically, Items that can't be taken are features of the Room its in."
+                },
+                "IsTreasure": {
+                    "type": "boolean",
+                    "description": "Is the Item designated as treasure?"
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "A short description of the Item."
+                },
+                "Name": {
+                    "type": "string",
+                    "description": "The name of the Item."
+                },
+                "ShortName": {
+                    "type": "string",
+                    "description": "The short name of the Item. This value is used by the player to interact with the item."
+                }
+            }
+        },
+        "Message": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "description": "The ID for the Message."
+                },
+                "Text": {
+                    "type": "string",
+                    "description": "The text of the Message."
+                }
+            }
+        }
+    }
+}

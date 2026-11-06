@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using GameEngine.GameData;
+﻿using GameEngine.GameData;
 using GameEngine.Utilities;
 
 namespace GameEngine;
@@ -26,7 +25,7 @@ public class Engine
     /// The main game loop. I.e The code that actually drives the game.
     /// </summary>
     /// <param name="args"></param>
-    public void GameLoop(string[] args)
+    public int GameLoop(string[] args)
     {
         Console.Clear();
         // Show the engine intro text.
@@ -37,7 +36,7 @@ public class Engine
         if (!setupReturn.SetupSuccessful)
         {
             Console.WriteLine(MessageFormatter.Error(setupReturn.ErrorMessages));
-            Environment.Exit(1);
+            return 1;
         }
 
         // Command line was parsed so now we load!
@@ -78,5 +77,7 @@ public class Engine
             if (quitGame)
                 break;
         }
+        
+        return 0;
     }
 }

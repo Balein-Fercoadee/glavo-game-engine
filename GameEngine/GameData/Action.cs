@@ -23,12 +23,12 @@ public class Action : IIdentifiable
     /// Gets a collection of <c>ActionCommands</c>.
     /// </summary>
     [JsonInclude]
-    public ObservableCollection<ActionCommand> Commands { get; }
+    public ObservableCollection<ActionCommand> Commands { get; set; }
     /// <summary>
     /// Gets a collection of <c>ActionConditions</c>.
     /// </summary>
     [JsonInclude]
-    public ObservableCollection<ActionCondition> Conditions { get; }
+    public ObservableCollection<ActionCondition> Conditions { get; set; }
 
     public Action()
     {
@@ -72,7 +72,7 @@ public enum ActionConditions
     /// <summary>
     /// Player and item, defined in <c>ActionCondition.ObjectId</c>, are in the same room.
     /// </summary>
-    PlayerWithItem = 2,
+    PlayerInRoomWithItem = 2,
 }
 
 /// <summary>

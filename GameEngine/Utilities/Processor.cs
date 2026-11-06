@@ -66,14 +66,10 @@ public static class Processor
                     switch (condition.Condition)
                     {
                         case ActionConditions.PlayerHasItem:
+                            conditionsMet &= player.ItemInventory.Contains(condition.ObjectId);
                             break;
-                        case ActionConditions.PlayerWithItem:
-                            if (currentRoom.ContainedItemIds.Contains(condition.ObjectId))
-                            {
-                                conditionsMet &= true;
-                            }
-                            else
-                                conditionsMet &= false;
+                        case ActionConditions.PlayerInRoomWithItem:
+                            conditionsMet &= currentRoom.ContainedItemIds.Contains(condition.ObjectId);
                             break;
                     }
                 }
