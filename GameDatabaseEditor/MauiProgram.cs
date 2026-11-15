@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+#if MAUI_DEVFLOW
+using Microsoft.Maui.DevFlow.Agent;
+#endif
 
 namespace GameDatabaseEditor;
 
@@ -16,6 +19,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+#if MAUI_DEVFLOW
+		builder.AddMauiDevFlowAgent();
+#endif
 
 #if DEBUG
 		builder.Logging.AddDebug();

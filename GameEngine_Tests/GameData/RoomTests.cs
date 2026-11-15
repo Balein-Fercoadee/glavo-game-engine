@@ -7,6 +7,19 @@ namespace GameEngine_Tests.GameData;
 public class RoomTests
 {
     [TestMethod]
+    public void RoomNameChangeNotifiesBindings()
+    {
+        Room room = new Room { Name = "Original" };
+        var changes = new List<string?>();
+        room.PropertyChanged += (_, e) => changes.Add(e.PropertyName);
+
+        room.Name = "Updated";
+        room.Name = "Updated";
+
+        CollectionAssert.AreEqual(new[] { nameof(Room.Name) }, changes);
+    }
+
+    [TestMethod]
     public void RoomAvailableExits()
     {
         GameDatabase gameDb = new GameDatabase();

@@ -8,6 +8,7 @@ namespace GameDatabaseEditor;
 public partial class MainPage : ContentPage
 {
     public GameDatabase _gameDatabase;
+    private bool _roomEditorOpen;
 
     public MainPage()
     {
@@ -47,6 +48,7 @@ public partial class MainPage : ContentPage
 
         popup.EditorView = editorView;
         popup.EditorType = editorType;
+        popup.EditorMode = editorMode;
 
         return popup;
     }
@@ -60,9 +62,51 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void btnEditRoom_Clicked(object sender, EventArgs e)
+    private async void btnEditRoom_Clicked(object sender, EventArgs e)
     {
+        if (lstRooms.SelectedItem is Room room)
+        {
+            await EditRoomAsync(room);
+        }
+    }
 
+    private async void Room_DoubleTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject { BindingContext: Room room })
+        {
+            await EditRoomAsync(room);
+        }
+    }
+
+    private async Task EditRoomAsync(Room room)
+    {
+        if (_roomEditorOpen)
+        {
+            return;
+        }
+
+        _roomEditorOpen = true;
+        try
+        {
+            var editSession = new RoomEditSession(room);
+            var roomView = new RoomEditorView
+            {
+                Rooms = _gameDatabase.Rooms,
+                Items = _gameDatabase.Items,
+                EditedRoom = editSession.Draft
+            };
+            var popup = SetupEditorPopup(roomView, EditorTypes.Room, EditorModes.Edit);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                editSession.Save();
+            }
+        }
+        finally
+        {
+            _roomEditorOpen = false;
+        }
     }
 
     private void btnAddWord_Clicked(object sender, EventArgs e)
