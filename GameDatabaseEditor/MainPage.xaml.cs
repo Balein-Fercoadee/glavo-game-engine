@@ -157,4 +157,27 @@ public partial class MainPage : ContentPage
             this.BindingContext = _gameDatabase;
         }
     }
+
+    private async void btnSaveDatabase_Clicked(object sender, EventArgs e)
+    {
+        var file = await FilePicker.Default.PickAsync(new PickOptions
+        {
+            PickerTitle = "Save GGE Database",
+            FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { DevicePlatform.WinUI, new[] { ".gge" } }, // file extension
+                })
+        });
+
+        if (file != null)
+        {
+            string? filePath = Path.GetDirectoryName(file.FullPath);
+            string fileName = file.FileName;
+
+            if (filePath != null)
+            {
+                _gameDatabase.Save(filePath, fileName);
+            }
+        }
+    }
 }

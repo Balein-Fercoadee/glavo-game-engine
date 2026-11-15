@@ -8,6 +8,8 @@ alternative to editing `.gge` database files by hand.
 
 - Start a new in-memory database with the engine's built-in words, or open an
   existing `.gge` file using the Windows file picker.
+- Save the database and its changes to a `.gge` file using the Windows file
+  picker.
 - View and edit the database name, description, starting room, and treasure room.
 - View rooms, words, items, messages, and actions.
 - Edit an existing room by double-clicking it or selecting it and choosing
@@ -17,10 +19,8 @@ alternative to editing `.gge` database files by hand.
 
 ## Current limitations
 
-The **Save Database** button does not yet write changes to a file. Room editor
-**Save** only updates the in-memory database, so changes are lost when the
-database is replaced or the application closes. Adding rooms and managing words,
-items, messages, and actions are not yet implemented.
+Adding rooms and managing words, items, messages, and actions are not yet
+implemented.
 
 See the [repository README](../README.md) for requirements and Windows
 publishing instructions.
