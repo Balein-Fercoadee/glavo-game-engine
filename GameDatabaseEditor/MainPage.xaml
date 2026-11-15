@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:GameDatabaseEditor"
              xmlns:converters="clr-namespace:GameDatabaseEditor.Converters"
              x:Class="GameDatabaseEditor.MainPage"
-             Title="Glavo Game Engine Database Editor" Height="450" Width="1000">
+             Title="Glavo Game Engine Database Editor" Height="450" Width="800">
     <ContentPage.Resources>
         <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
         <local:IdToColorConverter x:Key="idToColor" />
@@ -110,14 +110,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Rooms" />
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoom" Text="Add Room" Clicked="btnAddRoom_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <CollectionView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single" HeightRequest="150">
+                <CollectionView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>
@@ -155,14 +155,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Words"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddWord" Text="Add Word" Clicked="btnAddWord_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <CollectionView x:Name="lstWords" ItemsSource="{Binding Words}" SelectionMode="Single" HeightRequest="150">
+                <CollectionView x:Name="lstWords" ItemsSource="{Binding Words}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource sacredWordHighlight}">
@@ -195,14 +195,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Items"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Item" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <CollectionView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single" HeightRequest="150">
+                <CollectionView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource treasureItem}">
@@ -235,14 +235,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Messages"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Message" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <CollectionView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single" HeightRequest="150">
+                <CollectionView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>
@@ -275,14 +275,14 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Actions"/>
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Action" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <CollectionView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single" HeightRequest="150">
+                <CollectionView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>

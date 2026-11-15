@@ -21,7 +21,7 @@ If you want to play with the Database Editor in VS Code:
 The engine is organized into a few projects:
 
 | Project | Description |
-|---------|-------------|
+| --------- | ------------- |
 | Console UI | The text UI that runs Game Engine |
 | Game Engine | The code that drives the game. All game logic is contained here. |
 | Game Engine Tests | Unit tests that run against Game Engine in the CI/CD pipeline. |
