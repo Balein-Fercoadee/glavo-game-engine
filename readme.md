@@ -179,3 +179,13 @@ GameDatabase holds all of the game's data in memory and is what is saved to and 
 The [Windows release workflow](https://github.com/Balein-Fercoadee/glavo-game-engine/actions/workflows/game-database-editor-release.yml) publishes a self-contained, unpackaged `win-x64` build. To create a GitHub release, push a tag named `gamedatabaseeditor-v<version>` (for example, `gamedatabaseeditor-v1.0.0`). The workflow attaches `GameDatabaseEditor-win-x64.zip` to the release. You can also run the workflow manually to download the ZIP from its workflow artifacts.
 
 Extract the ZIP, or publish from Solution Explorer on Windows. Run `GameDatabaseEditor.exe` from the extracted or publish output folder and keep the accompanying files and folders together. This distribution does not require a signing certificate or the Microsoft Store. Note: It is for 64-bit Windows only.
+
+## License
+
+The Glavo Game Engine is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+The Glavo Game Engine is a spiritual port of the SAGA (Scott Adams Graphics Adventures) engine; the file formats are fundamentally different. My intent is to create a C#-first port of the engine that defined text-based games. Partially as an exercise and partially as a homage to someone who steered me towards a lifelong love of computing.
+
+Please support him by visiting [Scott Adams's site](https://www.msadams.com/).
