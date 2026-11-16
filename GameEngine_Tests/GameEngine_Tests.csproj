@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\GameDatabaseEditor\Utilities\RoomEditSession.cs" Link="RoomEditSession.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="test_data\fake_game.gge">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -6,6 +6,8 @@ namespace GameEngine.GameData;
 
 public class Room : BaseGameObject, IIdentifiable
 {
+    private string _name = string.Empty;
+
     public int Id { get; set; }
 
     /// <summary>
@@ -52,7 +54,18 @@ public class Room : BaseGameObject, IIdentifiable
     /// <summary>
     /// Gets or sets the name of the <c>Room</c>.
     /// </summary>
-    public string Name { get; set; }
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            if (_name != value)
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     public Room()
     {

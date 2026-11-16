@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:GameDatabaseEditor"
              xmlns:converters="clr-namespace:GameDatabaseEditor.Converters"
              x:Class="GameDatabaseEditor.MainPage"
-             Title="Glavo Game Engine Database Editor" Height="450" Width="1000">
+             Title="Glavo Game Engine Database Editor" Height="450" Width="800">
     <ContentPage.Resources>
         <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
         <local:IdToColorConverter x:Key="idToColor" />
@@ -31,7 +31,7 @@
         <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" FlowDirection="LeftToRight">
             <Button x:Name="btnNewDatabase" Text="New Database" Clicked="btnNewDatabase_Clicked" />
             <Button x:Name="btnOpenDatabase" Text="Open Database" Clicked="btnOpenDatabase_Clicked" />
-            <Button x:Name="btnSaveDatabase" Text="Save Database" />
+            <Button x:Name="btnSaveDatabase" Text="Save Database" Clicked="btnSaveDatabase_Clicked" />
         </StackLayout>
         
         <!-- General Database Information -->
@@ -87,6 +87,19 @@
                 </Picker>
             </Border>
         </Grid>
+
+        <!-- Color key for the collection views -->
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="10,0,0,0" VerticalOptions="Start">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Color Key&#10;" FontAttributes="Bold" />
+                    <Span Text="Light blue" TextColor="LightBlue" />
+                    <Span Text=" - Sacred word; These words are present in all games and are assumed to exist by the game engine.&#10;" />
+                    <Span Text="Gold" TextColor="Gold" />
+                    <Span Text=" - Treasure item; These items allow the player to score points when placed in the treasure room." />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
         
         <!-- Room Section -->
         <Grid Grid.Row="2" Grid.Column="0">
@@ -97,17 +110,20 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Rooms" />
             <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoom" Text="Add Room" Clicked="btnAddRoom_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                <CollectionView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single">
+                <CollectionView x:Name="lstRooms" ItemsSource="{Binding Rooms}" SelectionMode="Single" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="Room_DoubleTapped" />
+                                </Label.GestureRecognizers>
                                 <Label.Text>
                                     <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
@@ -139,7 +155,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
@@ -179,7 +195,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
@@ -219,7 +235,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
@@ -259,7 +275,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="300" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 

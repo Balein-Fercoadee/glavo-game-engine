@@ -8,6 +8,7 @@ namespace GameDatabaseEditor;
 public partial class MainPage : ContentPage
 {
     public GameDatabase _gameDatabase;
+    private bool _roomEditorOpen;
 
     public MainPage()
     {
@@ -19,7 +20,10 @@ public partial class MainPage : ContentPage
 
     private async void btnAddRoom_Clicked(object sender, EventArgs e)
     {
-        var newRoom = new Room();
+        var newRoom = new Room
+        {
+            Id = GeneralUtilities.GetIdNumber(_gameDatabase.Rooms.OrderBy(r => r.Id).Cast<IIdentifiable>().ToList())
+        };
         var roomView = new RoomEditorView();
         roomView.Rooms = _gameDatabase.Rooms;
         roomView.Items = _gameDatabase.Items;
@@ -30,9 +34,9 @@ public partial class MainPage : ContentPage
 
         await this.ShowPopupAsync(popup);
 
-        if (popup.Result != null && popup.Result.Result != null && (bool)(popup.Result.Result) == true)
+        if (popup.Result?.Result is true)
         {
-            // Add the Room to the Room collection
+            _gameDatabase.Rooms.Add(newRoom);
         }
     }
 
@@ -47,6 +51,7 @@ public partial class MainPage : ContentPage
 
         popup.EditorView = editorView;
         popup.EditorType = editorType;
+        popup.EditorMode = editorMode;
 
         return popup;
     }
@@ -56,13 +61,55 @@ public partial class MainPage : ContentPage
         Room? removedRoom = lstRooms.SelectedItem as Room;
         if (removedRoom != null)
         {
-            _gameDatabase.Rooms.Remove(removedRoom);
+            GeneralUtilities.RemoveRoom(_gameDatabase, removedRoom);
         }
     }
 
-    private void btnEditRoom_Clicked(object sender, EventArgs e)
+    private async void btnEditRoom_Clicked(object sender, EventArgs e)
     {
+        if (lstRooms.SelectedItem is Room room)
+        {
+            await EditRoomAsync(room);
+        }
+    }
 
+    private async void Room_DoubleTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject { BindingContext: Room room })
+        {
+            await EditRoomAsync(room);
+        }
+    }
+
+    private async Task EditRoomAsync(Room room)
+    {
+        if (_roomEditorOpen)
+        {
+            return;
+        }
+
+        _roomEditorOpen = true;
+        try
+        {
+            var editSession = new RoomEditSession(room);
+            var roomView = new RoomEditorView
+            {
+                Rooms = _gameDatabase.Rooms,
+                Items = _gameDatabase.Items,
+                EditedRoom = editSession.Draft
+            };
+            var popup = SetupEditorPopup(roomView, EditorTypes.Room, EditorModes.Edit);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                editSession.Save();
+            }
+        }
+        finally
+        {
+            _roomEditorOpen = false;
+        }
     }
 
     private void btnAddWord_Clicked(object sender, EventArgs e)
@@ -111,6 +158,29 @@ public partial class MainPage : ContentPage
             _gameDatabase = GeneralUtilities.GetFreshDatabase();
 
             this.BindingContext = _gameDatabase;
+        }
+    }
+
+    private async void btnSaveDatabase_Clicked(object sender, EventArgs e)
+    {
+        var file = await FilePicker.Default.PickAsync(new PickOptions
+        {
+            PickerTitle = "Save GGE Database",
+            FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { DevicePlatform.WinUI, new[] { ".gge" } }, // file extension
+                })
+        });
+
+        if (file != null)
+        {
+            string? filePath = Path.GetDirectoryName(file.FullPath);
+            string fileName = file.FileName;
+
+            if (filePath != null)
+            {
+                _gameDatabase.Save(filePath, fileName);
+            }
         }
     }
 }
