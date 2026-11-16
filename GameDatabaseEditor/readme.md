@@ -15,12 +15,13 @@ alternative to editing `.gge` database files by hand.
 - Edit an existing room by double-clicking it or selecting it and choosing
   **Edit Room**. Change its name, description, and exits; **Save** applies the
   changes to the in-memory room, while **Cancel** discards them.
-- Remove a selected room from the in-memory database.
+- Add a new room with **Add Room**. It is assigned the lowest unused room ID.
+- Remove a selected room from the in-memory database. Exits, the starting and
+  treasure rooms, and `MoveToRoom` action commands that refer to it are cleared.
 
 ## Current limitations
 
-Adding rooms and managing words, items, messages, and actions are not yet
-implemented.
+Managing words, items, messages, and actions is not yet implemented.
 
 See the [repository README](../README.md) for requirements and Windows
 publishing instructions.

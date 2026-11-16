@@ -39,6 +39,43 @@ namespace GameDatabaseEditor.Utilities
             return id;
         }
 
+        /// <summary>
+        /// Removes a <c>Room</c> from the database and clears every reference to it:
+        /// exits of other rooms, the starting and treasure rooms, and any
+        /// <c>MoveToRoom</c> commands in actions.
+        /// </summary>
+        public static void RemoveRoom(GameDatabase database, Room room)
+        {
+            const int unsetRoomId = -1;
+            int roomId = room.Id;
+
+            database.Rooms.Remove(room);
+
+            foreach (Room other in database.Rooms)
+            {
+                if (other.ExitIdNorth == roomId) other.ExitIdNorth = unsetRoomId;
+                if (other.ExitIdSouth == roomId) other.ExitIdSouth = unsetRoomId;
+                if (other.ExitIdEast == roomId) other.ExitIdEast = unsetRoomId;
+                if (other.ExitIdWest == roomId) other.ExitIdWest = unsetRoomId;
+                if (other.ExitIdUp == roomId) other.ExitIdUp = unsetRoomId;
+                if (other.ExitIdDown == roomId) other.ExitIdDown = unsetRoomId;
+            }
+
+            if (database.StartingRoomId == roomId) database.StartingRoomId = unsetRoomId;
+            if (database.TreasureRoomId == roomId) database.TreasureRoomId = unsetRoomId;
+
+            foreach (GameEngine.GameData.Action action in database.Actions)
+            {
+                var staleCommands = action.Commands
+                    .Where(c => c.Command == ActionCommands.MoveToRoom && c.ObjectId == roomId)
+                    .ToList();
+                foreach (ActionCommand command in staleCommands)
+                {
+                    action.Commands.Remove(command);
+                }
+            }
+        }
+
         public static bool IsDatabaseEmpty(GameDatabase database)
         {
             bool isFilled = false;

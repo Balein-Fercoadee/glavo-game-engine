@@ -20,7 +20,10 @@ public partial class MainPage : ContentPage
 
     private async void btnAddRoom_Clicked(object sender, EventArgs e)
     {
-        var newRoom = new Room();
+        var newRoom = new Room
+        {
+            Id = GeneralUtilities.GetIdNumber(_gameDatabase.Rooms.OrderBy(r => r.Id).Cast<IIdentifiable>().ToList())
+        };
         var roomView = new RoomEditorView();
         roomView.Rooms = _gameDatabase.Rooms;
         roomView.Items = _gameDatabase.Items;
@@ -31,9 +34,9 @@ public partial class MainPage : ContentPage
 
         await this.ShowPopupAsync(popup);
 
-        if (popup.Result != null && popup.Result.Result != null && (bool)(popup.Result.Result) == true)
+        if (popup.Result?.Result is true)
         {
-            // Add the Room to the Room collection
+            _gameDatabase.Rooms.Add(newRoom);
         }
     }
 
@@ -58,7 +61,7 @@ public partial class MainPage : ContentPage
         Room? removedRoom = lstRooms.SelectedItem as Room;
         if (removedRoom != null)
         {
-            _gameDatabase.Rooms.Remove(removedRoom);
+            GeneralUtilities.RemoveRoom(_gameDatabase, removedRoom);
         }
     }
 
