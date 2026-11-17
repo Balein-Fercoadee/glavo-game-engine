@@ -17,6 +17,7 @@ public partial class RoomEditorView : ContentView
         {
             _editedRoom = value;
             this.BindingContext = _editedRoom;
+            RefreshAvailableItems();
         }
     }
 
@@ -39,7 +40,7 @@ public partial class RoomEditorView : ContentView
         set
         {
             _items = value;
-            pckAddRoomItem.ItemsSource = _items?.ToList();
+            RefreshAvailableItems();
         }
     }
 
@@ -58,6 +59,7 @@ public partial class RoomEditorView : ContentView
             }
 
             pckAddRoomItem.SelectedItem = null;
+            RefreshAvailableItems();
         }
     }
 
@@ -67,7 +69,21 @@ public partial class RoomEditorView : ContentView
         {
             lstRoomItems.SelectedItem = null;
             _editedRoom?.ContainedItemIds.Remove(itemId);
+            RefreshAvailableItems();
         }
+    }
+
+    private void RefreshAvailableItems()
+    {
+        var selectedItem = pckAddRoomItem.SelectedItem as Item;
+        var availableItems = _items is not null && _editedRoom is not null
+            ? _items.Where(item => !_editedRoom.ContainedItemIds.Contains(item.Id)).ToList()
+            : new List<Item>();
+
+        pckAddRoomItem.ItemsSource = availableItems;
+        pckAddRoomItem.SelectedItem = selectedItem is not null && availableItems.Contains(selectedItem)
+            ? selectedItem
+            : null;
     }
 
     private List<Room> SetupRoomCollection(IEnumerable<Room>? rooms)
