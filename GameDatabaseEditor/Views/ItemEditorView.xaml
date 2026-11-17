@@ -4,8 +4,9 @@
              xmlns:gameData="clr-namespace:GameEngine.GameData;assembly=GameEngine"
              x:Class="GameDatabaseEditor.Views.ItemEditorView"
              x:DataType="gameData:Item"
+             HeightRequest="250"
              WidthRequest="500">
-    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
         <Label Grid.Row="0" Grid.Column="0" Text="ID:" />
         <Label Grid.Row="0" Grid.Column="1" Text="{Binding Id}" />
 
@@ -16,12 +17,13 @@
         <Entry Grid.Row="2" Grid.Column="1" Text="{Binding ShortName}" />
 
         <Label Grid.Row="3" Grid.Column="0" Text="Description:" />
-        <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Description}" />
+        <Editor Grid.Row="3" Grid.Column="1" Text="{Binding Description}" HeightRequest="50" />
 
         <Label Grid.Row="4" Grid.Column="0" Text="Can take:" />
-        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding CanTake}" HorizontalOptions="Start" />
-
-        <Label Grid.Row="5" Grid.Column="0" Text="Treasure:" />
-        <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsTreasure}" HorizontalOptions="Start" />
+        <HorizontalStackLayout Grid.Row="4" Grid.Column="1">
+            <CheckBox IsChecked="{Binding CanTake}" />
+            <Label Text="Is a Treasure:" VerticalTextAlignment="Center" />
+            <CheckBox IsChecked="{Binding IsTreasure}" />
+        </HorizontalStackLayout>
     </Grid>
 </ContentView>

@@ -28,6 +28,8 @@
     <Compile Include="..\GameDatabaseEditor\Utilities\RoomEditSession.cs" Link="RoomEditSession.cs" />
     <Compile Include="..\GameDatabaseEditor\Utilities\ItemReferences.cs" Link="ItemReferences.cs" />
     <Compile Include="..\GameDatabaseEditor\Utilities\ItemEditSession.cs" Link="ItemEditSession.cs" />
+    <Compile Include="..\GameDatabaseEditor\Utilities\MessageEditSession.cs" Link="MessageEditSession.cs" />
+    <Compile Include="..\GameDatabaseEditor\Utilities\MessageReferences.cs" Link="MessageReferences.cs" />
   </ItemGroup>
 
   <ItemGroup>

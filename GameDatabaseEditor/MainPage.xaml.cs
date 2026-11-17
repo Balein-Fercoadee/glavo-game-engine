@@ -10,6 +10,7 @@ public partial class MainPage : ContentPage
     public GameDatabase _gameDatabase;
     private bool _roomEditorOpen;
     private bool _itemEditorOpen;
+    private bool _messageEditorOpen;
 
     public MainPage()
     {
@@ -211,6 +212,101 @@ public partial class MainPage : ContentPage
 
         lstItems.SelectedItem = null;
         _gameDatabase.Items.Remove(item);
+    }
+
+    private async void btnAddMessage_Clicked(object sender, EventArgs e)
+    {
+        if (_messageEditorOpen)
+        {
+            return;
+        }
+
+        _messageEditorOpen = true;
+        try
+        {
+            var message = new Message
+            {
+                Id = GeneralUtilities.GetIdNumber(_gameDatabase.Messages.OrderBy(m => m.Id).Cast<IIdentifiable>().ToList())
+            };
+            var popup = SetupEditorPopup(new MessageEditorView(message), EditorTypes.Message, EditorModes.Add);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                _gameDatabase.Messages.Add(message);
+            }
+        }
+        finally
+        {
+            _messageEditorOpen = false;
+        }
+    }
+
+    private async void btnEditMessage_Clicked(object sender, EventArgs e)
+    {
+        if (lstMessages.SelectedItem is Message message)
+        {
+            await EditMessageAsync(message);
+        }
+    }
+
+    private async void Message_DoubleTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject { BindingContext: Message message })
+        {
+            await EditMessageAsync(message);
+        }
+    }
+
+    private async Task EditMessageAsync(Message message)
+    {
+        if (_messageEditorOpen)
+        {
+            return;
+        }
+
+        _messageEditorOpen = true;
+        try
+        {
+            var editSession = new MessageEditSession(_gameDatabase.Messages, message);
+            var popup = SetupEditorPopup(new MessageEditorView(editSession.Draft), EditorTypes.Message, EditorModes.Edit);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                if (editSession.Save())
+                {
+                    lstMessages.SelectedItem = editSession.Draft;
+                }
+                else
+                {
+                    await DisplayAlertAsync("Cannot save message", "The message is no longer in the database.", "OK");
+                }
+            }
+        }
+        finally
+        {
+            _messageEditorOpen = false;
+        }
+    }
+
+    private async void btnRemoveMessage_Clicked(object sender, EventArgs e)
+    {
+        if (lstMessages.SelectedItem is not Message message)
+        {
+            return;
+        }
+
+        var references = MessageReferences.Find(_gameDatabase, message.Id);
+        if (references.Count > 0)
+        {
+            await DisplayAlertAsync("Cannot remove message",
+                $"Remove the message from these locations first:\n{string.Join("\n", references)}", "OK");
+            return;
+        }
+
+        lstMessages.SelectedItem = null;
+        _gameDatabase.Messages.Remove(message);
     }
 
     private async void btnOpenDatabase_Clicked(object sender, EventArgs e)

@@ -242,12 +242,15 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Messages"/>
-            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Message" />
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddMessage" Text="Add Message" Clicked="btnAddMessage_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <CollectionView x:Name="lstMessages" ItemsSource="{Binding Messages}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="Message_DoubleTapped" />
+                                </Label.GestureRecognizers>
                                 <Label.Text>
                                     <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
@@ -262,10 +265,10 @@
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMessage"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstMessages}}"
-                    Text="Edit Message" />
+                    Text="Edit Message" Clicked="btnEditMessage_Clicked" />
             <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveMessage"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstMessages}}"
-                    Text="Remove Message" />
+                    Text="Remove Message" Clicked="btnRemoveMessage_Clicked" />
         </Grid>
 
         <!-- Action Section -->

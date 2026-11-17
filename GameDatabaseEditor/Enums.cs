@@ -16,5 +16,6 @@ namespace GameDatabaseEditor
     {
         Room,
         Item,
+        Message,
     }
 }
