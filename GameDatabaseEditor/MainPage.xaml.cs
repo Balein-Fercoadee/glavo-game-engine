@@ -69,7 +69,7 @@ public partial class MainPage : ContentPage
         if (references.Count > 0)
         {
             await DisplayAlertAsync("Cannot remove room",
-                $"Remove the room from these locations first:\n{string.Join("\n", references)}", "OK");
+                $"Change these references before removing the room:\n{string.Join("\n", references)}", "OK");
             return;
         }
 

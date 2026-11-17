@@ -21,15 +21,15 @@ alternative to editing `.gge` database files by hand.
   excludes items already in the room. Removing an item from a room does not
   remove it from the database.
 - Remove a selected room from the in-memory database unless an action refers
-  to it. When removal is allowed, exits and the starting and treasure room
-  settings that refer to it are cleared.
+  to it or it is the starting or treasure room. When removal is allowed,
+  exits that refer to it are cleared.
 - Edit an item's name, short name, description, takeable status, and treasure
   status. Treasure items are highlighted in gold in the main and room item
   lists.
 - Edit a message's text using a multiline field.
-- Prevent removal of items referenced by rooms or actions, and rooms and
-  messages referenced by action commands. The editor identifies the references
-  that must be removed first.
+- Prevent removal of items referenced by rooms or actions, rooms referenced by
+  action commands or room settings, and messages referenced by action commands.
+  The editor identifies the references that must be changed first.
 
 ## Current limitations
 

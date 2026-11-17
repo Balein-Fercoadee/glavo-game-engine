@@ -10,7 +10,7 @@ public class RoomReferencesTests
     [TestMethod]
     public void ReferencedRoomCannotBeRemoved()
     {
-        var database = new GameDatabase { StartingRoomId = 12, TreasureRoomId = 12 };
+        var database = new GameDatabase { StartingRoomId = 12, TreasureRoomId = 13 };
         var room = new Room { Id = 12 };
         var other = new Room { Id = 13, ExitIdNorth = 12 };
         database.Rooms.Add(room);
@@ -23,13 +23,13 @@ public class RoomReferencesTests
         database.Actions.Add(first);
         database.Actions.Add(second);
 
-        CollectionAssert.AreEqual(new[] { "Action 7: command", "Action 8: command" },
+        CollectionAssert.AreEqual(new[] { "Starting Room ID", "Action 7: command", "Action 8: command" },
             RoomReferences.Find(database, 12));
         Assert.ThrowsException<InvalidOperationException>(() => GeneralUtilities.RemoveRoom(database, room));
         Assert.IsTrue(database.Rooms.Contains(room));
         Assert.AreEqual(12, other.ExitIdNorth);
         Assert.AreEqual(12, database.StartingRoomId);
-        Assert.AreEqual(12, database.TreasureRoomId);
+        Assert.AreEqual(13, database.TreasureRoomId);
         Assert.AreEqual(2, first.Commands.Count);
         Assert.AreEqual(1, second.Commands.Count);
     }
@@ -37,7 +37,7 @@ public class RoomReferencesTests
     [TestMethod]
     public void UnrelatedActionIdsDoNotBlockRemovalOrRoomCleanup()
     {
-        var database = new GameDatabase { StartingRoomId = 12, TreasureRoomId = 12 };
+        var database = new GameDatabase { StartingRoomId = 13, TreasureRoomId = 13 };
         var room = new Room { Id = 12 };
         var other = new Room
         {
@@ -57,10 +57,37 @@ public class RoomReferencesTests
         GeneralUtilities.RemoveRoom(database, room);
 
         Assert.IsFalse(database.Rooms.Contains(room));
-        Assert.AreEqual(-1, database.StartingRoomId);
-        Assert.AreEqual(-1, database.TreasureRoomId);
+        Assert.AreEqual(13, database.StartingRoomId);
+        Assert.AreEqual(13, database.TreasureRoomId);
         CollectionAssert.AreEqual(new[] { -1, -1, -1, -1, -1, -1 },
             new[] { other.ExitIdNorth, other.ExitIdSouth, other.ExitIdEast, other.ExitIdWest, other.ExitIdUp, other.ExitIdDown });
         Assert.AreEqual(3, action.Commands.Count);
+    }
+
+    [DataTestMethod]
+    [DataRow(true, false)]
+    [DataRow(false, true)]
+    [DataRow(true, true)]
+    public void RoomSettingsBlockRemoval(bool isStartingRoom, bool isTreasureRoom)
+    {
+        var database = new GameDatabase
+        {
+            StartingRoomId = isStartingRoom ? 12 : 13,
+            TreasureRoomId = isTreasureRoom ? 12 : 13
+        };
+        var room = new Room { Id = 12 };
+        var other = new Room { Id = 13, ExitIdNorth = 12 };
+        database.Rooms.Add(room);
+        database.Rooms.Add(other);
+        var expected = new List<string>();
+        if (isStartingRoom) expected.Add("Starting Room ID");
+        if (isTreasureRoom) expected.Add("Treasure Room ID");
+
+        CollectionAssert.AreEqual(expected, RoomReferences.Find(database, 12));
+        Assert.ThrowsException<InvalidOperationException>(() => GeneralUtilities.RemoveRoom(database, room));
+        Assert.IsTrue(database.Rooms.Contains(room));
+        Assert.AreEqual(12, other.ExitIdNorth);
+        Assert.AreEqual(isStartingRoom ? 12 : 13, database.StartingRoomId);
+        Assert.AreEqual(isTreasureRoom ? 12 : 13, database.TreasureRoomId);
     }
 }
