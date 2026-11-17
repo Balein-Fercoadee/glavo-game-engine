@@ -40,14 +40,18 @@ namespace GameDatabaseEditor.Utilities
         }
 
         /// <summary>
-        /// Removes a <c>Room</c> from the database and clears every reference to it:
-        /// exits of other rooms, the starting and treasure rooms, and any
-        /// <c>MoveToRoom</c> commands in actions.
+        /// Removes a <c>Room</c> and clears references from exits and room settings.
         /// </summary>
+        /// <exception cref="InvalidOperationException">The room is referenced by an action.</exception>
         public static void RemoveRoom(GameDatabase database, Room room)
         {
             const int unsetRoomId = -1;
             int roomId = room.Id;
+
+            if (RoomReferences.Find(database, roomId).Count > 0)
+            {
+                throw new InvalidOperationException("The room is referenced by an action.");
+            }
 
             database.Rooms.Remove(room);
 
@@ -63,17 +67,6 @@ namespace GameDatabaseEditor.Utilities
 
             if (database.StartingRoomId == roomId) database.StartingRoomId = unsetRoomId;
             if (database.TreasureRoomId == roomId) database.TreasureRoomId = unsetRoomId;
-
-            foreach (GameEngine.GameData.Action action in database.Actions)
-            {
-                var staleCommands = action.Commands
-                    .Where(c => c.Command == ActionCommands.MoveToRoom && c.ObjectId == roomId)
-                    .ToList();
-                foreach (ActionCommand command in staleCommands)
-                {
-                    action.Commands.Remove(command);
-                }
-            }
         }
 
         public static bool IsDatabaseEmpty(GameDatabase database)

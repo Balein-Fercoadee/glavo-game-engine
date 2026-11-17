@@ -8,20 +8,33 @@ alternative to editing `.gge` database files by hand.
 
 - Start a new in-memory database with the engine's built-in words, or open an
   existing `.gge` file using the Windows file picker.
-- Save the database and its changes to a `.gge` file using the Windows file
-  picker.
+- Save the database and its changes to a selected existing `.gge` file using the
+  Windows file picker.
 - View and edit the database name, description, starting room, and treasure room.
 - View rooms, words, items, messages, and actions.
-- Edit an existing room by double-clicking it or selecting it and choosing
-  **Edit Room**. Change its name, description, and exits; **Save** applies the
-  changes to the in-memory room, while **Cancel** discards them.
-- Add a new room with **Add Room**. It is assigned the lowest unused room ID.
-- Remove a selected room from the in-memory database. Exits, the starting and
-  treasure rooms, and `MoveToRoom` action commands that refer to it are cleared.
+- Add, edit, and remove rooms, items, and messages. New objects receive the
+  lowest unused ID of their type. To edit an existing object, double-click it
+  or select it and choose **Edit**. **Save** applies the changes to the
+  in-memory database; **Cancel** discards them. Use **Save Database** to write
+  changes to a file.
+- Edit a room's name, description, exits, and contained items. The item picker
+  excludes items already in the room. Removing an item from a room does not
+  remove it from the database.
+- Remove a selected room from the in-memory database unless an action refers
+  to it. When removal is allowed, exits and the starting and treasure room
+  settings that refer to it are cleared.
+- Edit an item's name, short name, description, takeable status, and treasure
+  status. Treasure items are highlighted in gold in the main and room item
+  lists.
+- Edit a message's text using a multiline field.
+- Prevent removal of items referenced by rooms or actions, and rooms and
+  messages referenced by action commands. The editor identifies the references
+  that must be removed first.
 
 ## Current limitations
 
-Managing words, items, messages, and actions is not yet implemented.
+Adding, editing, and removing words and actions is not yet implemented. The
+file picker is configured for Windows.
 
-See the [repository README](../README.md) for requirements and Windows
+See the [repository README](../readme.md) for requirements and Windows
 publishing instructions.

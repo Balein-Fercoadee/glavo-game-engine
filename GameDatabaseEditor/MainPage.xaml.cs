@@ -58,13 +58,23 @@ public partial class MainPage : ContentPage
         return popup;
     }
 
-    private void btnRemoveRoom_Clicked(object sender, EventArgs e)
+    private async void btnRemoveRoom_Clicked(object sender, EventArgs e)
     {
-        Room? removedRoom = lstRooms.SelectedItem as Room;
-        if (removedRoom != null)
+        if (lstRooms.SelectedItem is not Room room)
         {
-            GeneralUtilities.RemoveRoom(_gameDatabase, removedRoom);
+            return;
         }
+
+        var references = RoomReferences.Find(_gameDatabase, room.Id);
+        if (references.Count > 0)
+        {
+            await DisplayAlertAsync("Cannot remove room",
+                $"Remove the room from these locations first:\n{string.Join("\n", references)}", "OK");
+            return;
+        }
+
+        lstRooms.SelectedItem = null;
+        GeneralUtilities.RemoveRoom(_gameDatabase, room);
     }
 
     private async void btnEditRoom_Clicked(object sender, EventArgs e)
