@@ -15,5 +15,6 @@ namespace GameDatabaseEditor
     public enum EditorTypes
     {
         Room,
+        Item,
     }
 }

@@ -58,6 +58,7 @@ public partial class GenericEditorPopup : Popup
         switch (_editorType)
         {
             case EditorTypes.Room:
+            case EditorTypes.Item:
                 editorType = _editorType.ToString();
                 break;
 

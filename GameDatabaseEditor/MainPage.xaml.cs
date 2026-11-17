@@ -9,6 +9,7 @@ public partial class MainPage : ContentPage
 {
     public GameDatabase _gameDatabase;
     private bool _roomEditorOpen;
+    private bool _itemEditorOpen;
 
     public MainPage()
     {
@@ -115,6 +116,101 @@ public partial class MainPage : ContentPage
     private void btnAddWord_Clicked(object sender, EventArgs e)
     {
 
+    }
+
+    private async void btnAddItem_Clicked(object sender, EventArgs e)
+    {
+        if (_itemEditorOpen)
+        {
+            return;
+        }
+
+        _itemEditorOpen = true;
+        try
+        {
+            var item = new Item
+            {
+                Id = GeneralUtilities.GetIdNumber(_gameDatabase.Items.OrderBy(i => i.Id).Cast<IIdentifiable>().ToList())
+            };
+            var popup = SetupEditorPopup(new ItemEditorView(item), EditorTypes.Item, EditorModes.Add);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                _gameDatabase.Items.Add(item);
+            }
+        }
+        finally
+        {
+            _itemEditorOpen = false;
+        }
+    }
+
+    private async void btnEditItem_Clicked(object sender, EventArgs e)
+    {
+        if (lstItems.SelectedItem is Item item)
+        {
+            await EditItemAsync(item);
+        }
+    }
+
+    private async void Item_DoubleTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject { BindingContext: Item item })
+        {
+            await EditItemAsync(item);
+        }
+    }
+
+    private async Task EditItemAsync(Item item)
+    {
+        if (_itemEditorOpen)
+        {
+            return;
+        }
+
+        _itemEditorOpen = true;
+        try
+        {
+            var editSession = new ItemEditSession(_gameDatabase.Items, item);
+            var popup = SetupEditorPopup(new ItemEditorView(editSession.Draft), EditorTypes.Item, EditorModes.Edit);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                if (editSession.Save())
+                {
+                    lstItems.SelectedItem = editSession.Draft;
+                }
+                else
+                {
+                    await DisplayAlertAsync("Cannot save item", "The item is no longer in the database.", "OK");
+                }
+            }
+        }
+        finally
+        {
+            _itemEditorOpen = false;
+        }
+    }
+
+    private async void btnRemoveItem_Clicked(object sender, EventArgs e)
+    {
+        if (lstItems.SelectedItem is not Item item)
+        {
+            return;
+        }
+
+        var references = ItemReferences.Find(_gameDatabase, item.Id);
+        if (references.Count > 0)
+        {
+            await DisplayAlertAsync("Cannot remove item",
+                $"Remove the item from these locations first:\n{string.Join("\n", references)}", "OK");
+            return;
+        }
+
+        lstItems.SelectedItem = null;
+        _gameDatabase.Items.Remove(item);
     }
 
     private async void btnOpenDatabase_Clicked(object sender, EventArgs e)

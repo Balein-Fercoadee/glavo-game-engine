@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gameData="clr-namespace:GameEngine.GameData;assembly=GameEngine"
+             x:Class="GameDatabaseEditor.Views.ItemEditorView"
+             x:DataType="gameData:Item"
+             WidthRequest="500">
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+        <Label Grid.Row="0" Grid.Column="0" Text="ID:" />
+        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Id}" />
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Name:" />
+        <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Name}" />
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Short name:" />
+        <Entry Grid.Row="2" Grid.Column="1" Text="{Binding ShortName}" />
+
+        <Label Grid.Row="3" Grid.Column="0" Text="Description:" />
+        <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Description}" />
+
+        <Label Grid.Row="4" Grid.Column="0" Text="Can take:" />
+        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding CanTake}" HorizontalOptions="Start" />
+
+        <Label Grid.Row="5" Grid.Column="0" Text="Treasure:" />
+        <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsTreasure}" HorizontalOptions="Start" />
+    </Grid>
+</ContentView>

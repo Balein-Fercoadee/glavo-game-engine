@@ -199,12 +199,15 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Items"/>
-            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Item" />
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddItem" Text="Add Item" Clicked="btnAddItem_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <CollectionView x:Name="lstItems" ItemsSource="{Binding Items}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource treasureItem}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="Item_DoubleTapped" />
+                                </Label.GestureRecognizers>
                                 <Label.Text>
                                     <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
@@ -219,10 +222,10 @@
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditItem"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstItems}}"
-                    Text="Edit Item" />
+                    Text="Edit Item" Clicked="btnEditItem_Clicked" />
             <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveItem"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstItems}}"
-                    Text="Remove Item" />
+                    Text="Remove Item" Clicked="btnRemoveItem_Clicked" />
         </Grid>
 
         <!-- Message Section -->
