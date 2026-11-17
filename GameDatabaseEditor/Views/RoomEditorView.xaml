@@ -8,6 +8,7 @@
              HeightRequest="600" WidthRequest="800">
     <ContentView.Resources>
         <local:IdToObjectConverter x:Key="idToObject" />
+        <local:IdToDisplayTextConverter x:Key="idToText" />
     </ContentView.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -128,18 +129,18 @@
 
         <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
             <Grid RowDefinitions="Auto,*">
-                <Label Grid.Row="0" Text="Items" FontAttributes="Bold" />
+                <Label Grid.Row="0" Text="Items with this Room" FontAttributes="Bold" />
                 <CollectionView x:Name="lstRoomItems"
                                 Grid.Row="1"
                                 ItemsSource="{Binding ContainedItemIds}"
                                 SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Label BindingContext="{Binding ., Converter={StaticResource idToObject}, ConverterParameter={Binding Path=Items, Source={x:Reference roomEditorView}}}">
+                            <Label>
                                 <Label.Text>
-                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
-                                        <Binding Path="Id" />
-                                        <Binding Path="Name" />
+                                    <MultiBinding Mode="OneWay" Converter="{StaticResource idToText}">
+                                        <Binding Path="." />
+                                        <Binding Path="Items" Source="{x:Reference roomEditorView}" />
                                     </MultiBinding>
                                 </Label.Text>
                             </Label>
