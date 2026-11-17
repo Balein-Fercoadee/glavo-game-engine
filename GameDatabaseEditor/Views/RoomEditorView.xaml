@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:local="clr-namespace:GameDatabaseEditor"
+             xmlns:converters="clr-namespace:GameDatabaseEditor.Converters"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GameDatabaseEditor.Views.RoomEditorView"
@@ -9,6 +10,8 @@
     <ContentView.Resources>
         <local:IdToObjectConverter x:Key="idToObject" />
         <local:IdToDisplayTextConverter x:Key="idToText" />
+        <converters:IdToTreasureColorConverter x:Key="idToTreasureColor" />
+        <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
     </ContentView.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -128,12 +131,25 @@
         </Border>
 
         <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
-            <Grid RowDefinitions="Auto,*">
-                <Label Grid.Row="0" Text="Items with this Room" FontAttributes="Bold" />
+            <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,*,*">
+                <Label Grid.Row="0" Grid.Column="0" Text="Items with this Room" FontAttributes="Bold" />
+                <Picker x:Name="pckAddRoomItem" Grid.Row="0" Grid.Column="1"
+                        Title="Select an item to add">
+                    <Picker.ItemDisplayBinding>
+                        <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
+                            <Binding Path="Id" />
+                            <Binding Path="Name" />
+                        </MultiBinding>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddRoomItem"
+                        IsEnabled="{Binding SelectedItem, Converter={StaticResource objectToBool}, Source={x:Reference pckAddRoomItem}}"
+                        Text="Add Item"
+                        Clicked="btnAddRoomItem_Clicked" />
                 <CollectionView x:Name="lstRoomItems"
-                                Grid.Row="1"
+                                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                                 ItemsSource="{Binding ContainedItemIds}"
-                                SelectionMode="None">
+                                SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>
@@ -143,6 +159,12 @@
                                         <Binding Path="Items" Source="{x:Reference roomEditorView}" />
                                     </MultiBinding>
                                 </Label.Text>
+                                <Label.TextColor>
+                                    <MultiBinding Mode="OneWay" Converter="{StaticResource idToTreasureColor}">
+                                        <Binding Path="." />
+                                        <Binding Path="Items" Source="{x:Reference roomEditorView}" />
+                                    </MultiBinding>
+                                </Label.TextColor>
                             </Label>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -150,6 +172,11 @@
                         <Label Text="No items in this room." HorizontalOptions="Center" />
                     </CollectionView.EmptyView>
                 </CollectionView>
+
+                <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveRoomItem"
+                        IsEnabled="{Binding SelectedItem, Converter={StaticResource objectToBool}, Source={x:Reference lstRoomItems}}"
+                        Text="Remove Item"
+                        Clicked="btnRemoveRoomItem_Clicked" />
             </Grid>
         </Border>
     </Grid>
