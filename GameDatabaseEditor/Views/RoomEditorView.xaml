@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:local="clr-namespace:GameDatabaseEditor"
              xmlns:converters="clr-namespace:GameDatabaseEditor.Converters"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,10 +7,10 @@
              x:Name="roomEditorView"
              HeightRequest="600" WidthRequest="800">
     <ContentView.Resources>
-        <local:IdToObjectConverter x:Key="idToObject" />
-        <local:IdToDisplayTextConverter x:Key="idToText" />
+        <converters:IdToObjectConverter x:Key="idToObject" />
+        <converters:IdToDisplayTextConverter x:Key="idToText" />
         <converters:IdToTreasureColorConverter x:Key="idToTreasureColor" />
-        <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
+        <converters:ObjectExistanceToBoolConverter x:Key="objectToBool" />
     </ContentView.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

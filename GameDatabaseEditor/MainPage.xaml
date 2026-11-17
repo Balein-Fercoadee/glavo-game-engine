@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:GameDatabaseEditor"
              xmlns:converters="clr-namespace:GameDatabaseEditor.Converters"
              x:Class="GameDatabaseEditor.MainPage"
              Title="Glavo Game Engine Database Editor" Height="450" Width="800">
     <ContentPage.Resources>
-        <local:ObjectExistanceToBoolConverter x:Key="objectToBool" />
-        <local:IdToColorConverter x:Key="idToColor" />
-        <local:IdToObjectConverter x:Key="idToObject" />
+        <converters:ObjectExistanceToBoolConverter x:Key="objectToBool" />
+        <converters:IdToColorConverter x:Key="idToColor" />
+        <converters:IdToObjectConverter x:Key="idToObject" />
         <converters:ItemListViewConverter x:Key="itemToView" />
         <converters:IsTreasureToColorConverter x:Key="treasureToColor" />
     </ContentPage.Resources>
