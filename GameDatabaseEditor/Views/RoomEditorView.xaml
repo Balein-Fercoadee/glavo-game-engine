@@ -4,6 +4,7 @@
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GameDatabaseEditor.Views.RoomEditorView"
+             x:Name="roomEditorView"
              HeightRequest="600" WidthRequest="800">
     <ContentView.Resources>
         <local:IdToObjectConverter x:Key="idToObject" />
@@ -18,6 +19,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Text="ID:" />
@@ -121,6 +123,32 @@
                         </MultiBinding>
                     </Picker.ItemDisplayBinding>
                 </Picker>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
+            <Grid RowDefinitions="Auto,*">
+                <Label Grid.Row="0" Text="Items" FontAttributes="Bold" />
+                <CollectionView x:Name="lstRoomItems"
+                                Grid.Row="1"
+                                ItemsSource="{Binding ContainedItemIds}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label BindingContext="{Binding ., Converter={StaticResource idToObject}, ConverterParameter={Binding Path=Items, Source={x:Reference roomEditorView}}}">
+                                <Label.Text>
+                                    <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
+                                        <Binding Path="Id" />
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label Text="No items in this room." HorizontalOptions="Center" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
             </Grid>
         </Border>
     </Grid>

@@ -22,6 +22,8 @@ public class RoomEditSessionTests
         Assert.AreEqual(room.Id, draft.Id);
         Assert.AreEqual(room.Name, draft.Name);
         Assert.AreEqual(room.Description, draft.Description);
+        CollectionAssert.AreEqual(new[] { 99 }, draft.ContainedItemIds.ToArray());
+        Assert.AreNotSame(room.ContainedItemIds, draft.ContainedItemIds);
         CollectionAssert.AreEqual(
             new[] { 1, 2, 3, 4, 5, 6 },
             new[] { draft.ExitIdNorth, draft.ExitIdSouth, draft.ExitIdEast, draft.ExitIdWest, draft.ExitIdUp, draft.ExitIdDown });
@@ -34,13 +36,18 @@ public class RoomEditSessionTests
         draft.ExitIdWest = 14;
         draft.ExitIdUp = 15;
         draft.ExitIdDown = 16;
+        draft.ContainedItemIds.Clear();
+        draft.ContainedItemIds.Add(17);
+        draft.ContainedItemIds.Add(18);
 
         Assert.AreEqual("Original", room.Name);
         Assert.AreEqual("Original description", room.Description);
+        CollectionAssert.AreEqual(new[] { 99 }, room.ContainedItemIds.ToArray());
         CollectionAssert.AreEqual(
             new[] { 1, 2, 3, 4, 5, 6 },
             new[] { room.ExitIdNorth, room.ExitIdSouth, room.ExitIdEast, room.ExitIdWest, room.ExitIdUp, room.ExitIdDown });
 
+        var originalItemIds = room.ContainedItemIds;
         session.Save();
 
         Assert.AreEqual(42, room.Id);
@@ -49,6 +56,20 @@ public class RoomEditSessionTests
         CollectionAssert.AreEqual(
             new[] { -1, 12, 13, 14, 15, 16 },
             new[] { room.ExitIdNorth, room.ExitIdSouth, room.ExitIdEast, room.ExitIdWest, room.ExitIdUp, room.ExitIdDown });
-        CollectionAssert.AreEqual(new[] { 99 }, room.ContainedItemIds.ToArray());
+        Assert.AreSame(originalItemIds, room.ContainedItemIds);
+        CollectionAssert.AreEqual(new[] { 17, 18 }, room.ContainedItemIds.ToArray());
+    }
+
+    [TestMethod]
+    public void SavingEmptyDraftClearsOriginalItemIds()
+    {
+        var room = new Room();
+        room.ContainedItemIds.Add(99);
+        var session = new RoomEditSession(room);
+        session.Draft.ContainedItemIds.Clear();
+
+        session.Save();
+
+        Assert.AreEqual(0, room.ContainedItemIds.Count);
     }
 }
