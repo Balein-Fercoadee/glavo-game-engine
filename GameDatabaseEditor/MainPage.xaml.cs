@@ -8,6 +8,7 @@ namespace GameDatabaseEditor;
 public partial class MainPage : ContentPage
 {
     public GameDatabase _gameDatabase;
+    private DatabaseValidation _databaseValidation;
     private bool _roomEditorOpen;
     private bool _itemEditorOpen;
     private bool _messageEditorOpen;
@@ -18,7 +19,18 @@ public partial class MainPage : ContentPage
         InitializeComponent();
 
         _gameDatabase = new GameDatabase();
+        _databaseValidation = new DatabaseValidation(_gameDatabase);
+        BindableLayout.SetItemsSource(validationErrorsLayout, _databaseValidation.Errors);
         this.BindingContext = _gameDatabase;
+    }
+
+    private void SetDatabase(GameDatabase database)
+    {
+        _databaseValidation.Dispose();
+        _gameDatabase = database;
+        _databaseValidation = new DatabaseValidation(database);
+        BindableLayout.SetItemsSource(validationErrorsLayout, _databaseValidation.Errors);
+        BindingContext = database;
     }
 
     private async void btnAddRoom_Clicked(object sender, EventArgs e)
@@ -448,11 +460,10 @@ public partial class MainPage : ContentPage
 
             if (filePath != null)
             {
-                _gameDatabase = new GameDatabase();
-                _gameDatabase.Load(filePath, fileName);
+                var database = new GameDatabase();
+                database.Load(filePath, fileName);
+                SetDatabase(database);
             }
-
-            this.BindingContext = _gameDatabase;
         }
     }
 
@@ -468,9 +479,7 @@ public partial class MainPage : ContentPage
 
         if (setupNewDatabase)
         {
-            _gameDatabase = GeneralUtilities.GetFreshDatabase();
-
-            this.BindingContext = _gameDatabase;
+            SetDatabase(GeneralUtilities.GetFreshDatabase());
         }
     }
 

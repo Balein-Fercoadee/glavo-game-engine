@@ -88,17 +88,34 @@
         </Grid>
 
         <!-- Color key for the collection views -->
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="10,0,0,0" VerticalOptions="Start">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Color Key&#10;" FontAttributes="Bold" />
-                    <Span Text="Light blue" TextColor="LightBlue" />
-                    <Span Text=" - Sacred word; These words are present in all games and are assumed to exist by the game engine.&#10;" />
-                    <Span Text="Gold" TextColor="Gold" />
-                    <Span Text=" - Treasure item; These items allow the player to score points when placed in the treasure room." />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="10,0,0,0" RowDefinitions="Auto,Auto,Auto">
+            <Label Grid.Row="0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Color Key&#10;" FontAttributes="Bold" />
+                        <Span Text="Light blue" TextColor="LightBlue" />
+                        <Span Text=" - Sacred word; These words are present in all games and are assumed to exist by the game engine.&#10;" />
+                        <Span Text="Gold" TextColor="Gold" />
+                        <Span Text=" - Treasure item; These items allow the player to score points when placed in the treasure room." />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="1" Text="Database Issues:" FontAttributes="Bold" />
+            <ScrollView Grid.Row="2" HeightRequest="100">
+                <VerticalStackLayout x:Name="validationErrorsLayout">
+                    <BindableLayout.EmptyView>
+                        <Label Text="Everything looks good!"
+                               TextColor="{AppThemeBinding Light=#006400, Dark=#8ED98E}" />
+                    </BindableLayout.EmptyView>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Label Text="{Binding ., StringFormat='&#x2022; {0}'}"
+                                   TextColor="{AppThemeBinding Light=#A34600, Dark=#F5A66D}" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
         
         <!-- Room Section -->
         <Grid Grid.Row="2" Grid.Column="0">
