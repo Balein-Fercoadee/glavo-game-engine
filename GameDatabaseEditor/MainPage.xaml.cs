@@ -11,6 +11,7 @@ public partial class MainPage : ContentPage
     private bool _roomEditorOpen;
     private bool _itemEditorOpen;
     private bool _messageEditorOpen;
+    private bool _wordEditorOpen;
 
     public MainPage()
     {
@@ -124,9 +125,119 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void btnAddWord_Clicked(object sender, EventArgs e)
+    private async void btnAddWord_Clicked(object sender, EventArgs e)
     {
+        await AddWordAsync();
+    }
 
+    private async Task AddWordAsync()
+    {
+        if (_wordEditorOpen)
+        {
+            return;
+        }
+
+        _wordEditorOpen = true;
+        try
+        {
+            var word = new Word
+            {
+                Id = GeneralUtilities.GetIdNumber(_gameDatabase.Words.OrderBy(w => w.Id).Cast<IIdentifiable>().ToList()),
+                WordType = WordTypes.Noun
+            };
+            var wordView = new WordEditorView(word);
+            var popup = SetupEditorPopup(wordView, EditorTypes.Word, EditorModes.Add);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                wordView.ApplyChanges();
+                string? duplicateToken = WordValidation.FindDuplicateToken(_gameDatabase.Words, word);
+                if (duplicateToken is not null)
+                {
+                    await DisplayAlertAsync("Cannot add word",
+                        $"The name or alias '{duplicateToken}' is already used by another word.", "OK");
+                }
+                else
+                {
+                    _gameDatabase.Words.Add(word);
+                    lstWords.SelectedItem = word;
+                }
+            }
+        }
+        finally
+        {
+            _wordEditorOpen = false;
+        }
+    }
+
+    private async void btnEditWord_Clicked(object sender, EventArgs e)
+    {
+        if (lstWords.SelectedItem is Word word)
+        {
+            await EditWordAsync(word);
+        }
+    }
+
+    private async void Word_DoubleTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject { BindingContext: Word word })
+        {
+            await EditWordAsync(word);
+        }
+    }
+
+    private async Task EditWordAsync(Word word)
+    {
+        if (_wordEditorOpen)
+        {
+            return;
+        }
+
+        _wordEditorOpen = true;
+        try
+        {
+            var editSession = new WordEditSession(_gameDatabase.Words, word);
+            var wordView = new WordEditorView(editSession.Draft);
+            var popup = SetupEditorPopup(wordView, EditorTypes.Word, EditorModes.Edit);
+            await this.ShowPopupAsync(popup);
+
+            if (popup.Result?.Result is true)
+            {
+                wordView.ApplyChanges();
+                if (editSession.Save())
+                {
+                    lstWords.SelectedItem = editSession.Draft;
+                }
+                else
+                {
+                    await DisplayAlertAsync("Cannot save word", "The word is no longer in the database.", "OK");
+                }
+            }
+        }
+        finally
+        {
+            _wordEditorOpen = false;
+        }
+    }
+
+    private async void btnRemoveWord_Clicked(object sender, EventArgs e)
+    {
+        if (lstWords.SelectedItem is not Word word)
+        {
+            return;
+        }
+
+        var references = WordReferences.Find(_gameDatabase, word.Id);
+        if (references.Count > 0)
+        {
+            await DisplayAlertAsync("Cannot remove word",
+                $"Change these references before removing the word:\n{string.Join("\n", references)}", "OK");
+            return;
+        }
+
+        lstWords.SelectedItem = null;
+        _gameDatabase.Words.Remove(word);
     }
 
     private async void btnAddItem_Clicked(object sender, EventArgs e)

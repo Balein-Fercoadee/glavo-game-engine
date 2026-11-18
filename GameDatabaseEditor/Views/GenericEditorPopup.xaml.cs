@@ -81,6 +81,7 @@ public partial class GenericEditorPopup : Popup
             case EditorTypes.Room:
             case EditorTypes.Item:
             case EditorTypes.Message:
+            case EditorTypes.Word:
                 editorType = _editorType.ToString();
                 break;
 

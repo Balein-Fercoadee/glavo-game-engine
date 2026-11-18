@@ -31,6 +31,9 @@
     <Compile Include="..\GameDatabaseEditor\Utilities\MessageEditSession.cs" Link="MessageEditSession.cs" />
     <Compile Include="..\GameDatabaseEditor\Utilities\MessageReferences.cs" Link="MessageReferences.cs" />
     <Compile Include="..\GameDatabaseEditor\Utilities\RoomReferences.cs" Link="RoomReferences.cs" />
+    <Compile Include="..\GameDatabaseEditor\Utilities\WordEditSession.cs" Link="WordEditSession.cs" />
+    <Compile Include="..\GameDatabaseEditor\Utilities\WordReferences.cs" Link="WordReferences.cs" />
+    <Compile Include="..\GameDatabaseEditor\Utilities\WordValidation.cs" Link="WordValidation.cs" />
     <Compile Include="..\GameDatabaseEditor\Utilities\GeneralUtilities.cs" Link="GeneralUtilities.cs" />
   </ItemGroup>
 

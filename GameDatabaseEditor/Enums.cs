@@ -17,5 +17,6 @@ namespace GameDatabaseEditor
         Room,
         Item,
         Message,
+        Word,
     }
 }

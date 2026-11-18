@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gameData="clr-namespace:GameEngine.GameData;assembly=GameEngine"
+             x:Class="GameDatabaseEditor.Views.WordEditorView"
+             x:DataType="gameData:Word"
+             HeightRequest="300"
+             WidthRequest="500">
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto">
+        <Label Grid.Row="0" Grid.Column="0" Text="ID:" />
+        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Id}" />
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Name:" />
+        <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Name}" />
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Type:" />
+        <Picker x:Name="pckWordType"
+                Grid.Row="2"
+                Grid.Column="1"
+                SelectedItem="{Binding WordType}" />
+
+        <Label Grid.Row="3" Grid.Column="0" Text="Aliases (one per line):" VerticalOptions="Start" />
+        <Editor x:Name="entAliases"
+                Grid.Row="3"
+                Grid.Column="1"
+                AutoSize="TextChanges"
+                HeightRequest="140"
+                Placeholder="Optional aliases, one per line" />
+    </Grid>
+</ContentView>
