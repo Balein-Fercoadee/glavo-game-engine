@@ -18,5 +18,6 @@ namespace GameDatabaseEditor
         Item,
         Message,
         Word,
+        Action,
     }
 }

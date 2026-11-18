@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gameData="clr-namespace:GameEngine.GameData;assembly=GameEngine"
+             xmlns:views="clr-namespace:GameDatabaseEditor.Views"
+             x:Class="GameDatabaseEditor.Views.ActionEditorView"
+             x:DataType="gameData:Action"
+             WidthRequest="800" HeightRequest="600">
+    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" ColumnDefinitions="Auto,*,Auto,*">
+        <Label Grid.Row="0" Grid.Column="0" Text="ID:" />
+        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Id}" />
+        <Label Grid.Row="1" Grid.Column="0" Text="Description:" />
+        <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Description}" />
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Trigger verb:" />
+        <Picker x:Name="pckVerb" Grid.Row="2" Grid.Column="1" Title="Select a verb">
+            <Picker.ItemDisplayBinding>
+                <Binding Path="Name" x:DataType="gameData:Word" />
+            </Picker.ItemDisplayBinding>
+        </Picker>
+        <Label Grid.Row="2" Grid.Column="2" Text="Trigger noun:" />
+        <Picker x:Name="pckNoun" Grid.Row="2" Grid.Column="3" Title="Select a noun">
+            <Picker.ItemDisplayBinding>
+                <Binding Path="Name" x:DataType="gameData:Word" />
+            </Picker.ItemDisplayBinding>
+        </Picker>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4"
+              ColumnDefinitions="*,*" ColumnSpacing="10">
+            <Grid Grid.Column="0" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
+                <Label Grid.Row="0" Text="Conditions" FontAttributes="Bold" />
+                <Picker x:Name="pckConditionType" Grid.Row="1" Title="Select condition type" />
+                <Picker x:Name="pckConditionItem" Grid.Row="2" Title="Select item">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Display" x:DataType="views:ActionTarget" />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                <HorizontalStackLayout Grid.Row="3">
+                    <Button Text="Add" WidthRequest="100" Clicked="AddCondition_Clicked" />
+                    <Button Text="Update" WidthRequest="100" Clicked="UpdateCondition_Clicked" />
+                    <Button Text="Remove" WidthRequest="100" Clicked="RemoveCondition_Clicked" />
+                </HorizontalStackLayout>
+                <CollectionView x:Name="lstConditions" Grid.Row="4" ItemsSource="{Binding Conditions}"
+                                SelectionMode="Single" SelectionChanged="Condition_SelectionChanged">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="gameData:ActionCondition">
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0} (Item ID: {1})">
+                                        <Binding Path="Condition" />
+                                        <Binding Path="ObjectId" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
+                <Label Grid.Row="0" Text="Commands (executed in order)" FontAttributes="Bold" />
+                <Picker x:Name="pckCommandType" Grid.Row="1" Title="Select command type"
+                        SelectedIndexChanged="CommandType_Changed" />
+                <Picker x:Name="pckCommandTarget" Grid.Row="2" Title="Select target">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="Display" x:DataType="views:ActionTarget" />
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+                <HorizontalStackLayout Grid.Row="3">
+                    <Button Text="Add" WidthRequest="100" Clicked="AddCommand_Clicked" />
+                    <Button Text="Update" WidthRequest="100" Clicked="UpdateCommand_Clicked" />
+                    <Button Text="Remove" WidthRequest="100" Clicked="RemoveCommand_Clicked" />
+                </HorizontalStackLayout>
+                <CollectionView x:Name="lstCommands" Grid.Row="4" ItemsSource="{Binding Commands}"
+                                SelectionMode="Single" SelectionChanged="Command_SelectionChanged">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="gameData:ActionCommand">
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0} (Target ID: {1})">
+                                        <Binding Path="Command" />
+                                        <Binding Path="ObjectId" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <HorizontalStackLayout Grid.Row="5">
+                    <Button Text="Move Up" Clicked="MoveCommandUp_Clicked" />
+                    <Button Text="Move Down" Clicked="MoveCommandDown_Clicked" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
+        <Label x:Name="lblError" Grid.Row="4" Grid.ColumnSpan="4"
+               TextColor="{AppThemeBinding Light=#A34600, Dark=#F5A66D}"
+               LineBreakMode="WordWrap" />
+    </Grid>
+</ContentView>

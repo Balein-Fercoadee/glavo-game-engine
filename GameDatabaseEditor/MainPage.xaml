@@ -305,12 +305,15 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="Actions"/>
-            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Action" />
+            <Button Grid.Row="0" Grid.Column="2" x:Name="btnAddAction" Text="Add Action" Clicked="btnAddAction_Clicked" />
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                 <CollectionView x:Name="lstActions" ItemsSource="{Binding Actions}" SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Label>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="Action_DoubleTapped" />
+                                </Label.GestureRecognizers>
                                 <Label.Text>
                                     <MultiBinding Mode="OneWay" StringFormat="{}{0,3} - {1}">
                                         <Binding Path="Id" />
@@ -325,10 +328,10 @@
 
             <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditAction"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstActions}}"
-                    Text="Edit Action" />
+                    Text="Edit Action" Clicked="btnEditAction_Clicked" />
             <Button Grid.Row="2" Grid.Column="2" x:Name="btnRemoveAction"
                     IsEnabled="{Binding SelectedItem, Converter={x:StaticResource objectToBool}, Source={x:Reference lstActions}}"
-                    Text="Remove Action" />
+                    Text="Remove Action" Clicked="btnRemoveAction_Clicked" />
         </Grid>
     </Grid>
 

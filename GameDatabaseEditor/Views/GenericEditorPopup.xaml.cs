@@ -10,6 +10,8 @@ public partial class GenericEditorPopup : Popup
     private EditorModes _editorMode;
     private EditorTypes _editorType;
 
+    public Func<bool>? CanSave { get; set; }
+
     /// <summary>
     /// Adds an editor view to the popup.
     /// </summary>
@@ -64,6 +66,11 @@ public partial class GenericEditorPopup : Popup
     /// </summary>
     private void btnSave_Clicked(object sender, EventArgs e)
     {
+        if (CanSave is not null && !CanSave())
+        {
+            return;
+        }
+
         Close(true);
     }
 
@@ -82,6 +89,7 @@ public partial class GenericEditorPopup : Popup
             case EditorTypes.Item:
             case EditorTypes.Message:
             case EditorTypes.Word:
+            case EditorTypes.Action:
                 editorType = _editorType.ToString();
                 break;
 

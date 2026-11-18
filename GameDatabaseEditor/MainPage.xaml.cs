@@ -2,6 +2,7 @@
 using GameDatabaseEditor.Utilities;
 using GameDatabaseEditor.Views;
 using GameEngine.GameData;
+using GameAction = GameEngine.GameData.Action;
 
 namespace GameDatabaseEditor;
 
@@ -13,6 +14,7 @@ public partial class MainPage : ContentPage
     private bool _itemEditorOpen;
     private bool _messageEditorOpen;
     private bool _wordEditorOpen;
+    private bool _actionEditorOpen;
 
     public MainPage()
     {
@@ -55,7 +57,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private Popup SetupEditorPopup(ContentView editorView, EditorTypes editorType, EditorModes editorMode)
+    private GenericEditorPopup SetupEditorPopup(ContentView editorView, EditorTypes editorType, EditorModes editorMode)
     {
         var popup = new GenericEditorPopup()
         {
@@ -440,6 +442,94 @@ public partial class MainPage : ContentPage
 
         lstMessages.SelectedItem = null;
         _gameDatabase.Messages.Remove(message);
+    }
+
+    private async void btnAddAction_Clicked(object sender, EventArgs e)
+    {
+        if (_actionEditorOpen)
+        {
+            return;
+        }
+
+        _actionEditorOpen = true;
+        try
+        {
+            var action = new GameAction
+            {
+                Id = GeneralUtilities.GetIdNumber(_gameDatabase.Actions.OrderBy(a => a.Id).Cast<IIdentifiable>().ToList())
+            };
+            var view = new ActionEditorView(_gameDatabase, action);
+            var popup = SetupEditorPopup(view, EditorTypes.Action, EditorModes.Add);
+            popup.CanSave = view.TryApplyChanges;
+            await this.ShowPopupAsync(popup);
+            if (popup.Result?.Result is true)
+            {
+                _gameDatabase.Actions.Add(action);
+                lstActions.SelectedItem = action;
+            }
+        }
+        finally
+        {
+            _actionEditorOpen = false;
+        }
+    }
+
+    private async void btnEditAction_Clicked(object sender, EventArgs e)
+    {
+        if (lstActions.SelectedItem is GameAction action)
+        {
+            await EditActionAsync(action);
+        }
+    }
+
+    private async void Action_DoubleTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is BindableObject { BindingContext: GameAction action })
+        {
+            await EditActionAsync(action);
+        }
+    }
+
+    private async Task EditActionAsync(GameAction action)
+    {
+        if (_actionEditorOpen)
+        {
+            return;
+        }
+
+        _actionEditorOpen = true;
+        try
+        {
+            var session = new ActionEditSession(_gameDatabase.Actions, action);
+            var view = new ActionEditorView(_gameDatabase, session.Draft);
+            var popup = SetupEditorPopup(view, EditorTypes.Action, EditorModes.Edit);
+            popup.CanSave = view.TryApplyChanges;
+            await this.ShowPopupAsync(popup);
+            if (popup.Result?.Result is true)
+            {
+                if (session.Save())
+                {
+                    lstActions.SelectedItem = session.Draft;
+                }
+                else
+                {
+                    await DisplayAlertAsync("Cannot save action", "The action is no longer in the database.", "OK");
+                }
+            }
+        }
+        finally
+        {
+            _actionEditorOpen = false;
+        }
+    }
+
+    private void btnRemoveAction_Clicked(object sender, EventArgs e)
+    {
+        if (lstActions.SelectedItem is GameAction action)
+        {
+            lstActions.SelectedItem = null;
+            _gameDatabase.Actions.Remove(action);
+        }
     }
 
     private async void btnOpenDatabase_Clicked(object sender, EventArgs e)
